@@ -12,42 +12,54 @@
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
-                    <button type="submit">Dashboard</button>
+                    <form method="get" action="/admin/dash/">
+                        <button type="submit">Dashboard</button>
+                    </form>
                 </div>
                 <div
                     class="flex gap-x-2 items-center rounded-lg px-4 py-2 hover:bg-blue-300 hover:cursor-pointer font-semibold mb-3">
                     <span class="material-symbols-outlined">
                         account_circle
                     </span>
-                    User
+                    <form method="get" action="/admin/user/">
+                        <button type="submit">User</button>
+                    </form>
                 </div>
                 <div
                     class="flex gap-x-2 items-center rounded-lg px-4 py-2 hover:bg-blue-300 hover:cursor-pointer font-semibold mb-3">
                     <span class="material-symbols-outlined">
                         school
                     </span>
-                    Major
+                    <form method="get" action="/admin/major/">
+                        <button type="submit">Major</button>
+                    </form>
                 </div>
                 <div
                     class="flex gap-x-2 items-center rounded-lg px-4 py-2 hover:bg-blue-300 hover:cursor-pointer font-semibold mb-3">
                     <span class="material-symbols-outlined">
                         meeting_room
                     </span>
-                    Classroom
+                    <form method="get" action="/admin/classroom/">
+                        <button type="submit">Classroom</button>
+                    </form>
                 </div>
                 <div
                     class="flex gap-x-2 items-center rounded-lg px-4 py-2 hover:bg-blue-300 hover:cursor-pointer font-semibold mb-3">
                     <span class="material-symbols-outlined">
                         settings
                     </span>
-                    Settings
+                    <form method="get" action="/admin/setting/">
+                        <button type="submit">Settings</button>
+                    </form>
                 </div>
                 <div
                     class="flex gap-x-2 items-center rounded-lg px-4 py-2 hover:bg-blue-300 hover:cursor-pointer font-semibold mb-3">
                     <span class="material-symbols-outlined">
                         logout
                     </span>
-                    Logout
+                    <form method="get" action="/admin/logout/">
+                        <button type="submit">Logout</button>
+                    </form>
                 </div>
         </div>
     </div>
@@ -55,7 +67,6 @@
     {{-- CONTAINER --}}
     <div class="w-full lg:pl-[280px] py-8">
         <div class="font-semibold text-3xl">
-            {{ $header ?? 'Header not found' }}
             @yield('content')
         </div>
     </div>

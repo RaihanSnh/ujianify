@@ -1,5 +1,6 @@
 @extends('layout.app')
 
-@section('body')
+@section('content')
+    {{ $header ?? 'Header not found' }}
     <h1>Hello word</h1>
 @endsection
