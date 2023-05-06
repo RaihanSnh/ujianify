@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
@@ -11,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class PersonalAccessToken
- * 
+ *
  * @property int $id
  * @property string $tokenable_type
  * @property int $tokenable_id

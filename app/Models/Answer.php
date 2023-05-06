@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
@@ -11,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Answer
- * 
+ *
  * @property int $id
  * @property int $question_id
  * @property int $priority
@@ -20,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $score
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Question $question
  *
  * @package App\Models

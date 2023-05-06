@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
@@ -11,13 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Score
- * 
+ *
  * @property int $student_id
  * @property int $subject_id
  * @property int $score
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Student $student
  * @property Subject $subject
  *

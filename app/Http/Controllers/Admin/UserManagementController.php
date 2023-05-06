@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class UserManagementController extends Controller{
 
-    public function all(Request $request){
-        User::query()->paginate(20);
-    }
+	public function all(Request $request){
+		User::query()->paginate(20);
+	}
 }

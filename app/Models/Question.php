@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
@@ -12,14 +14,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Question
- * 
+ *
  * @property int $id
  * @property int $subject_id
  * @property string $question
  * @property string|null $image_path
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Subject $subject
  * @property Collection|Answer[] $answers
  *

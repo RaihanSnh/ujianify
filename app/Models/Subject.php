@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
@@ -12,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Subject
- * 
+ *
  * @property int $id
  * @property string $name
  * @property Carbon $starts_at
@@ -21,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $shuffle_answers
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Collection|Question[] $questions
  *
  * @package App\Models

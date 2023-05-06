@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
@@ -12,12 +14,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Major
- * 
+ *
  * @property int $id
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Collection|Classroom[] $classrooms
  * @property Collection|Student[] $students
  * @property Collection|Teacher[] $teachers

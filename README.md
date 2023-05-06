@@ -48,3 +48,8 @@
     ```sh
     php artisan serve
     ```
+   
+### Contributing Guide
+
+Please follow to our code style by using php-cs-fixer.
+**PLEASE** type: `vendor/bin/php-cs-fixer fix` before commit.

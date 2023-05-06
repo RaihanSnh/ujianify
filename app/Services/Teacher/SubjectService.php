@@ -6,7 +6,7 @@ namespace App\Services\Teacher;
 
 class SubjectService{
 
-    public function create(string $name) {
+	public function create(string $name) {
 
-    }
+	}
 }
