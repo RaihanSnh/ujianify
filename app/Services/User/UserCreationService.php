@@ -20,6 +20,7 @@ class UserCreationService{
         $this->create($username, $password, User::ROLE_STUDENT);
 
         $student = new Student();
+        $student->external_id = $externalID;
         $student->full_name = $fullName;
         $student->classroom_id = $classroom instanceof Classroom ? $classroom->id : $classroom;
         $student->major_id = $major instanceof Major ? $major->id : $major;
@@ -38,6 +39,7 @@ class UserCreationService{
         $this->create($username, $password, User::ROLE_STUDENT);
 
         $teacher = new Teacher();
+        $teacher->external_id = $externalID;
         $teacher->full_name = $fullName;
         $teacher->save();
 

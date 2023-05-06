@@ -23,3 +23,21 @@ Route::prefix('/auth')->group(function() {
     });
     Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 });
+
+Route::prefix('/admin')->group(function() {
+    Route::prefix('/admin')->group(function() {
+        Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
+    });
+    Route::prefix('/teacher')->group(function() {
+        Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createTeacher']);
+    });
+    Route::prefix('/student')->group(function() {
+        Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
+    });
+    Route::prefix('/major')->group(function() {
+        Route::post('/create', [\App\Http\Controllers\Admin\MajorController::class, 'create']);
+    });
+    Route::prefix('/classroom')->group(function() {
+        Route::post('/create', [\App\Http\Controllers\Admin\MajorController::class, 'create']);
+    });
+});
