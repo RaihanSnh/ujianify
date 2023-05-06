@@ -22,8 +22,8 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $username = $request->get('username');
-        $password = $request->get('password');
+        $username = $request->post('username');
+        $password = $request->post('password');
 
         /** @var User $user */
         $user = User::query()->where('name', '=', $username)->first();

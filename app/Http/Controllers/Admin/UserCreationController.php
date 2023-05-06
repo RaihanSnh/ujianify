@@ -16,8 +16,8 @@ class UserCreationController extends Controller{
             'password' => 'required'
         ]);
 
-        $username = $request->get('username');
-        $password = $request->get('password');
+        $username = $request->post('username');
+        $password = $request->post('password');
 
         UserCreationService::getInstance()->createAdmin($username, $password);
     }
@@ -33,11 +33,11 @@ class UserCreationController extends Controller{
         ]);
 
         UserCreationService::getInstance()->createTeacher(
-            $request->get('username'),
-            $request->get('password'),
-            $request->get('external_id'),
-            $request->get('full_name'),
-            $request->get('majors')
+            $request->post('username'),
+            $request->post('password'),
+            $request->post('external_id'),
+            $request->post('full_name'),
+            $request->post('majors')
         );
     }
 
@@ -52,12 +52,12 @@ class UserCreationController extends Controller{
         ]);
 
         UserCreationService::getInstance()->createStudent(
-            $request->get('username'),
-            $request->get('password'),
-            $request->get('external_id'),
-            $request->get('full_name'),
-            $request->get('classroom_id'),
-            $request->get('major_id'),
+            $request->post('username'),
+            $request->post('password'),
+            $request->post('external_id'),
+            $request->post('full_name'),
+            $request->post('classroom_id'),
+            $request->post('major_id'),
         );
     }
 }
