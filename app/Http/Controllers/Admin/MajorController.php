@@ -9,6 +9,7 @@ use App\Models\Classroom;
 use App\Models\Major;
 use App\Services\Admin\MajorService;
 use Illuminate\Http\Request;
+use function back;
 
 class MajorController extends Controller{
 
@@ -18,6 +19,8 @@ class MajorController extends Controller{
         ]);
 
         MajorService::getInstance()->create($request->post('name'));
+        $request->session()->flash('message', 'Major created.');
+        return back();
     }
 
     public function update(Major $major, Request $request) {
@@ -26,10 +29,16 @@ class MajorController extends Controller{
         ]);
 
         MajorService::getInstance()->update($major, $request->post('name'));
+
+        $request->session()->flash('message', 'Major updated.');
+        return back();
     }
 
     public function delete(Major $major, Request $request) {
         MajorService::getInstance()->delete($major);
+
+        $request->session()->flash('message', 'Major deleted.');
+        return back();
     }
 
     public function all(Request $request) {

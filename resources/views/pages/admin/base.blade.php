@@ -50,9 +50,7 @@
     </div>
 
     {{-- CONTAINER --}}
-    <div class="w-full lg:pl-[280px] py-8">
-        <div class="font-semibold text-3xl">
-            Dashboard
-        </div>
+    <div class="w-full pl-[30px] pr-[30px] lg:pl-[280px] py-8">
+        @yield('container')
     </div>
 @endsection

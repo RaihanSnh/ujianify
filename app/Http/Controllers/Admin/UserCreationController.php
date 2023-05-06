@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\User\UserCreationService;
 use Illuminate\Http\Request;
+use function back;
+use function view;
 
 class UserCreationController extends Controller{
 
@@ -20,6 +22,9 @@ class UserCreationController extends Controller{
         $password = $request->post('password');
 
         UserCreationService::getInstance()->createAdmin($username, $password);
+
+        $request->session()->flash('message', 'Admin created.');
+        return back();
     }
 
     public function createTeacher(Request $request) {
@@ -39,6 +44,9 @@ class UserCreationController extends Controller{
             $request->post('full_name'),
             $request->post('majors')
         );
+
+        $request->session()->flash('message', 'Teacher created.');
+        return back();
     }
 
     public function createStudent(Request $request) {
@@ -48,7 +56,7 @@ class UserCreationController extends Controller{
             'external_id' => 'required',
             'full_name' => 'required',
             'classroom_id' => 'required|exists:classroom,id',
-            'major_id' => 'required|exists:major,id'
+            'major_id' => 'required|exists:majors,id'
         ]);
 
         UserCreationService::getInstance()->createStudent(
@@ -56,8 +64,11 @@ class UserCreationController extends Controller{
             $request->post('password'),
             $request->post('external_id'),
             $request->post('full_name'),
-            $request->post('classroom_id'),
-            $request->post('major_id'),
+            (int) $request->post('classroom_id'),
+            (int) $request->post('major_id'),
         );
+
+        $request->session()->flash('message', 'Student created.');
+        return back();
     }
 }

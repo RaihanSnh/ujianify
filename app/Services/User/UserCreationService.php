@@ -17,9 +17,10 @@ class UserCreationService{
     use SingletonTrait;
 
     public function createStudent(string $username, string $password, string $externalID, string $fullName, Classroom|int $classroom, Major|int $major): void{
-        $this->create($username, $password, User::ROLE_STUDENT);
+        $user = $this->create($username, $password, User::ROLE_STUDENT);
 
         $student = new Student();
+        $student->user_id = $user->id;
         $student->external_id = $externalID;
         $student->full_name = $fullName;
         $student->classroom_id = $classroom instanceof Classroom ? $classroom->id : $classroom;
@@ -36,9 +37,10 @@ class UserCreationService{
      * @return void
      */
     public function createTeacher(string $username, string $password, string $externalID, string $fullName, array $majors): void{
-        $this->create($username, $password, User::ROLE_STUDENT);
+        $user = $this->create($username, $password, User::ROLE_STUDENT);
 
         $teacher = new Teacher();
+        $teacher->user_id = $user->id;
         $teacher->external_id = $externalID;
         $teacher->full_name = $fullName;
         $teacher->save();
@@ -54,11 +56,12 @@ class UserCreationService{
         $this->create($username, $password, User::ROLE_ADMIN);
     }
 
-    private function create(string $username, string $password, string $role): void{
+    private function create(string $username, string $password, string $role): User{
         $user = new User();
         $user->name = $username;
         $user->setPassword($password);
         $user->role = $role;
         $user->save();
+        return $user;
     }
 }
