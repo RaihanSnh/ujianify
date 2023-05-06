@@ -9,7 +9,7 @@
 
 2. Install npm dependencies 
     ```sh
-    yarn add
+    yarn
     ```
 
 3. Generate encryption key (it used to hash user passwords)
