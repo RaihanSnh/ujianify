@@ -26,9 +26,15 @@ Route::prefix('/auth')->group(function() {
 
 Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyAdmin::class])->group(function() {
     Route::get('/', function() {
-        return view('pages.admin.base');
+        $data = [
+            'header' => 'Dashboard',
+        ];
+        return view('pages.admin.base', $data);
     });
-    Route::prefix('/admin')->group(function() {
+    Route::prefix('/user')->group(function() {
+        Route::get('/', function(){
+            return view('pages.admin.user');
+        });
         Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
     });
     Route::prefix('/teacher')->group(function() {
