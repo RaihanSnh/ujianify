@@ -35,4 +35,8 @@ class AuthService{
         }
         return new AuthSession($session['user_id'], $session['name'], $session['role']);
     }
+
+    public function isAuthenticated(Request $request): bool{
+        return $this->get($request) !== null;
+    }
 }
