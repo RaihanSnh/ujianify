@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-    return view('layout.app');
+    return view('pages.admin.user');
 });
 
 Route::prefix('/auth')->group(function() {
@@ -25,16 +25,10 @@ Route::prefix('/auth')->group(function() {
 });
 
 Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyAdmin::class])->group(function() {
-    Route::get('/', function() {
-        $data = [
-            'header' => 'Dashboard',
-        ];
-        return view('pages.admin.base', $data);
-    });
+    Route::get('/', function(){
+        return view('pages.admin.base');
+    })->name('admin.dashboard');
     Route::prefix('/user')->group(function() {
-        Route::get('/', function(){
-            return view('pages.admin.user');
-        });
         Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
     });
     Route::prefix('/teacher')->group(function() {

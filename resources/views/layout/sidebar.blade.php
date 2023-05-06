@@ -12,7 +12,7 @@
                     <span class="material-symbols-outlined">
                         grid_view
                     </span>
-                    <form method="get" action="/admin/dash/">
+                    <form method="get" action="{{ route('admin.dashboard') }}">
                         <button type="submit">Dashboard</button>
                     </form>
                 </div>
@@ -21,7 +21,7 @@
                     <span class="material-symbols-outlined">
                         account_circle
                     </span>
-                    <form method="get" action="/admin/user/">
+                    <form action="/admin/user/">
                         <button type="submit">User</button>
                     </form>
                 </div>
@@ -30,7 +30,7 @@
                     <span class="material-symbols-outlined">
                         school
                     </span>
-                    <form method="get" action="/admin/major/">
+                    <form action="/admin/major/">
                         <button type="submit">Major</button>
                     </form>
                 </div>
@@ -39,7 +39,7 @@
                     <span class="material-symbols-outlined">
                         meeting_room
                     </span>
-                    <form method="get" action="/admin/classroom/">
+                    <form action="/admin/classroom/">
                         <button type="submit">Classroom</button>
                     </form>
                 </div>
@@ -48,7 +48,7 @@
                     <span class="material-symbols-outlined">
                         settings
                     </span>
-                    <form method="get" action="/admin/setting/">
+                    <form action="/admin/setting/">
                         <button type="submit">Settings</button>
                     </form>
                 </div>
@@ -57,7 +57,7 @@
                     <span class="material-symbols-outlined">
                         logout
                     </span>
-                    <form method="get" action="/admin/logout/">
+                    <form action="/admin/logout/">
                         <button type="submit">Logout</button>
                     </form>
                 </div>
