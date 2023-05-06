@@ -12,22 +12,27 @@
     yarn
     ```
 
-3. Generate encryption key (it used to hash user passwords)
+3. Copy the env.example file to .env 
+   ```sh
+   cp .env.example .env
+   ```
+
+4. Generate encryption key (it used to hash user passwords)
     ```sh
     php artisan generate:key
     ```
 
-4. Run database migrations to create all required tables.
+5. Run database migrations to create all required tables.
     ```sh
     php artisan migrate
     ```
    
-5. Build vite
+6. Build vite
     ```sh
     yarn build
     ```
 
-6. Create admin user
+7. Create admin user
     ```sh
     php artisan user:admin:create
     ```
