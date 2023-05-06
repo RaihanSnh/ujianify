@@ -25,7 +25,7 @@
                 </div>
                 <div class="mb-4">
                     @component('components.button', ['type' => 'submit'])
-                        Login
+                        <span class="material-symbols-outlined">arrow_forward</span> Login
                     @endcomponent
                 </div>
             </form>

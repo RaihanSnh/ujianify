@@ -24,7 +24,10 @@ Route::prefix('/auth')->group(function() {
     Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 });
 
-Route::prefix('/admin')->group(function() {
+Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyAdmin::class])->group(function() {
+    Route::get('/', function() {
+        return view('pages.admin.base');
+    });
     Route::prefix('/admin')->group(function() {
         Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
     });

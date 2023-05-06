@@ -21,7 +21,7 @@ class OnlyTeacher
     {
         /** @var AuthSession $user */
         $user = $request->user();
-        if($user->getRole() === User::ROLE_TEACHER) {
+        if($user->getRole() !== User::ROLE_TEACHER) {
             return response('forbidden', 403);
         }
         return $next($request);

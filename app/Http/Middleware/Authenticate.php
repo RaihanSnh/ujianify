@@ -26,9 +26,11 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!$this->service->isAuthenticated($request)) {
-            return response('forbidden', 403); // TODO: implement view
+        $user = $this->service->get($request);
+        if($user === null) {
+            return response('forbidden', 403);
         }
+        $request->setUserResolver(fn() => $user);
         return $next($request);
     }
 }

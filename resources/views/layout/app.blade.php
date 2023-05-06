@@ -11,6 +11,9 @@
         }
     </style>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700;900&display=swap"/>
+
     @if(env('TAILWIND_VITE', 'true'))
         @vite('resources/css/app.css')
     @else

@@ -2,7 +2,12 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\OnlyAdmin;
+use App\Http\Middleware\OnlyStudent;
+use App\Http\Middleware\OnlyTeacher;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Session\Middleware\StartSession;
 
 class Kernel extends HttpKernel
 {
