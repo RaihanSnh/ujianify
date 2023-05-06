@@ -31,6 +31,12 @@ class User extends Model
     const ROLE_TEACHER = 'teacher';
     const ROLE_ADMIN = 'admin';
 
+    const ROLES = [
+        self::ROLE_STUDENT,
+        self::ROLE_TEACHER,
+        self::ROLE_ADMIN
+    ];
+
 	protected $table = 'users';
 
 	protected $hidden = [
@@ -87,5 +93,9 @@ class User extends Model
 
     public function isAdmin(): bool{
         return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function setPassword(string $password){
+        $this->password = Hash::make($password);
     }
 }
