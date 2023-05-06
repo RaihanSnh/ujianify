@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\Auth\AuthService;
-use Illuminate\Http\Request;
-use function response;
-use function view;
 
 class AuthController extends Controller
 {
@@ -32,6 +30,13 @@ class AuthController extends Controller
             return response()->view('pages.auth.login', [], 401);
         }
         $this->service->set($request, $user);
-        return response('authenticated', 200); // TODO: implement view
+
+
+        if ($user->isAdmin()) {
+            return redirect('/admin');
+        }
+
+        // Redirect non-admin users
+        return redirect('/');
     }
 }
