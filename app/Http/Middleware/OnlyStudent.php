@@ -2,10 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
+use App\Services\Auth\UserJWT;
 use Closure;
 use Illuminate\Http\Request;
+use function response;
 
-class RedirectIfAuthenticated
+class OnlyStudent
 {
     /**
      * Handle an incoming request.
@@ -16,6 +19,11 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
+        /** @var UserJWT $user */
+        $user = $request->user();
+        if($user->getRole() === User::ROLE_STUDENT) {
+            return response('forbidden', 403);
+        }
         return $next($request);
     }
 }
