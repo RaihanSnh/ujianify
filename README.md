@@ -19,7 +19,7 @@
 
 4. Run database migrations to create all required tables.
     ```sh
-    php artisan migrate:install && php artisan migrate
+    php artisan migrate
     ```
    
 5. Build vite
@@ -29,7 +29,7 @@
 
 6. Create admin user
     ```sh
-    php artisan user:create:admin
+    php artisan user:admin:create
     ```
 
 ### Run Development Server
