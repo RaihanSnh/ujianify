@@ -20,7 +20,7 @@
                     @endcomponent
                 </div>
                 <div class="mb-4">
-                    @component('components.input.text', ['name' => 'password', 'placeholder' => 'Password'])
+                    @component('components.input.password', ['name' => 'password', 'placeholder' => 'Password'])
                     @endcomponent
                 </div>
                 <div class="mb-4">
