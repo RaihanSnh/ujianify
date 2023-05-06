@@ -6,13 +6,13 @@ namespace App\Services\Auth;
 
 use App\Models\User;
 
-class UserJWT{
+class AuthSession{
 
     private ?User $model = null;
 
     public function __construct(
-        private int $userId,
-        private string $username,
+        private int    $userId,
+        private string $name,
         private string $role,
     ){
     }
@@ -21,8 +21,8 @@ class UserJWT{
         return $this->userId;
     }
 
-    public function getUsername(): string{
-        return $this->username;
+    public function getName(): string{
+        return $this->name;
     }
 
     public function getRole(): string{

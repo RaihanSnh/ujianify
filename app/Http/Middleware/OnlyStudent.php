@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
-use App\Services\Auth\UserJWT;
+use App\Services\Auth\AuthSession;
 use Closure;
 use Illuminate\Http\Request;
 use function response;
@@ -19,7 +19,7 @@ class OnlyStudent
      */
     public function handle(Request $request, Closure $next)
     {
-        /** @var UserJWT $user */
+        /** @var AuthSession $user */
         $user = $request->user();
         if($user->getRole() === User::ROLE_STUDENT) {
             return response('forbidden', 403);

@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Services\Auth\AuthJWTService;
+use App\Services\Auth\AuthService;
 use Illuminate\Http\Request;
 use function response;
 use function view;
 
 class AuthController extends Controller
 {
-    private AuthJWTService $authJWTService;
+    private AuthService $authJWTService;
 
     public function __construct(){
-        $this->authJWTService = new AuthJWTService();
+        $this->authJWTService = new AuthService();
     }
 
     public function login(Request $request) {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\Auth\AuthJWTService;
-use App\Services\Auth\UserJWT;
+use App\Services\Auth\AuthService;
+use App\Services\Auth\AuthSession;
 use Closure;
 use Illuminate\Http\Request;
 use function redirect;
@@ -11,10 +11,10 @@ use function response;
 
 class Authenticate
 {
-    private AuthJWTService $service;
+    private AuthService $service;
 
     public function __construct(){
-        $this->service = new AuthJWTService();
+        $this->service = new AuthService();
     }
 
     /**
