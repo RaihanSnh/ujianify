@@ -28,8 +28,11 @@ class AuthService{
         ]);
     }
 
-    public function get(Request $request) : AuthSession{
+    public function get(Request $request) : ?AuthSession{
         $session = $request->session()->get('authenticated_user');
+        if($session === null) {
+            return null;
+        }
         return new AuthSession($session['user_id'], $session['name'], $session['role']);
     }
 }

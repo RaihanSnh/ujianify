@@ -26,8 +26,8 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->hasCookie('UserSessionJWT')) {
-            return redirect($request->query('auth_redirect', '/'));
+        if($this->service->get($request) === null) {
+            return response('forbidden', 403); // TODO: implement view
         }
         return $next($request);
     }

@@ -10,10 +10,10 @@ use function view;
 
 class AuthController extends Controller
 {
-    private AuthService $authJWTService;
+    private AuthService $service;
 
     public function __construct(){
-        $this->authJWTService = new AuthService();
+        $this->service = new AuthService();
     }
 
     public function login(Request $request) {
@@ -31,7 +31,7 @@ class AuthController extends Controller
             $request->session()->flash('login_error', 'Invalid username or password');
             return response()->view('pages.auth.login', [], 401);
         }
-        $jwt = $this->authJWTService->create($user);
-        return response($jwt, 200); // TODO: implement view
+        $this->service->set($request, $user);
+        return response('authenticated', 200); // TODO: implement view
     }
 }
