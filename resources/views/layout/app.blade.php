@@ -11,7 +11,12 @@
         }
     </style>
 
-    @vite('resources/css/app.css')
+    @if(env('TAILWIND_VITE', 'true'))
+        @vite('resources/css/app.css')
+    @else
+        <script src="https://cdn.tailwindcss.com"></script>
+    @endif
+
     @yield('head')
 </head>
 <body>
