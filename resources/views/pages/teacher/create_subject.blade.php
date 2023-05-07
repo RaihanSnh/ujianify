@@ -21,16 +21,14 @@
             Starts At
         </div>
         <div class="mb-4">
-            @component('components.input.datetime', ['name' => 'starts_at'])
-            @endcomponent
+            <x-date-time-picker name="starts_at"/>
         </div>
 
         <div class="mb-1 font-semibold">
             Ends At
         </div>
         <div class="mb-4">
-            @component('components.input.datetime', ['name' => 'ends_at'])
-            @endcomponent
+            <x-date-time-picker name="ends_at"/>
         </div>
 
         <div class="mb-1 font-semibold">
