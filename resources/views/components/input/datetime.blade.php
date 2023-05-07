@@ -8,6 +8,11 @@
     <script>
         $(document).ready(function () {
             $("#{{ $id }}").datetimepicker();
+
+            $("#{{ $id }}").on("change",function(){
+                var selected = $(this).val();
+                alert(selected);
+            });
         });
     </script>
 @endsection

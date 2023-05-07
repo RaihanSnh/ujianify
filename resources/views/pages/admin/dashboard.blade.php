@@ -3,5 +3,5 @@
 @section('header', 'Dashboard')
 
 @section('container')
-    <h1>Ini Dashboard</h1>    
+    @component('components.input.datetime', ['name' => 'asdsad']) @endcomponent
 @endsection
