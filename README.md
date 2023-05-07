@@ -32,7 +32,12 @@
     yarn build
     ```
 
-7. Create admin user
+7. Build scripts
+    ```sh
+    php artisan build:javascript
+    ```
+
+8. Create admin user
     ```sh
     php artisan user:admin:create
     ```

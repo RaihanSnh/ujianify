@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css" integrity="sha512-LT9fy1J8pE4Cy6ijbg96UkExgOjCqcxAC7xsnv+mLJxSvftGVmmc236jlPTZXPcBRQcVOWoK1IJhb1dAjtb4lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @if(env('VITE_ENABLED', 'true') === 'true')
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css'])
     @else
         <script src="https://cdn.tailwindcss.com"></script>
     @endif
@@ -40,7 +40,11 @@
     </script>
 </head>
 <body>
-@yield('body')
+<div id="root">
+    @yield('body')
+</div>
 @yield('scripts')
+
+<x-script src="js/ujianify.js"/>
 </body>
 </html>

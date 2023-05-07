@@ -1,9 +1,11 @@
-const selectMajor = document.getElementById("selectMajor");
-const selectClassroom = document.getElementById("selectClassroom");
-
-selectClassroom.disabled = true;
-
 document.addEventListener('DOMContentLoaded', function (event) {
+    const selectMajor = document.getElementById("selectMajor");
+    const selectClassroom = document.getElementById("selectClassroom");
+    if(selectMajor === null || selectClassroom === null) {
+        return;
+    }
+
+    selectClassroom.disabled = true;
     const clearClassroom = function () {
         while (selectClassroom.firstChild) {
             selectClassroom.removeChild(selectClassroom.firstChild);
