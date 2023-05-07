@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Services\Auth\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+
 use function redirect;
 use function response;
 
@@ -45,5 +47,10 @@ class AuthController extends Controller
 
 		// Redirect non-admin users
 		return redirect('/');
+	}
+
+	public function logout()
+	{
+		return redirect('/auth/login');
 	}
 }

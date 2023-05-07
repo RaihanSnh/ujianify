@@ -24,11 +24,12 @@ Route::prefix('/auth')->group(function() {
 		return view('pages.auth.login');
 	});
 	Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+	Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 });
 
 Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyAdmin::class])->group(function() {
 	Route::get('/', function() {
-		return view('pages.admin.create_student');
+		return view('pages.admin.dashboard');
 	});
 	Route::prefix('/admin')->group(function() {
 		Route::get('/', fn() => view('pages.admin.admin'));

@@ -40,7 +40,8 @@
                     Settings
                 </button>
             </form>
-            <form method="post" class="w-full" action="{{ url('/auth/logout') }}">
+            <form method="post" class="w-full" action="{{ url('auth/logout') }}">
+                @csrf
                 <button type="submit" class="flex gap-x-2 items-center rounded-lg px-4 py-2 hover:bg-blue-300 hover:cursor-pointer font-semibold w-full">
                     <span class="material-symbols-outlined">
                         logout
