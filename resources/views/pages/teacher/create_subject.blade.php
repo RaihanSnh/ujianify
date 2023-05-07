@@ -22,6 +22,7 @@
         </div>
         <div class="mb-4">
             <x-date-time-picker name="starts_at"/>
+            <x-form-error field="starts_at"/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -29,6 +30,7 @@
         </div>
         <div class="mb-4">
             <x-date-time-picker name="ends_at"/>
+            <x-form-error field="starts_at"/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -37,6 +39,7 @@
         <div class="mb-4">
             @component('components.input.checkbox', ['id' => 'question', 'name' => 'shuffle_questions', 'placeholder' => 'Shuffle Questions'])
             @endcomponent
+            <x-form-error field="shuffle_questions"/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -45,6 +48,7 @@
         <div class="mb-4">
             @component('components.input.checkbox', ['id' => 'answer', 'name' => 'shuffle_answers', 'placeholder' => 'Shuffle Answers'])
             @endcomponent
+            <x-form-error field="shuffle_answers"/>
         </div>
 
         <x-button type="submit">Create</x-button>

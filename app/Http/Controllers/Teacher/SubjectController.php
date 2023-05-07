@@ -18,14 +18,13 @@ class SubjectController{
 
 		$request->validate([
 			'name' => 'required',
-			'starts_at' => 'required|date_format:Y-m-d H:i',
-			'ends_at' => 'required|date_format:Y-m-d H:i',
+			'starts_at' => 'required|date_format:d/m/Y H:i',
+			'ends_at' => 'required|date_format:d/m/Y H:i',
 			'shuffle_questions' => 'required|boolean',
 			'shuffle_answers' => 'required|boolean',
 		]);
 
 		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $question, $answer);
-
 		$request->session()->flash('message', 'Subject created');
 		return back();
 	}
