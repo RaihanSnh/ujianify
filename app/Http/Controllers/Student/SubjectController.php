@@ -11,10 +11,15 @@ use App\Models\StudentAnswer;
 use App\Models\Subject;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use function response;
 
 class SubjectController extends Controller{
 
 	public function submit(Subject $subject, Request $request) {
+		if(Score::query()->where('student_id', '=', $request->user()->id)->where('subject_id', '=', $subject->id)->whereNotNull('submitted_at')->first() !== null) {
+			return response('already submitted!');
+		}
+
 		/** @var StudentAnswer[] $answers */
 		$answers = StudentAnswer::query()->where('subject_id', '=', $subject->id)->get();
 		/** @var Question[] $questions */
