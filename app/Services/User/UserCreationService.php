@@ -28,10 +28,7 @@ class UserCreationService{
 		$student->save();
 	}
 
-	/**
-	 * @param Major[]|int[] $majors
-	 */
-	public function createTeacher(string $username, string $password, string $externalID, string $fullName, array $majors) : void{
+	public function createTeacher(string $username, string $password, string $externalID, string $fullName) : void{
 		$user = $this->create($username, $password, User::ROLE_STUDENT);
 
 		$teacher = new Teacher();
@@ -39,12 +36,6 @@ class UserCreationService{
 		$teacher->external_id = $externalID;
 		$teacher->full_name = $fullName;
 		$teacher->save();
-
-		$insert = [];
-		foreach($majors as $major) {
-			$insert[] = ['teacher_id' => $teacher->user_id, 'major_id' => $major instanceof Major ? $major->id : $major];
-		}
-		TeacherMajor::query()->insert($insert);
 	}
 
 	public function createAdmin(string $username, string $password) : void{

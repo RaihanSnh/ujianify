@@ -31,17 +31,14 @@ class UserCreationController extends Controller{
 			'username' => 'required',
 			'password' => 'required',
 			'full_name' => 'required',
-			'external_id' => 'required',
-			'major_ids' => 'required|string',
-			'major_ids.*' => 'exists:majors,id'
+			'external_id' => 'required'
 		]);
 
 		UserCreationService::getInstance()->createTeacher(
 			$request->post('username'),
 			$request->post('password'),
 			$request->post('external_id'),
-			$request->post('full_name'),
-			$request->post('majors')
+			$request->post('full_name')
 		);
 
 		$request->session()->flash('message', 'Teacher created.');
