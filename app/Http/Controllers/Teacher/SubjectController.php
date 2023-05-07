@@ -14,6 +14,9 @@ use function pos;
 class SubjectController{
 
 	public function create(Request $request) {
+		$question = $request->post('shuffle_questions') ? true : false;
+		$answer = $request->post('shuffle_answers') ? true : false;
+
 		$request->validate([
 			'name' => 'required',
 			'starts_at' => 'required|date_format:Y-m-d H:i',
@@ -22,7 +25,7 @@ class SubjectController{
 			'shuffle_answers' => 'required|boolean',
 		]);
 
-		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $request->post('shuffle_questions'), $request - pos('shuffle_answers'));
+		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $question, $answer);
 
 		$request->session()->flash('message', 'Subject created');
 		return back();
@@ -37,7 +40,7 @@ class SubjectController{
 			'shuffle_answers' => 'required|boolean',
 		]);
 
-		SubjectService::getInstance()->update($subject, $request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $request->post('shuffle_questions'), $request - pos('shuffle_answers'));
+		SubjectService::getInstance()->update($subject, $request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $request->post('shuffle_questions'), $request->pos('shuffle_answers'));
 
 		$request->session()->flash('message', 'Subject updated');
 		return back();

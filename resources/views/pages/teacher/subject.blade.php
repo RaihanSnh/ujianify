@@ -29,8 +29,8 @@
                         <td>{{ $subject->name }}</td>
                         <td>{{ $subject->starts_at }}</td>
                         <td>{{ $subject->ends_at }}</td>
-                        <td>{{ $subject->shuffle_question }}</td>
-                        <td>{{ $subject->shuffle_answer }}</td>
+                        <td>{{ $subject->shuffle_questions }}</td>
+                        <td>{{ $subject->shuffle_answers }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
                                 <form action="{{ url('admin/teacher/edit/' . $subject->id) }}">

@@ -63,6 +63,9 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::get('/edit/{classroom}', fn(\App\Models\Classroom $classroom) => view('pages.admin.edit_classroom', ['classroom' => $classroom]));
 		Route::post('/update/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'update']);
 	});
+	Route::prefix('/settings')->group(function(){
+		Route::get('/', fn() => view('pages.admin.settings'));
+	});
 });
 
 Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyTeacher::class])->group(function() {
@@ -72,8 +75,10 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 
 	Route::prefix('/subject')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.subject'));
+		Route::post('/create', [\App\Http\Controllers\Teacher\SubjectController::class, 'create']);
+		Route::get('/create', fn() => view('pages.teacher.create_subject'));
 	});
-	
+
 	Route::prefix('/score')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.score'));
 	});
