@@ -29,17 +29,4 @@
             </form>
         </div>
     </div>
-    <script>
-        function togglePassword() {
-            var passwordInput = document.getElementById("passwordInput");
-            var visibilityIcon = document.querySelector(".material-icons");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                visibilityIcon.textContent = "visibility_off";
-            } else {
-                passwordInput.type = "password";
-                visibilityIcon.textContent = "visibility";
-            }
-        }
-    </script>
 @endsection
