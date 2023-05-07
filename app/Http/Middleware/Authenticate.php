@@ -8,9 +8,6 @@ use App\Services\Auth\AuthService;
 use Closure;
 use Illuminate\Http\Request;
 use function redirect;
-use function response;
-use function url;
-use function urlencode;
 
 class Authenticate
 {
@@ -30,7 +27,7 @@ class Authenticate
 	{
 		$user = $this->service->get($request);
 		if($user === null) {
-			return redirect('/auth/login?redirect=' . urlencode($request->fullUrl()));
+			return redirect('auth/login');
 		}
 		$request->setUserResolver(fn() => $user);
 		return $next($request);

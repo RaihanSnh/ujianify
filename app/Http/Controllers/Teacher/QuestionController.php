@@ -47,9 +47,9 @@ class QuestionController{
 		return back();
 	}
 
-    public function delete(Question $question, Request $request) {
-        $question->delete();
-        $request->session()->flash('message', 'Question deleted.');
-        return back();
-    }
+	public function delete(Question $question, Request $request) {
+		$question->delete();
+		$request->session()->flash('message', 'Question deleted.');
+		return back();
+	}
 }

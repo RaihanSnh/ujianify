@@ -55,6 +55,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::get('/create', fn() => view('pages.admin.create_major'));
 		Route::get('/edit/{major}', fn(\App\Models\Major $major) => view('pages.admin.edit_major', ['major' => $major]));
 		Route::post('/update/{major}', [\App\Http\Controllers\Admin\MajorController::class, 'update']);
+		Route::delete('/{major}', [\App\Http\Controllers\Admin\MajorController::class, 'delete']);
 	});
 	Route::prefix('/classroom')->group(function() {
 		Route::get('/', fn() => view('pages.admin.classroom'));
