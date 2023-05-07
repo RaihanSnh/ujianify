@@ -45,8 +45,6 @@
 </div>
 @yield('scripts')
 
-<x-script src="js/toggle_password_visibility.js"/>
-<x-script src="js/modal.js"/>
-<x-script src="js/create_student.js"/>
+<x-script src="js/ujianify.js"/>
 </body>
 </html>
