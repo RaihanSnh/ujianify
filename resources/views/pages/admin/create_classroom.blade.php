@@ -12,8 +12,7 @@
             Classroom Name
         </div>
         <div class="mb-4">
-            @component('components.input.text', ['name' => 'name', 'placeholder' => 'Classroom Name'])
-            @endcomponent
+            <x-text-input name="name" placeholder="Classroom Name" with-error/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -26,10 +25,9 @@
                     <option value="{{ $major->id }}">{{ $major->name }}</option>
                 @endforeach
             </select>
+            <x-form-error field="major_id"/>
         </div>
 
-        @component('components.button', ['type' => 'submit'])
-            Create
-        @endcomponent
+        <x-button type="submit">Create</x-button>
     </form>
 @endsection

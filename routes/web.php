@@ -73,7 +73,7 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 	Route::prefix('/subject')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.subject'));
 	});
-	
+
 	Route::prefix('/score')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.score'));
 	});

@@ -16,14 +16,10 @@
                 @endif
                 @csrf
                 <div class="mb-4">
-                    @component('components.input.text', ['name' => 'username', 'placeholder' => 'Username'])
-                    @endcomponent
-                    <x-form-error field="username"/>
+                    <x-text-input name="username" with-error/>
                 </div>
                 <div class="mb-4">
-                    @component('components.input.password', ['name' => 'password', 'placeholder' => 'Password'])
-                    @endcomponent
-                    <x-form-error field="password"/>
+                    <x-text-input name="password" with-error/>
                 </div>
                 <div class="mb-4">
                     <x-button type="submit" left-icon="arrow_forward">

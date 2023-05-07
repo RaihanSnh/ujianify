@@ -12,12 +12,9 @@
             Major Name
         </div>
         <div class="mb-4">
-            @component('components.input.text', ['name' => 'name', 'placeholder' => 'Major Name', 'value' => $major->name])
-            @endcomponent
+            <x-text-input name="name" placeholder="Major Name" value="{{ $major->name }}" with-error/>
         </div>
 
-        @component('components.button', ['type' => 'submit'])
-            Update
-        @endcomponent
+        <x-button type="submit">Create</x-button>
     </form>
 @endsection

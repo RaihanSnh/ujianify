@@ -5,9 +5,7 @@
 @section('container')
     <div class="max-w-[200px] mb-4">
         <form action="{{ url('admin/major/create') }}">
-        @component('components.button', ['type' => 'submit'])
-            Create Major
-        @endcomponent
+            <x-button type="submit">Create Major</x-button>
         </form>
     </div>
     <div class="rounded-lg border shadow-lg py-3 px-5 w-[900px]">

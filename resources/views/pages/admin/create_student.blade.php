@@ -12,32 +12,28 @@
             Username
         </div>
         <div class="mb-4">
-            @component('components.input.text', ['name' => 'username', 'placeholder' => 'Username'])
-            @endcomponent
+            <x-text-input name="username" with-error/>
         </div>
 
         <div class="mb-1 font-semibold">
             Password
         </div>
         <div class="mb-4">
-            @component('components.input.password', ['name' => 'password', 'placeholder' => 'Password'])
-            @endcomponent
+            <x-text-input name="password" with-error/>
         </div>
 
         <div class="mb-1 font-semibold">
              External ID (NISN)
         </div>
         <div class="mb-4">
-            @component('components.input.text', ['name' => 'external_id', 'placeholder' => 'External ID'])
-            @endcomponent
+            <x-text-input name="external_id" placeholder="External ID (NISN)" with-error/>
         </div>
 
         <div class="mb-1 font-semibold">
             Student Full Name
         </div>
         <div class="mb-4">
-            @component('components.input.text', ['name' => 'full_name', 'placeholder' => 'Student Full Name'])
-            @endcomponent
+            <x-text-input name="full_name" placeholder="Student Full Name" with-error/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -50,6 +46,7 @@
                     <option value="{{ $major->id }}">{{ $major->name }}</option>
                 @endforeach
             </select>
+            <x-form-error field="major_id"/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -59,11 +56,10 @@
             <select id="selectClassroom" name="classroom_id" class="shadow-md border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
                 {{-- this classroom will automatically generated --}}
             </select>
+            <x-form-error field="classroom_id"/>
         </div>
 
-        @component('components.button', ['type' => 'submit'])
-            Create
-        @endcomponent
+        <x-button type="submit">Create</x-button>
     </form>
 @endsection
 
