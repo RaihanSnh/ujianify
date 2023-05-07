@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-	return view('layout.app');
+	return view('pages.student.base');
 });
 
 Route::prefix('/auth')->group(function() {
