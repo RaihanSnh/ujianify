@@ -30,11 +30,10 @@
                                     @method('DELETE')
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
                                         <span class="material-symbols-outlined">
-                                        delete
+                                            delete
                                         </span>
                                     </button>
                                 </form>
-
                                 <form action="{{ url('admin/major/edit/' . $major->id) }}">
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
                                         <span class="material-symbols-outlined">

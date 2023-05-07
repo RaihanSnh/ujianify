@@ -64,6 +64,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::get('/listByMajor/{major}', [\App\Http\Controllers\Admin\ClassroomController::class, 'allByMajorID']);
 		Route::get('/edit/{classroom}', fn(\App\Models\Classroom $classroom) => view('pages.admin.edit_classroom', ['classroom' => $classroom]));
 		Route::post('/update/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'update']);
+		Route::delete('/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'delete']);
 	});
 	Route::prefix('/settings')->group(function(){
 		Route::get('/', fn() => view('pages.admin.settings'));
