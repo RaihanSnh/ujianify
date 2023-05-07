@@ -13,9 +13,8 @@ return new class extends Migration
 	 */
 	public function up() : void
 	{
-		Schema::table('questions', function(Blueprint $table) {
-			$table->enum('answer', ['A', 'B', 'C', 'D', 'E']);
-			$table->integer('score');
+		Schema::table('scores', function(Blueprint $table) {
+			$table->dateTime('submitted_at')->nullable();
 		});
 	}
 
@@ -24,8 +23,8 @@ return new class extends Migration
 	 */
 	public function down() : void
 	{
-		Schema::table('questions', function(Blueprint $table) {
-            $table->dropColumn(['answer', 'score']);
-        });
+		Schema::table('scores', function(Blueprint $table) {
+			$table->dropColumn('submitted_at');
+		});
 	}
 };

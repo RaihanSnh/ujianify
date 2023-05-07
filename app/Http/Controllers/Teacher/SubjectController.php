@@ -40,4 +40,11 @@ class SubjectController{
 		$request->session()->flash('message', 'Subject updated');
 		return back();
 	}
+
+	public function delete(Subject $subject, Request $request) {
+		$subject->delete();
+
+		$request->session()->flash('message', 'Subject deleted');
+		return back();
+	}
 }

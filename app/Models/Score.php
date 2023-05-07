@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $score
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property Carbon|null $submitted_at
  *
  * @property Student $student
  * @property Subject $subject
@@ -33,13 +34,15 @@ class Score extends Model
 	protected $casts = [
 		'student_id' => 'int',
 		'subject_id' => 'int',
-		'score' => 'int'
+		'score' => 'int',
+		'submitted_at' => 'datetime'
 	];
 
 	protected $fillable = [
 		'student_id',
 		'subject_id',
-		'score'
+		'score',
+		'submitted_at'
 	];
 
 	public function student()
