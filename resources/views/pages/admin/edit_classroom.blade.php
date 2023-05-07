@@ -16,6 +16,18 @@
             @endcomponent
         </div>
 
+        <div class="mb-1 font-semibold">
+            Major
+        </div>
+        <div class="mb-4">
+            <select name="major_id" class="shadow-md border border-gray-300 text-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
+                <option value="">Select Major</option>
+                @foreach(\App\Models\Major::query()->get() as $major)
+                    <option value="{{ $major->id }}"{{ $major->id === $classroom->major_id ? ' selected' : '' }}>{{ $major->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         @component('components.button', ['type' => 'submit'])
             Update
         @endcomponent
