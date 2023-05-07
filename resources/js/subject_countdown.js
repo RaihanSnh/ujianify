@@ -4,10 +4,10 @@
  */
 function startCountdown(endsAt, id) {
     const elem = document.getElementById(id);
-    const now = endsAt.getDate() - Date.now();
     setInterval(function () {
-        elem.innerText = formatTimeToCountdown((new Date(now).getDate()) / 1000);
-    }, 1000);
+        const diff = endsAt.getTime() - Date.now();
+        elem.innerText = formatTimeToCountdown(diff / 1000);
+    }, 1000)
 }
 
 function formatTimeToCountdown(timestamp) {
@@ -15,7 +15,7 @@ function formatTimeToCountdown(timestamp) {
     let hours = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
     let minutes = Math.floor(totalSeconds / 60);
-    let seconds = totalSeconds % 60;
+    let seconds = Math.floor(totalSeconds % 60);
 
     if (hours < 10) {
         hours = "0" + hours;
