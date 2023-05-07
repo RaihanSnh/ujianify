@@ -25,7 +25,9 @@
                         <td>{{ $classroom->major()->first()->name }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
-                                <form action="{{ url('admin/classroom/delete/' . $classroom->id) }}">
+                                <form action="{{ url('admin/classroom/' . $classroom->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
                                         <span class="material-symbols-outlined">
                                             delete
