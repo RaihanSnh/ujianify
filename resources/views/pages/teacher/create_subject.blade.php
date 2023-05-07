@@ -12,8 +12,9 @@
             Subject Name
         </div>
         <div class="mb-4">
-            @component('components.input.text', ['name' => 'name', 'placeholder' => 'Subject Name'])
-            @endcomponent
+            <div class="mb-4">
+                <x-text-input name="username" with-error/>
+            </div>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -48,9 +49,7 @@
             @endcomponent
         </div>
 
-        @component('components.button', ['type' => 'submit'])
-            Create
-        @endcomponent
+        <x-button type="submit">Create</x-button>
     </form>
 @endsection
 

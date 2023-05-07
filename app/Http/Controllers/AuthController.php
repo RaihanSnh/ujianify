@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\Auth\AuthService;
 use Illuminate\Http\Request;
 
+use function auth;
 use function redirect;
 use function response;
 
