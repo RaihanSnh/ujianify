@@ -4,14 +4,14 @@
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to Ujianify</h1>
         <p class="text-lg text-gray-600 mb-8">A website created for online school exams</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div class="flex flex-wrap gap-6 justify-center">
             @foreach (\App\Models\Subject::query()->get() as $subject)
-                <div class="bg-white rounded-2xl shadow-lg p-8 w-auto">
+                <div class="bg-white rounded-lg shadow border px-6 py-4 w-full max-w-[500px] mb-6">
                     <h2 class="text-xl font-bold text-gray-800 mb-4">{{ $subject->name }}</h2>
-                    <p class="text-gray-600">Starts At : {{ $subject->starts_at }}</p>
-                    <p class="text-gray-600 mb-5">Ends At : {{ $subject->ends_at }}</p>
+                    <p class="text-gray-600"><b>Starts At:</b> {{ $subject->starts_at->format('j F Y, H.i') }}</p>
+                    <p class="text-gray-600 mb-5"><b>Ends At:</b> {{ $subject->ends_at->format('j F Y, H.i') }}</p>
                     <form action="{{ url('subject/' . $subject->id) }}">
-                        <button type="submit" class="mt-4 bg-indigo-500 text-white font-bold py-2 px-4 rounded-xl hover:bg-indigo-700">Start</button>
+                        <x-button type="submit">Start</x-button>
                     </form>
                 </div>
             @endforeach
