@@ -13,6 +13,9 @@ class SubjectService{
 	use SingletonTrait;
 
 	public function create(string $name, Carbon $startsAt, Carbon $endsAt, bool $shuffleQuestions, bool $shuffleAnswers) : Subject{
+		if($startsAt->greaterThan($endsAt)) {
+			throw new \InvalidArgumentException("starts_at must after ends_at");
+		}
 		$subject = new Subject();
 		$subject->name = $name;
 		$subject->starts_at = $startsAt;

@@ -8,9 +8,9 @@
         <x-button type="submit">Create Subject</x-button>
         </form>
     </div>
-    <div class="rounded-lg border shadow-lg py-3 px-5 w-[900px]">
-        <div style="max-width: 900px; overflow-x: auto;">
-            <table id="subjectTable" class="row-border max-w-[900px]">
+    <div class="rounded-lg border shadow-lg py-3 px-5 w-full max-w-[1400px]">
+        <div style="width: 100%; max-width: 1400px; overflow-x: auto;">
+            <table id="subjectTable" class="row-border w-full max-w-[1400px]">
                 <thead>
                 <tr>
                     <th>Subject Name</th>
@@ -26,10 +26,10 @@
                 @foreach(\App\Models\Subject::query()->get() as $subject)
                     <tr>
                         <td>{{ $subject->name }}</td>
-                        <td>{{ $subject->starts_at }}</td>
-                        <td>{{ $subject->ends_at }}</td>
-                        <td>{{ $subject->shuffle_questions }}</td>
-                        <td>{{ $subject->shuffle_answers }}</td>
+                        <td>{{ $subject->starts_at->format('j F Y, H.i') }}</td>
+                        <td>{{ $subject->ends_at->format('j F Y, H.i') }}</td>
+                        <td>{{ $subject->shuffle_questions ? 'Yes' : 'No' }}</td>
+                        <td>{{ $subject->shuffle_answers ? 'Yes' : 'No' }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
                                 <form action="{{ url('admin/teacher/edit/' . $subject->id) }}">

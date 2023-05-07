@@ -13,9 +13,6 @@ use function back;
 class SubjectController{
 
 	public function create(Request $request) {
-		$question = $request->post('shuffle_questions') ? true : false;
-		$answer = $request->post('shuffle_answers') ? true : false;
-
 		$request->validate([
 			'name' => 'required',
 			'starts_at' => 'required|date_format:d/m/Y H:i',
@@ -24,7 +21,7 @@ class SubjectController{
 			'shuffle_answers' => 'required|boolean',
 		]);
 
-		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $question, $answer);
+		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $request->get('shuffle_questions'), $request->get('shuffle_answers'));
 		$request->session()->flash('message', 'Subject created');
 		return back();
 	}
