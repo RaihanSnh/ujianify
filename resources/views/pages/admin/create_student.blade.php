@@ -57,7 +57,10 @@
         </div>
         <div class="mb-4">
             <select id="selectClassroom" name="classroom_id" class="shadow-md border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
-                {{-- this classroom will automatically generated --}}
+                <option value="">Select Class</option>
+                @foreach(\App\Models\Classroom::all() as $class)
+                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                @endforeach
             </select>
         </div>
 

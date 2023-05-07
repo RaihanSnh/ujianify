@@ -8,7 +8,6 @@ use App\Models\Classroom;
 use App\Models\Major;
 use App\Models\Student;
 use App\Models\Teacher;
-use App\Models\TeacherMajor;
 use App\Models\User;
 use App\Traits\SingletonTrait;
 
@@ -29,7 +28,7 @@ class UserCreationService{
 	}
 
 	public function createTeacher(string $username, string $password, string $externalID, string $fullName) : void{
-		$user = $this->create($username, $password, User::ROLE_STUDENT);
+		$user = $this->create($username, $password, User::ROLE_TEACHER);
 
 		$teacher = new Teacher();
 		$teacher->user_id = $user->id;
