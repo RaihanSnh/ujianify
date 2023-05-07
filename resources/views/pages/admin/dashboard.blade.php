@@ -3,5 +3,13 @@
 @section('header', 'Dashboard')
 
 @section('container')
-    @component('components.input.datetime', ['name' => 'dash']) @endcomponent
+    <x-modal-open id="cuy">
+        <x-button>
+            Open cuy
+        </x-button>
+    </x-modal-open>
+
+    <x-modal id="cuy">
+        Hello cuy
+    </x-modal>
 @endsection

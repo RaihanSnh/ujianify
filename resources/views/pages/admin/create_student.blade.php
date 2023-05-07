@@ -62,10 +62,3 @@
         <x-button type="submit">Create</x-button>
     </form>
 @endsection
-
-@section('scripts')
-    @parent
-
-    @component('components.script', ['src' => 'js/create_student.js'])
-    @endcomponent
-@endsection
