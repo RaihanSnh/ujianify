@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 	Route::prefix('/admin')->group(function() {
 		Route::get('/', fn() => view('pages.admin.admin'));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
+		Route::get('/delete', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteAdmin']);
 		Route::get('/create', fn() => view('pages.admin.create_admin'));
 	});
 	Route::prefix('/teacher')->group(function() {
@@ -77,6 +79,7 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::get('/', fn() => view('pages.teacher.subject'));
 		Route::post('/create', [\App\Http\Controllers\Teacher\SubjectController::class, 'create']);
 		Route::get('/create', fn() => view('pages.teacher.create_subject'));
+		Route::get('/question/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.create_question', ['subject' => $subject]));
 	});
 
 	Route::prefix('/score')->group(function(){
