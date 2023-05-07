@@ -3,5 +3,5 @@
 @section('header', 'Dashboard')
 
 @section('container')
-    @component('components.input.datetime', ['name' => 'asdsad']) @endcomponent
+    @component('components.input.datetime', ['name' => 'dash']) @endcomponent
 @endsection

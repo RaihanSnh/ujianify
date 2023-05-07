@@ -9,7 +9,6 @@ use App\Services\Teacher\SubjectService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use function back;
-use function pos;
 
 class SubjectController{
 
