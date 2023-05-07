@@ -25,8 +25,8 @@
                 @foreach(\App\Models\Subject::query()->get() as $subject)
                     <tr>
                         <td>{{ $subject->name }}</td>
-                        <td>{{ $subject->starts_at }}</td>
-                        <td>{{ $subject->ends_at }}</td>
+                        <td>{{ $subject->starts_at->format('j F Y, H.i') }}</td>
+                        <td>{{ $subject->ends_at->format('j F Y, H.i') }}</td>
                         <td>{{ $subject->shuffle_questions }}</td>
                         <td>{{ $subject->shuffle_answers }}</td>
                         <td>
