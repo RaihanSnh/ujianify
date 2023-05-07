@@ -21,7 +21,7 @@ class SubjectController{
 			'shuffle_answers' => 'required|boolean',
 		]);
 
-		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')),(bool)$request->get('shuffle_questions'), (bool)$request->get('shuffle_answers'));
+		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')),(bool) $request->get('shuffle_questions'), (bool) $request->get('shuffle_answers'));
 		$request->session()->flash('message', 'Subject created');
 		return back();
 	}
