@@ -10,6 +10,6 @@
     </x-modal-open>
 
     <x-modal id="cuy">
-        Hello cuy
+        hello cuy
     </x-modal>
 @endsection
