@@ -1,5 +1,7 @@
 @extends('pages.admin.base')
 
+@section('header', 'Create Major')
+
 @section('container')
     <form method="post" action="{{ url('/admin/major/create') }}" class="max-w-[400px] w-full">
         @csrf

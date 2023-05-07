@@ -31,22 +31,27 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		return view('pages.admin.create_student');
 	});
 	Route::prefix('/admin')->group(function() {
+		Route::get('/', fn() => view('pages.admin.admin'));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
 		Route::get('/create', fn() => view('pages.admin.create_admin'));
 	});
 	Route::prefix('/teacher')->group(function() {
+		Route::get('/', fn() => view('pages.admin.teacher'));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createTeacher']);
 		Route::get('/create', fn() => view('pages.admin.create_teacher'));
 	});
 	Route::prefix('/student')->group(function() {
+		Route::get('/', fn() => view('pages.admin.student'));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
 		Route::get('/create', fn() => view('pages.admin.create_student'));
 	});
 	Route::prefix('/major')->group(function() {
+		Route::get('/', fn() => view('pages.admin.major'));
 		Route::post('/create', [\App\Http\Controllers\Admin\MajorController::class, 'create']);
 		Route::get('/create', fn() => view('pages.admin.create_major'));
 	});
 	Route::prefix('/classroom')->group(function() {
+		Route::get('/', fn() => view('pages.admin.classroom'));
 		Route::post('/create', [\App\Http\Controllers\Admin\ClassroomController::class, 'create']);
 		Route::get('/create', fn() => view('pages.admin.create_classroom'));
 		Route::get('/listByMajor/{major}', [\App\Http\Controllers\Admin\ClassroomController::class, 'allByMajorID']);

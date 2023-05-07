@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     selectMajor.addEventListener('change', function () {
         const value = selectMajor.value;
         selectClassroom.disabled = true;
+        clearClassroom();
         if(value === '') {
             return;
         }
-        clearClassroom();
         axios.get('admin/classroom/listByMajor/' + value).then((res) => {
             clearClassroom();
 
