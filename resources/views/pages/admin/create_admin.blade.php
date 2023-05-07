@@ -12,14 +12,14 @@
             Username
         </div>
         <div class="mb-4">
-            <x-text-input name="username" with-error/>
+            <x-text-input name="username" with-error value="{{ old('username') }}"/>
         </div>
 
         <div class="mb-1 font-semibold">
             Password
         </div>
         <div class="mb-4">
-            <x-text-input name="password" with-error/>
+            <x-text-input name="password" with-error value="{{ old('password') }}"/>
         </div>
 
         <x-button type="submit">Create</x-button>

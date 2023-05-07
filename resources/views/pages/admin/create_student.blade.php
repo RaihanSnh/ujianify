@@ -12,7 +12,7 @@
             Username
         </div>
         <div class="mb-4">
-            <x-text-input name="username" with-error/>
+            <x-text-input name="username" with-error value="{{ old('username') }}"/>
         </div>
 
         <div class="mb-1 font-semibold">
@@ -26,14 +26,14 @@
              External ID (NISN)
         </div>
         <div class="mb-4">
-            <x-text-input name="external_id" placeholder="External ID (NISN)" with-error/>
+            <x-text-input name="external_id" placeholder="External ID (NISN)" with-error value="{{ old('external_id') }}"/>
         </div>
 
         <div class="mb-1 font-semibold">
             Student Full Name
         </div>
         <div class="mb-4">
-            <x-text-input name="full_name" placeholder="Student Full Name" with-error/>
+            <x-text-input name="full_name" placeholder="Student Full Name" with-error value="{{ old('full_name') }}"/>
         </div>
 
         <div class="mb-1 font-semibold">

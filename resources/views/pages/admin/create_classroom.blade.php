@@ -12,7 +12,7 @@
             Classroom Name
         </div>
         <div class="mb-4">
-            <x-text-input name="name" placeholder="Classroom Name" with-error/>
+            <x-text-input name="name" placeholder="Classroom Name" with-error value="{{ old('name') }}"/>
         </div>
 
         <div class="mb-1 font-semibold">

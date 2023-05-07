@@ -12,7 +12,7 @@
             Major Name
         </div>
         <div class="mb-4">
-            <x-text-input name="name" placeholder="Major Name" with-error/>
+            <x-text-input name="name" placeholder="Major Name" with-error value="{{ old('name') }}"/>
         </div>
 
         <x-button type="submit">Create</x-button>

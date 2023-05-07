@@ -13,7 +13,7 @@
         </div>
         <div class="mb-4">
             <div class="mb-4">
-                <x-text-input name="name" with-error/>
+                <x-text-input name="name" with-error value="{{ old('name') }}"/>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             Starts At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="starts_at"/>
+            <x-date-time-picker name="starts_at" with-error value="{{ old('name') }}"/>
             <x-form-error field="starts_at"/>
         </div>
 
@@ -29,7 +29,7 @@
             Ends At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="ends_at"/>
+            <x-date-time-picker name="ends_at" with-error value="{{ old('name') }}"/>
             <x-form-error field="starts_at"/>
         </div>
 
