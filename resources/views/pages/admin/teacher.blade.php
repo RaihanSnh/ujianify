@@ -27,6 +27,13 @@
                         <td>{{ $teacher->full_name }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
+                                <form action="{{ url('admin/teacher/delete/' . $teacher->id) }}">
+                                    <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                    </button>
+                                </form>
                                 <form action="{{ url('admin/teacher/edit/' . $teacher->id) }}">
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
                                         <span class="material-symbols-outlined">
