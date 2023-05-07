@@ -5,8 +5,6 @@
         <nav class="flex items-center justify-between py-6">
             <a href="#" class="text-2xl font-bold text-gray-800">Ujianify</a>
             <div class="flex items-center">
-                <a href="#" class="mr-6 text-gray-700 hover:text-gray-900">Home</a>
-                <a href="#" class="mr-6 text-gray-700 hover:text-gray-900">Profile</a>
                 <form action="{{ url('auth/logout') }}" method="POST">
                     @csrf
                     <button type="submit"

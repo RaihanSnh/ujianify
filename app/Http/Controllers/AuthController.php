@@ -39,6 +39,10 @@ class AuthController extends Controller
 		}
 		$this->service->set($request, $user);
 
+		if($request->has('redirect')) {
+			return redirect($request->get('redirect'));
+		}
+
 		if ($user->isAdmin()) {
 			return redirect('/admin');
 		}
