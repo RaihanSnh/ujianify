@@ -15,11 +15,13 @@ class AuthController extends Controller
 {
 	private AuthService $service;
 
-	public function __construct(){
+	public function __construct()
+	{
 		$this->service = new AuthService();
 	}
 
-	public function login(Request $request) {
+	public function login(Request $request)
+	{
 		$request->validate([
 			'username' => 'required',
 			'password' => 'required'
@@ -30,7 +32,7 @@ class AuthController extends Controller
 
 		/** @var User $user */
 		$user = User::query()->where('name', '=', $username)->first();
-		if($user === null || !$user->isPasswordValid($password)) {
+		if ($user === null || !$user->isPasswordValid($password)) {
 			$request->session()->flash('login_error', 'Invalid username or password');
 			return response()->view('pages.auth.login', [], 401);
 		}
@@ -48,8 +50,13 @@ class AuthController extends Controller
 		return redirect('/');
 	}
 
-	public function logout()
+	public function logout(Request $request)
 	{
+		auth()->logout();
+
+		$request->session()->invalidate();
+		$request->session()->regenerateToken();
+
 		return redirect('/auth/login');
 	}
 }
