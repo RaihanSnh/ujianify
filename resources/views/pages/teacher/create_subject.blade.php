@@ -13,7 +13,7 @@
         </div>
         <div class="mb-4">
             <div class="mb-4">
-                <x-text-input name="username" with-error/>
+                <x-text-input name="name" with-error/>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             Starts At
         </div>
         <div class="mb-4">
-            @component('components.input.datetime', ['name' => 'starts_at']) 
+            @component('components.input.datetime', ['name' => 'starts_at'])
             @endcomponent
         </div>
 
@@ -29,7 +29,7 @@
             Ends At
         </div>
         <div class="mb-4">
-            @component('components.input.datetime', ['name' => 'ends_at']) 
+            @component('components.input.datetime', ['name' => 'ends_at'])
             @endcomponent
         </div>
 
@@ -37,15 +37,15 @@
             Shuffle Questions
         </div>
         <div class="mb-4">
-            @component('components.input.checkbox', ['id' => 'question', 'name' => 'shuffle_questions', 'placeholder' => 'Shuffle Questions']) 
+            @component('components.input.checkbox', ['id' => 'question', 'name' => 'shuffle_questions', 'placeholder' => 'Shuffle Questions'])
             @endcomponent
         </div>
-        
+
         <div class="mb-1 font-semibold">
             Shuffle Answers
         </div>
         <div class="mb-4">
-            @component('components.input.checkbox', ['id' => 'answer', 'name' => 'shuffle_answers', 'placeholder' => 'Shuffle Answers']) 
+            @component('components.input.checkbox', ['id' => 'answer', 'name' => 'shuffle_answers', 'placeholder' => 'Shuffle Answers'])
             @endcomponent
         </div>
 
