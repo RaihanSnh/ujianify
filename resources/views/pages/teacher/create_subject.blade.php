@@ -13,7 +13,7 @@
         </div>
         <div class="mb-4">
             <div class="mb-4">
-                <x-text-input name="name" with-error/>
+                <x-text-input name="name" with-error value="{{ old('name') }}"/>
             </div>
         </div>
 
