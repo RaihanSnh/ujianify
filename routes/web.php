@@ -67,6 +67,14 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 
 Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyTeacher::class])->group(function() {
 	Route::get('/', function() {
-		return view('pages.teacher.base');
+		return view('pages.teacher.dashboard');
+	});
+
+	Route::prefix('/subject')->group(function(){
+		Route::get('/', fn() => view('pages.teacher.subject'));
+	});
+	
+	Route::prefix('/score')->group(function(){
+		Route::get('/', fn() => view('pages.teacher.score'));
 	});
 });
