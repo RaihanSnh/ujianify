@@ -39,6 +39,10 @@ class AuthController extends Controller
 			return redirect('/admin');
 		}
 
+		if ($user->isTeacher()) {
+			return redirect('/teacher');
+		}
+
 		// Redirect non-admin users
 		return redirect('/');
 	}
