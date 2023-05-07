@@ -28,6 +28,6 @@
             <x-form-error field="major_id"/>
         </div>
 
-        <x-button type="submit">Create</x-button>
+        <x-button type="submit" left-icon="edit">Edit</x-button>
     </form>
 @endsection
