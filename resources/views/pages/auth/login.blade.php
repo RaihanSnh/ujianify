@@ -18,15 +18,17 @@
                 <div class="mb-4">
                     @component('components.input.text', ['name' => 'username', 'placeholder' => 'Username'])
                     @endcomponent
+                    <x-form-error field="username"/>
                 </div>
                 <div class="mb-4">
                     @component('components.input.password', ['name' => 'password', 'placeholder' => 'Password'])
                     @endcomponent
+                    <x-form-error field="password"/>
                 </div>
                 <div class="mb-4">
-                    @component('components.button', ['type' => 'submit'])
-                        <span class="material-symbols-outlined">arrow_forward</span> Login
-                    @endcomponent
+                    <x-button type="submit" left-icon="arrow_forward">
+                        Login
+                    </x-button>
                 </div>
             </form>
         </div>
