@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-	return view('pages.student.home');
+Route::prefix('/')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyStudent::class])->group(function() {
+	Route::get('/', function(){
+		return view('pages.student.home');
+	});
+	Route::get('/rules/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.rules', ['subject' => $subject]));
+	Route::get('/subject/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.subject', ['subject' => $subject]));
 });
 
-Route::get('/rules/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.rules', ['subject' => $subject]));
-Route::get('/subject/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.subject', ['subject' => $subject]));
 
 Route::prefix('/auth')->group(function() {
 	Route::get('/login', function() {
