@@ -44,7 +44,7 @@
                                     <h1 class="mb-4">Are you sure?</h1>
                                     <hr>
                                     <div class="flex mt-5">
-                                        <form action="{{ url('admin/student/delete/' . $student->id) }}">
+                                        <form action="{{ url('admin/student/delete/' . $student->user_id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button
@@ -55,7 +55,7 @@
                                     </div>
                                 </x-modal>
                                 
-                                <form action="{{ url('admin/student/edit/' . $student->id) }}">
+                                <form action="{{ url('admin/student/edit/' . $student->user_id) }}">
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
                                         <span class="material-symbols-outlined">
                                             edit

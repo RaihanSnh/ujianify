@@ -10,7 +10,7 @@
                     <h2 class="text-xl font-bold text-gray-800 mb-4">{{ $subject->name }}</h2>
                     <p class="text-gray-600"><b>Starts At:</b> {{ $subject->starts_at->format('j F Y, H.i') }}</p>
                     <p class="text-gray-600 mb-5"><b>Ends At:</b> {{ $subject->ends_at->format('j F Y, H.i') }}</p>
-                    <form action="{{ url('subject/' . $subject->id) }}">
+                    <form action="{{ url('rules/' . $subject->id) }}">
                         <x-button type="submit">Start</x-button>
                     </form>
                 </div>
