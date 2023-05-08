@@ -25,15 +25,29 @@
                         <td>{{ count($major->classrooms()->get()) }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
-                                <form action="{{ url('admin/major/' . $major->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
+                                <x-modal-open id="delete">
+                                    <button
+                                        class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
                                         <span class="material-symbols-outlined">
                                             delete
                                         </span>
                                     </button>
-                                </form>
+                                </x-modal-open>
+
+                                <x-modal id="delete">
+                                    <h1 class="mb-4">Are you sure?</h1>
+                                    <hr>
+                                    <div class="flex mt-5">
+                                        <form action="{{ url('admin/major/' . $major->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="items-center gap-x-1 px-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-gray-50 mr-5 w-60">Yes</button>
+                                        </form>
+                                        <button
+                                            class="items-center gap-x-1 px-2 py-2 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50 w-60">Cancel</button>
+                                    </div>
+                                </x-modal>
                                 <form action="{{ url('admin/major/edit/' . $major->id) }}">
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
                                         <span class="material-symbols-outlined">

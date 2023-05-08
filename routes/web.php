@@ -33,36 +33,39 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 	});
 	Route::prefix('/admin')->group(function() {
 		Route::get('/', fn() => view('pages.admin.admin'));
-		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
-		Route::get('/delete', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteAdmin']);
 		Route::get('/create', fn() => view('pages.admin.create_admin'));
+		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
+		Route::delete('/{admin}', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteAdmin']);
 	});
 	Route::prefix('/teacher')->group(function() {
 		Route::get('/', fn() => view('pages.admin.teacher'));
-		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createTeacher']);
 		Route::get('/create', fn() => view('pages.admin.create_teacher'));
 		Route::get('/edit/{teacher}', fn($teacher) => view('pages.admin.edit_student', ['teacher' => $teacher]));
+		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createTeacher']);
+		Route::post('/update/{teacher}', [\App\Http\Controllers\Admin\MajorController::class, 'updateTeacher']);
+		Route::delete('/{teacher}', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteTeacher']);
 	});
 	Route::prefix('/student')->group(function() {
 		Route::get('/', fn() => view('pages.admin.student'));
-		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
 		Route::get('/create', fn() => view('pages.admin.create_student'));
 		Route::get('/edit/{student}', fn($student) => view('pages.admin.edit_student', ['student' => $student]));
+		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
+		Route::delete('/{student}', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteStudent']);
 	});
 	Route::prefix('/major')->group(function() {
 		Route::get('/', fn() => view('pages.admin.major'));
-		Route::post('/create', [\App\Http\Controllers\Admin\MajorController::class, 'create']);
 		Route::get('/create', fn() => view('pages.admin.create_major'));
 		Route::get('/edit/{major}', fn(\App\Models\Major $major) => view('pages.admin.edit_major', ['major' => $major]));
+		Route::post('/create', [\App\Http\Controllers\Admin\MajorController::class, 'create']);
 		Route::post('/update/{major}', [\App\Http\Controllers\Admin\MajorController::class, 'update']);
 		Route::delete('/{major}', [\App\Http\Controllers\Admin\MajorController::class, 'delete']);
 	});
 	Route::prefix('/classroom')->group(function() {
 		Route::get('/', fn() => view('pages.admin.classroom'));
-		Route::post('/create', [\App\Http\Controllers\Admin\ClassroomController::class, 'create']);
 		Route::get('/create', fn() => view('pages.admin.create_classroom'));
 		Route::get('/listByMajor/{major}', [\App\Http\Controllers\Admin\ClassroomController::class, 'allByMajorID']);
 		Route::get('/edit/{classroom}', fn(\App\Models\Classroom $classroom) => view('pages.admin.edit_classroom', ['classroom' => $classroom]));
+		Route::post('/create', [\App\Http\Controllers\Admin\ClassroomController::class, 'create']);
 		Route::post('/update/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'update']);
 		Route::delete('/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'delete']);
 	});
