@@ -16,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-	return view('pages.student.subject');
+	return view('pages.student.home');
 });
+
+Route::get('/rules/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.rules', ['subject' => $subject]));
+Route::get('/subject/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.subject', ['subject' => $subject]));
 
 Route::prefix('/auth')->group(function() {
 	Route::get('/login', function() {
@@ -40,7 +43,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 	Route::prefix('/teacher')->group(function() {
 		Route::get('/', fn() => view('pages.admin.teacher'));
 		Route::get('/create', fn() => view('pages.admin.create_teacher'));
-		Route::get('/edit/{teacher}', fn($teacher) => view('pages.admin.edit_student', ['teacher' => $teacher]));
+		Route::get('/edit/{teacher}', fn(\App\Models\Teacher $teacher) => view('pages.admin.edit_teacher', ['teacher' => $teacher]));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createTeacher']);
 		Route::post('/update/{teacher}', [\App\Http\Controllers\Admin\MajorController::class, 'updateTeacher']);
 		Route::delete('/{teacher}', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteTeacher']);
@@ -48,8 +51,9 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 	Route::prefix('/student')->group(function() {
 		Route::get('/', fn() => view('pages.admin.student'));
 		Route::get('/create', fn() => view('pages.admin.create_student'));
-		Route::get('/edit/{student}', fn($student) => view('pages.admin.edit_student', ['student' => $student]));
+		Route::get('/edit/{student}', fn(\App\Models\Student $student) => view('pages.admin.edit_student', ['student' => $student]));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
+		Route::post('/update/{student}', [\App\Http\Controllers\Admin\UserCreationController::class, 'updateStudent']);
 		Route::delete('/{student}', [\App\Http\Controllers\Admin\UserCreationController::class, 'deleteStudent']);
 	});
 	Route::prefix('/major')->group(function() {
