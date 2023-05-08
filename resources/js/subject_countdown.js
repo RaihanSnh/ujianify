@@ -7,7 +7,7 @@ function startCountdown(endsAt, id) {
     setInterval(function () {
         const diff = endsAt.getTime() - Date.now();
         elem.innerText = formatTimeToCountdown(diff / 1000);
-    }, 1000)
+    }, 500)
 }
 
 function formatTimeToCountdown(timestamp) {

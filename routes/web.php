@@ -20,7 +20,9 @@ Route::prefix('/')->middleware([\App\Http\Middleware\Authenticate::class, \App\H
 		return view('pages.student.home');
 	});
 	Route::get('/rules/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.rules', ['subject' => $subject]));
-	Route::get('/subject/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.subject', ['subject' => $subject]));
+	Route::get('/subject/{subject}', [\App\Http\Controllers\Student\SubjectController::class, 'view']);
+
+	Route::get('/loadQuestions/{subject}', [\App\Http\Controllers\Student\SubjectController::class, 'loadQuestions']);
 });
 
 Route::prefix('/auth')->group(function() {

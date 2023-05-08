@@ -39,6 +39,12 @@
             axios.defaults.baseURL = "{{ url('/') }}";
         });
     </script>
+
+    <script>
+        function _url(path) {
+            return "{{ url('/') }}/" + path;
+        }
+    </script>
 </head>
 <body>
 <div id="root">

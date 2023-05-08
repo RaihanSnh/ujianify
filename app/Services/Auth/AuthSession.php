@@ -33,6 +33,6 @@ class AuthSession{
 		if($this->model !== null) {
 			return $this->model;
 		}
-		return $this->model = User::query()->find($this->userId)->first();
+		return $this->model = User::query()->find($this->userId);
 	}
 }
