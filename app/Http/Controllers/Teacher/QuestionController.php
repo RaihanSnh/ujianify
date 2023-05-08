@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Teacher;
 use App\Models\Question;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use function back;
 use function public_path;
@@ -44,16 +45,35 @@ class QuestionController{
 			'question' => 'required|string',
 			'answer' => 'required|in:A,B,C,D,E',
 			'score' => 'required|integer',
-			'subject_id' => 'required|exists:subjects,id'
+			'image' => 'nullable|mimes:png,jpg',
+			'delete_image' => 'boolean',
 		]);
 
-		Question::query()->find($question->id)->update([
+		$update = [
 			'question' => $request->post('question'),
 			'answer' => $request->post('answer'),
 			'score' => $request->post('score'),
-		]);
+		];
 
-		$request->session()->flash('message', 'Question created.');
+		if($request->post('delete_image')) {
+			if($question->image_path !== null){
+				$update['image_path'] = null;
+			}
+		}
+
+		$image = $request->file('image');
+		if($image !== null){
+			if($question->image_path !== null) {
+				File::delete(public_path('images/question/' . $question->image_path));
+			}
+
+			$image->move(public_path('images/question'), $fileName = Str::random(16) . '.' . $image->extension());
+			$update['image_path'] = $fileName;
+		}
+
+		Question::query()->find($question->id)->update($update);
+
+		$request->session()->flash('message', 'Question edited.');
 		return back();
 	}
 

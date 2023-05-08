@@ -1,9 +1,9 @@
 @extends('pages.teacher.base')
 
-@section('header', 'Create Subject')
+@section('header', 'Edit Subject')
 
 @section('container')
-    <form method="post" action="{{ url('teacher/subject/create') }}" class="max-w-[400px] w-full">
+    <form method="post" action="{{ url('teacher/subject/edit/' . $subject->id) }}" class="max-w-[400px] w-full">
         @csrf
 
         @include('components.message')
@@ -13,7 +13,7 @@
         </div>
         <div class="mb-4">
             <div class="mb-4">
-                <x-text-input name="name" with-error value="{{ old('name') }}"/>
+                <x-text-input name="name" with-error value="{{ old('name', $subject->name) }}"/>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             Starts At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="starts_at" with-error value="{{ old('name') }}"/>
+            <x-date-time-picker name="starts_at" with-error value="{{ old('starts_at', $subject->starts_at->format('d/m/Y H:i')) }}"/>
             <x-form-error field="starts_at"/>
         </div>
 
@@ -29,16 +29,15 @@
             Ends At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="ends_at" with-error value="{{ old('name') }}"/>
-            <x-form-error field="starts_at"/>
+            <x-date-time-picker name="ends_at" with-error value="{{ old('ends_at', $subject->ends_at->format('d/m/Y H:i')) }}"/>
+            <x-form-error field="ends_at"/>
         </div>
 
         <div class="mb-1 font-semibold">
             Shuffle Questions
         </div>
         <div class="mb-4">
-            @component('components.input.checkbox', ['id' => 'question', 'name' => 'shuffle_questions', 'placeholder' => 'Shuffle Questions'])
-            @endcomponent
+            <x-checkbox name="shuffle_questions" value="{{ old('shuffle_questions', $subject->shuffle_questions ? 'true' : 'false') }}">Shuffle Questions</x-checkbox>
             <x-form-error field="shuffle_questions"/>
         </div>
 
@@ -46,11 +45,10 @@
             Shuffle Answers
         </div>
         <div class="mb-4">
-            @component('components.input.checkbox', ['id' => 'answer', 'name' => 'shuffle_answers', 'placeholder' => 'Shuffle Answers'])
-            @endcomponent
+            <x-checkbox name="shuffle_answers" value="{{ old('shuffle_answers', $subject->shuffle_answers ? 'true' : 'false') }}">Shuffle Answers</x-checkbox>
             <x-form-error field="shuffle_answers"/>
         </div>
 
-        <x-button type="submit">Create</x-button>
+        <x-button type="submit">Edit</x-button>
     </form>
 @endsection

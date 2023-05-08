@@ -19,6 +19,24 @@
             </div>
 
             <div class="mb-1 font-semibold">
+                Question Image (Optional)
+            </div>
+            <div class="mb-4">
+                <input name="image" class="block w-full shadow py-2 px-3 text-sm border border-gray-300 text-gray-600 rounded-lg cursor-pointer" type="file">
+                <x-form-error field="image"/>
+
+                @if($question->image_path !== null)
+                    <div class="my-1">
+                        Current Image: <a class="text-blue-500 underline" href="{{ url('images/question/' . $question->image_path) }}">{{ $question->image_path }}</a>
+                    </div>
+                    <div class="my-1 font-semibold">
+                        <x-checkbox name="delete_image">Delete Image</x-checkbox>
+                        <x-form-error field="delete_image"/>
+                    </div>
+                @endif
+            </div>
+
+            <div class="mb-1 font-semibold">
                 Score
             </div>
             <div class="mb-4">

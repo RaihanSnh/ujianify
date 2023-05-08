@@ -37,8 +37,7 @@
             Shuffle Questions
         </div>
         <div class="mb-4">
-            @component('components.input.checkbox', ['id' => 'question', 'name' => 'shuffle_questions', 'placeholder' => 'Shuffle Questions'])
-            @endcomponent
+            <x-checkbox name="shuffle_questions">Shuffle Question</x-checkbox>
             <x-form-error field="shuffle_questions"/>
         </div>
 
@@ -46,8 +45,7 @@
             Shuffle Answers
         </div>
         <div class="mb-4">
-            @component('components.input.checkbox', ['id' => 'answer', 'name' => 'shuffle_answers', 'placeholder' => 'Shuffle Answers'])
-            @endcomponent
+            <x-checkbox name="shuffle_answers">Shuffle Answers</x-checkbox>
             <x-form-error field="shuffle_answers"/>
         </div>
 

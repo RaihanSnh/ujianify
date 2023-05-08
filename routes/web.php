@@ -84,6 +84,9 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::post('/create', [\App\Http\Controllers\Teacher\SubjectController::class, 'create']);
 		Route::get('/create', fn() => view('pages.teacher.create_subject'));
 
+		Route::get('/edit/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.edit_subject', ['subject' => $subject]));
+		Route::post('/edit/{subject}', [\App\Http\Controllers\Teacher\QuestionController::class, 'edit']);
+
 		Route::get('/createQuestion/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.create_question', ['subject' => $subject]));
 		Route::post('/createQuestion/{subject}', [\App\Http\Controllers\Teacher\QuestionController::class, 'create']);
 

@@ -15,13 +15,13 @@ class SubjectController{
 	public function create(Request $request) {
 		$request->validate([
 			'name' => 'required',
-			'starts_at' => 'required|date_format:d/m/Y H:i',
-			'ends_at' => 'required|date_format:d/m/Y H:i',
-			'shuffle_questions' => 'required|boolean',
-			'shuffle_answers' => 'required|boolean',
+			'starts_at' => 'required|date_format:m/d/Y H:i',
+			'ends_at' => 'required|date_format:m/d/Y H:i',
+			'shuffle_questions' => 'boolean',
+			'shuffle_answers' => 'boolean',
 		]);
 
-		SubjectService::getInstance()->create($request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')),(bool) $request->get('shuffle_questions'), (bool) $request->get('shuffle_answers'));
+		SubjectService::getInstance()->create($request->post('name'), Carbon::createFromFormat('m/d/Y H:i', $request->post('starts_at')), Carbon::createFromFormat('m/d/Y H:i', $request->post('ends_at')), (bool) $request->get('shuffle_questions'), (bool) $request->get('shuffle_answers'));
 		$request->session()->flash('message', 'Subject created');
 		return back();
 	}
@@ -29,13 +29,13 @@ class SubjectController{
 	public function update(Subject $subject, Request $request) {
 		$request->validate([
 			'name' => 'required',
-			'starts_at' => 'required|date_format:Y-m-d H:i',
-			'ends_at' => 'required|date_format:Y-m-d H:i',
-			'shuffle_questions' => 'required|boolean',
-			'shuffle_answers' => 'required|boolean',
+			'starts_at' => 'required|date_format:m/d/Y H:i',
+			'ends_at' => 'required|date_format:m/d/Y H:i',
+			'shuffle_questions' => 'boolean',
+			'shuffle_answers' => 'boolean',
 		]);
 
-		SubjectService::getInstance()->update($subject, $request->post('name'), Carbon::parse($request->post('starts_at')), Carbon::parse($request->post('ends_at')), $request->post('shuffle_questions'), $request->pos('shuffle_answers'));
+		SubjectService::getInstance()->update($subject, $request->post('name'), Carbon::createFromFormat('m/d/Y H:i', $request->post('starts_at')), Carbon::createFromFormat('m/d/Y H:i', $request->post('ends_at')), (bool) $request->post('shuffle_questions'), (bool) $request->post('shuffle_answers'));
 
 		$request->session()->flash('message', 'Subject updated');
 		return back();

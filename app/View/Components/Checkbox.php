@@ -9,23 +9,16 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use function view;
 
-class DateTimePicker extends Component
+class Checkbox extends Component
 {
-	public string $id;
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(
 		public string $name,
-		?string $id = null,
-		public string $value = '',
+		public string $value = '0',
 	)
 	{
-		if($id === null) {
-			$this->id = 'date_time_picker_' . $name;
-		}else{
-			$this->id = $id;
-		}
 	}
 
 	/**
@@ -33,6 +26,6 @@ class DateTimePicker extends Component
 	 */
 	public function render() : View|Closure|string
 	{
-		return view('components.date-time-picker');
+		return view('components.checkbox');
 	}
 }

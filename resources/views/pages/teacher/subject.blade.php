@@ -40,7 +40,7 @@
                                         </span>
                                     </button>
                                 </form>
-                                <form action="{{ url('teacher/edit/' . $subject->id) }}">
+                                <form action="{{ url('teacher/subject/edit/' . $subject->id) }}">
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
                                         <span class="material-symbols-outlined">
                                             edit

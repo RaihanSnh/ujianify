@@ -14,7 +14,9 @@
                 <div>Sisa waktu</div>
                 <div id="countdownZ" class="text-2xl font-bold"></div>
                 <script>
-                    startCountdown(new Date(Date.now() + (3600 * 1000)), 'countdownZ')
+                    document.addEventListener('DOMContentLoaded', function () {
+                        startCountdown(new Date(Date.now() + (3600 * 1000)), 'countdownZ');
+                    });
                 </script>
             </div>
         </div>
