@@ -4,7 +4,7 @@
     <div class="flex h-[100vh] flex-col">
         <div class="flex h-24 w-full items-center border-b border-b-gray-200 px-8 shadow">
             <div class="flex items-center flex-auto text-2xl font-bold w-full">
-                <!--            <img alt="banner" class="h-20" src="https://sentraki.dgip.go.id/dokumen/SK-2093432464.png"/>-->
+                <!--            <images alt="banner" class="h-20" src="https://sentraki.dgip.go.id/dokumen/SK-2093432464.png"/>-->
             </div>
             <div class="flex flex-col items-center w-64">
                 <div>Nomor Soal</div>
