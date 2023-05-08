@@ -36,10 +36,11 @@
                                         <h1 class="mb-4">Are you sure?</h1>
                                         <hr>
                                         <div class="flex mt-5">
-                                            <form action="{{ url('admin/delete/' . $admin->id) }}" method="post">
+                                            <form method="POST" action="{{ url('admin/admin/delete/' . $admin->id) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button
+                                                    type="submit"
                                                     class="items-center gap-x-1 px-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-gray-50 mr-5 w-60">Yes</button>
                                             </form>
                                             <button
