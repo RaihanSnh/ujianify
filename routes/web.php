@@ -50,7 +50,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::get('/create', fn() => view('pages.admin.create_teacher'));
 		Route::get('/edit/{teacher}', fn(\App\Models\Teacher $teacher) => view('pages.admin.edit_teacher', ['teacher' => $teacher]));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createTeacher']);
-		Route::post('/update/{teacher}', [\App\Http\Controllers\Admin\MajorController::class, 'updateTeacher']);
+		Route::post('/update/{teacher}', [\App\Http\Controllers\Admin\UserManagementController::class, 'updateTeacher']);
 		Route::delete('/delete/{teacher}', [\App\Http\Controllers\Admin\UserManagementController::class, 'deleteTeacher']);
 	});
 	Route::prefix('/student')->group(function() {
@@ -58,7 +58,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::get('/create', fn() => view('pages.admin.create_student'));
 		Route::get('/edit/{student}', fn(\App\Models\Student $student) => view('pages.admin.edit_student', ['student' => $student]));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
-		Route::post('/update/{student}', [\App\Http\Controllers\Admin\UserCreationController::class, 'updateStudent']);
+		Route::post('/update/{student}', [\App\Http\Controllers\Admin\UserManagementController::class, 'updateStudent']);
 		Route::delete('/delete/{student}', [\App\Http\Controllers\Admin\UserManagementController::class, 'deleteStudent']);
 	});
 	Route::prefix('/major')->group(function() {

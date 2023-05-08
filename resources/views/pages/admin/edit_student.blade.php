@@ -3,7 +3,7 @@
 @section('header', 'Update Student')
 
 @section('container')
-    <form method="post" action="{{ url('/admin/student/update') }}" class="max-w-[400px] w-full">
+    <form method="post" action="{{ url('/admin/student/update/' . $student->user_id) }}" class="max-w-[400px] w-full">
         @csrf
 
         @include('components.message')
@@ -26,7 +26,7 @@
              External ID (NISN)
         </div>
         <div class="mb-4">
-            <x-text-input name="external_id" placeholder="External ID (NISN)" with-error value="{{ $student->externam_id }}"/>
+            <x-text-input name="external_id" placeholder="External ID (NISN)" with-error value="{{ $student->external_id }}"/>
         </div>
 
         <div class="mb-1 font-semibold">

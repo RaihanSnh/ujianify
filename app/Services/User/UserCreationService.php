@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Traits\SingletonTrait;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
 class UserCreationService{
 
@@ -49,4 +50,38 @@ class UserCreationService{
 		$user->save();
 		return $user;
 	}
+	
+	
+	public function updateStudent(Student|int $student, string $username, string $password, string|int $external_id, string $full_name, Classroom|int $classroom, Major|int $major) : void {
+		$user = $this->update($student, $username, $password, User::ROLE_STUDENT);
+
+		Student::query()->find($student instanceof Student ? $student->user_id : $student)
+		->update([
+			'user_id' => $user->id, 
+			'external_id' => $external_id, 
+			'full_name' => $full_name, 
+			'classroom_id' => $classroom instanceof Classroom ? $classroom->id : $classroom, 
+			'major_id' => $major instanceof Major ? $major->id : $major
+		]);
+	}
+
+	public function updateTeacher(Teacher|int $teacher, string $username, string $password, string|int $external_id, string $full_name) : void
+	{
+		$user = $this->update($teacher, $username, $password, User::ROLE_TEACHER);
+		
+		Teacher::query()->find($teacher instanceof Teacher ? $teacher->user_id : $teacher)
+		->update([
+			'user_id' => $user->id, 
+			'external_id' => $external_id, 
+			'full_name' => $full_name
+		]);
+	}
+}
+private function update(User|int $user, string $username, string $password, string $role) : User{
+	User::query()->find($user instanceof User ? $user->user_id : $user)->update([
+		'name' => $username, 
+		'password' => $user->setPassword($password), 
+		'role' => $role
+	]);
+	return $user;
 }
