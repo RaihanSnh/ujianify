@@ -9,6 +9,7 @@ use App\Services\Auth\AuthSession;
 use Closure;
 use Illuminate\Http\Request;
 use function response;
+use function view;
 
 class OnlyStudent
 {
@@ -23,7 +24,7 @@ class OnlyStudent
 		/** @var AuthSession $user */
 		$user = $request->user();
 		if($user->getRole() !== User::ROLE_STUDENT) {
-			return response('forbidden', 403);
+            return view('pages.error.forbidden');
 		}
 		return $next($request);
 	}
