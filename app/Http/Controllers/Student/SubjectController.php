@@ -24,7 +24,7 @@ class SubjectController extends Controller{
 
 	public function view(Subject $subject, Request $request) {
 		if(Score::query()->where(['student_id' => $request->user()->getUserId(), 'subject_id' => $subject->id])->exists()) {
-			return response('you already submitted this subject');
+			return view('pages.error.simple', ['err' => 'This subject is already submitted!']);
 		}
 		/** @var Student $student */
 		$student = Student::query()->where('user_id', '=', $request->user()->getUserId())->first();
@@ -74,7 +74,7 @@ class SubjectController extends Controller{
 
 	public function submit(Subject $subject, Request $request) {
 		if(Score::query()->where('student_id', '=', $request->user()->getUserId())->where('subject_id', '=', $subject->id)->whereNotNull('submitted_at')->first() !== null) {
-			return response('already submitted!');
+			return view('pages.error.simple', ['err' => 'Already submitted!']);
 		}
 
 		/** @var StudentAnswer[] $answers */

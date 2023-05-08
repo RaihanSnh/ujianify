@@ -56,7 +56,7 @@ class UserManagementController extends Controller{
 		$request->session()->flash('message', 'Student updated.');
 		return back();
 	}
-	
+
 	public function updateTeacher(Teacher $teacher, Request $request)
 	{
 		$request->validate([
