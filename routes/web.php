@@ -28,7 +28,9 @@ Route::prefix('/auth')->group(function() {
 		return view('pages.auth.login');
 	});
 	Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+
 	Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+	Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 });
 
 Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyAdmin::class])->group(function() {
@@ -39,7 +41,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::get('/', fn() => view('pages.admin.admin'));
 		Route::get('/create', fn() => view('pages.admin.create_admin'));
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createAdmin']);
-        Route::delete('/delete/{user}', [\App\Http\Controllers\Admin\UserManagementController::class, 'deleteAdmin']);
+		Route::delete('/delete/{user}', [\App\Http\Controllers\Admin\UserManagementController::class, 'deleteAdmin']);
 	});
 	Route::prefix('/teacher')->group(function() {
 		Route::get('/', fn() => view('pages.admin.teacher'));
