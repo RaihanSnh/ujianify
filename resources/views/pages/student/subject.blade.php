@@ -14,8 +14,6 @@
                 <div>Sisa waktu</div>
                 <div id="countdownZ" class="text-2xl font-bold"></div>
                 <script>
-
-
                     startCountdown(new Date(Date.now() + (3600 * 1000)), 'countdownZ')
                 </script>
             </div>
@@ -60,7 +58,12 @@
                 <div class="flex h-full w-full flex-col">
                     <div class="flex-auto">
                         <div class="p-8 text-2xl select-none max-w-[1200px]">
-                            Berapakah 1+1 itu?
+                            Berapakah 1+1 itu?<br/><br/>
+                            A. 1<br/>
+                            B. 2<br/>
+                            C. 3<br/>
+                            D. 4<br/>
+                            E. 5<br/>
                         </div>
                     </div>
                     <div class="min-h-28 border-t border-t-gray-300 py-2">
