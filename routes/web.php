@@ -81,6 +81,7 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::post('/create', [\App\Http\Controllers\Teacher\SubjectController::class, 'create']);
 		Route::get('/create', fn() => view('pages.teacher.create_subject'));
 		Route::get('/question/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.create_question', ['subject' => $subject]));
+		Route::delete('/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'delete']);
 	});
 
 	Route::prefix('/score')->group(function(){

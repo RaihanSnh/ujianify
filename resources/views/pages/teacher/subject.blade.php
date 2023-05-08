@@ -31,7 +31,9 @@
                         <td>{{ $subject->shuffle_answers ? 'Yes' : 'No' }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
-                                <form action="{{ url('teacher/delete/' . $subject->id) }}">
+                                <form action="{{ url('teacher/subject/' . $subject->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
                                         <span class="material-symbols-outlined">
                                             delete
