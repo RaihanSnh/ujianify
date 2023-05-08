@@ -23,7 +23,6 @@ Route::prefix('/')->middleware([\App\Http\Middleware\Authenticate::class, \App\H
 	Route::get('/subject/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.subject', ['subject' => $subject]));
 });
 
-
 Route::prefix('/auth')->group(function() {
 	Route::get('/login', function() {
 		return view('pages.auth.login');
