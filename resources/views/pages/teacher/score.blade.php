@@ -3,13 +3,13 @@
 @section('header', 'Score')
 
 @section('container')
-    <div class="rounded-lg border shadow-lg py-3 px-5 w-[900px]">
-        <div style="max-width: 900px; overflow-x: auto;">
-            <table id="scoreTable" class="row-border max-w-[900px]">
+    <div class="rounded-lg border shadow-lg py-3 px-5 w-full max-w-[1200px]">
+        <div style="max-width: 1200px; overflow-x: auto;">
+            <table id="scoreTable" class="row-border w-full max-w-[1200px]">
                 <thead>
                 <tr>
-                    <th>Subjet Name</th>
                     <th>Student Name</th>
+                    <th>Subject Name</th>
                     <th>Score</th>
                     <th>Action</th>
                 </tr>
@@ -17,6 +17,8 @@
                 <tbody>
                 @foreach(\App\Models\Score::query()->get() as $score)
                     <tr>
+                        <td>{{ $score->subject()->first()->name }}</td>
+                        <td>{{ \App\Models\Student::query()->find($score->student_id)->full_name }}</td>
                         <td>{{ $score->score }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">

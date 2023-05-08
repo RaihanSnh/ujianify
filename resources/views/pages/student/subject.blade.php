@@ -6,6 +6,10 @@
             const QuestionID = {{ $question->id }};
             document.addEventListener('DOMContentLoaded', function () {
                 startCountdown(new Date({{ $subject->ends_at->unix() * 1000 }}), 'countdown_subject');
+
+                @if($currentAnswer !== null)
+                MarkAnswered('{{ $currentAnswer }}');
+                @endif
             });
         </script>
         <div class="flex h-24 w-full items-center border-b border-b-gray-200 px-8 shadow">
@@ -36,7 +40,7 @@
                     <div class="font-semibold">Daftar Soal</div>
                     <div class="flex flex-wrap justify-center gap-1 px-4 text-gray-600" id="answer_list">
                         @for($i = 1; $i <= $totalQuestion; $i++)
-                            <div onclick="window.location.href='{{ url('/subject/' . $subject->id . '?no=' . $i) }}';" class="mb-1 mx-0.5 w-10 rounded-sm border border-gray-500 p-2 text-center hover:cursor-pointer hover:bg-blue-200">{{ $i }}</div>
+                            <div onclick="window.location.href='{{ url('/subject/' . $subject->id . '?no=' . $i) }}';" class="{{ $answeredNo[$i] ? 'bg-green-200 ' : '' }}mb-1 mx-0.5 w-10 rounded-sm border border-gray-500 p-2 text-center hover:cursor-pointer hover:bg-blue-200">{{ $i }}</div>
                         @endfor
                     </div>
                 </div>
@@ -47,7 +51,9 @@
                     <div class="flex-auto">
                         <div class="flex flex-col gap-2 p-8 text-2xl select-none max-w-[1200px]">
                             @if($question->image_path !== null)
-                                <img class="max-w-[700px] max-h-[300px]" src="{{ url('images/question/' . $question->image_path) }}" alt="question_image_{{ $question->id }}">
+                                <div class="max-w-[500px] max-h-[300px]">
+                                    <img class="object-contain max-w-[500px] max-h-[300px]" src="{{ url('images/question/' . $question->image_path) }}" alt="question_image_{{ $question->id }}">
+                                </div>
                             @endif
                             {!! nl2br($question->question) !!}
                         </div>
@@ -58,19 +64,38 @@
                                 <div id="btn_answer_{{ $ans }}" class="flex-auto rounded-md border border-blue-400 px-4 py-2 text-center hover:cursor-pointer hover:bg-blue-200">{{ $ans }}</div>
                             @endforeach
                         </div>
+                        <div id="status_answering" class="px-2 text-blue-400 mb-2"></div>
                         <div class="flex">
                             <div class="flex w-96 gap-3 px-2 text-lg text-blue-400">
-                                <div class="flex gap-2 justify-center items-center flex-auto rounded-md border border-blue-400 bg-blue-400 px-4 py-1.5 text-center text-white hover:cursor-pointer hover:bg-blue-500">
+                                <div onclick="window.location.href='{{ url('/subject/' . $subject->id . '?no=' . (max(intval($no) - 1, 1))) }}';" class="flex gap-2 justify-center items-center flex-auto rounded-md border border-blue-400 bg-blue-400 px-4 py-1.5 text-center text-white hover:cursor-pointer hover:bg-blue-500">
                                     <i class="material-symbols-outlined">arrow_back</i> Sebelumnya
                                 </div>
-                                <div class="flex gap-2 justify-center items-center flex-auto rounded-md border border-blue-400 bg-blue-400 px-4 py-1.5 text-center text-white hover:cursor-pointer hover:bg-blue-500">
+                                <div onclick="window.location.href='{{ url('/subject/' . $subject->id . '?no=' . (intval($no) + 1)) }}';" class="flex gap-2 justify-center items-center flex-auto rounded-md border border-blue-400 bg-blue-400 px-4 py-1.5 text-center text-white hover:cursor-pointer hover:bg-blue-500">
                                     Selanjutnya <i class="material-symbols-outlined">arrow_forward</i>
                                 </div>
                             </div>
                             <div class="w-full flex justify-end pr-3">
-                                <div class="max-w-[200px] flex gap-2 justify-center items-center flex-auto rounded-md border bg-red-400 px-4 py-1.5 text-center text-white hover:cursor-pointer hover:bg-red-500">
-                                    <i class="material-symbols-outlined">error</i> Akhiri Ujian
-                                </div>
+                                <x-modal-open id="end_subject">
+                                    <div class="max-w-[200px] flex gap-2 justify-center items-center flex-auto rounded-md border bg-red-400 px-4 py-1.5 text-center text-white hover:cursor-pointer hover:bg-red-500">
+                                        <i class="material-symbols-outlined">send</i> Submit Answers
+                                    </div>
+                                </x-modal-open>
+
+                                <x-modal id="end_subject">
+                                    <div class="text-3xl font-bold mb-3">
+                                        Submit
+                                    </div>
+                                    <p class="mb-4">
+                                    Are you sure want to submit all answers to the teacher?<br/>
+                                    After you submit, you can't submit another answer.
+                                    </p>
+                                    <form action="{{ url('/subject/' . $subject->id . '/submit') }}" method="post">
+                                        @csrf
+                                        <x-button type="submit">
+                                            Submit
+                                        </x-button>
+                                    </form>
+                                </x-modal>
                             </div>
                         </div>
                     </div>

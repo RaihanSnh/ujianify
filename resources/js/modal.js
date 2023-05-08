@@ -39,5 +39,7 @@ function showModal(contentID) {
 }
 
 function onModalClose(id) {
+    document.getElementById(id).style.display = 'hidden';
+    document.getElementById(id).style.zIndex = '-1';
     document.getElementById(id).remove();
 }

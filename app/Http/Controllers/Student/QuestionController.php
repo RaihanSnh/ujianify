@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\StudentAnswer;
 use Illuminate\Http\Request;
 use function back;
+use function response;
 
 class QuestionController extends Controller{
 
@@ -25,14 +26,21 @@ class QuestionController extends Controller{
 			'answer' => 'required|in:A,B,C,D,E'
 		]);
 
-		StudentAnswer::query()->updateOrCreate([
-			'question_id' => $question->id,
-			'student_id' => $request->user()->id,
-			'subject_id' => $question->subject_id,
-		], [
-			'answer' => $request->post('answer')
-		]);
+		$where = ['question_id' => $question->id, 'student_id' => $request->user()->getUserId()];
 
-		return back();
+		if(StudentAnswer::query()
+			->where($where)
+			->exists()) {
+			StudentAnswer::query()->where($where)->update(['answer' => $request->post('answer')]);
+		}else{
+			StudentAnswer::query()->create([
+				'question_id' => $question->id,
+				'student_id' => $request->user()->getUserId(),
+				'subject_id' => $question->subject_id,
+				'answer' => $request->post('answer'),
+			]);
+		}
+
+		return response()->json(['status' => 'answered']);
 	}
 }

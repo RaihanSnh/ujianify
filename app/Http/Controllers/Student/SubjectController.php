@@ -12,6 +12,8 @@ use App\Models\StudentAnswer;
 use App\Models\Subject;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use function back;
+use function count;
 use function intval;
 use function nl2br;
 use function response;
@@ -21,20 +23,57 @@ use function view;
 class SubjectController extends Controller{
 
 	public function view(Subject $subject, Request $request) {
+		if(Score::query()->where(['student_id' => $request->user()->getUserId(), 'subject_id' => $subject->id])->exists()) {
+			return response('you already submitted this subject');
+		}
+		/** @var Student $student */
 		$student = Student::query()->where('user_id', '=', $request->user()->getUserId())->first();
+		/** @var Question[] $question */
+		$question = $subject->questions()->get();
+		$totalQuestion = count($question);
 		$no = $request->get('no', '1');
-		$question = Question::query()->where('subject_id', '=', $subject->id)->offset(intval($no) - 1)->first();
+		if($no > $totalQuestion) {
+			return back();
+		}
+		/** @var StudentAnswer[] $answered */
+		$answered = StudentAnswer::query()
+			->where('student_id', '=', $student->user_id)
+			->where('subject_id', '=', $subject->id)
+			->get();
+		$answeredNo = [];
+		$curNo = 0;
+		foreach($question as $q) {
+			$curNo++;
+			$isAnswered = false;
+			foreach($answered as $ans) {
+				if($ans->question_id === $q->id) {
+					$isAnswered = true;
+					break;
+				}
+			}
+			$answeredNo[$curNo] = $isAnswered;
+		}
+		$currentAnswer = null;
+		/** @var Question $currentQuestion */
+		$currentQuestion = Question::query()->where('subject_id', '=', $subject->id)->offset(intval($no) - 1)->first();
+		foreach($answered as $ans) {
+			if($ans->question_id === $currentQuestion->id) {
+				$currentAnswer = $ans->answer;
+			}
+		}
 		return view('pages.student.subject', [
 			'student' => $student,
 			'subject' => $subject,
-			'totalQuestion' => $subject->questions()->count(),
-			'question' => $question,
+			'totalQuestion' => $totalQuestion,
+			'question' => $currentQuestion,
 			'no' => $no,
+			'answeredNo' => $answeredNo,
+			'currentAnswer' => $currentAnswer
 		]);
 	}
 
 	public function submit(Subject $subject, Request $request) {
-		if(Score::query()->where('student_id', '=', $request->user()->id)->where('subject_id', '=', $subject->id)->whereNotNull('submitted_at')->first() !== null) {
+		if(Score::query()->where('student_id', '=', $request->user()->getUserId())->where('subject_id', '=', $subject->id)->whereNotNull('submitted_at')->first() !== null) {
 			return response('already submitted!');
 		}
 
@@ -52,7 +91,7 @@ class SubjectController extends Controller{
 		}
 
 		$score = new Score();
-		$score->student_id = $request->user()->id;
+		$score->student_id = $request->user()->getUserId();
 		$score->subject_id = $subject->id;
 		$score->score = $s;
 		$score->submitted_at = Carbon::now();

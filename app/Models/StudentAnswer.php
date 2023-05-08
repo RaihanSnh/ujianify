@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $student_id
  * @property int $question_id
+ * @property int $subject_id
  * @property string $answer
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -32,12 +33,14 @@ class StudentAnswer extends Model
 
 	protected $casts = [
 		'student_id' => 'int',
-		'question_id' => 'int'
+		'question_id' => 'int',
+		'subject_id' => 'int'
 	];
 
 	protected $fillable = [
 		'student_id',
 		'question_id',
+		'subject_id',
 		'answer'
 	];
 
@@ -49,5 +52,10 @@ class StudentAnswer extends Model
 	public function student()
 	{
 		return $this->belongsTo(Student::class);
+	}
+
+	public function subject()
+	{
+		return $this->belongsTo(Subject::class);
 	}
 }
