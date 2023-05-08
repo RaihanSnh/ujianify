@@ -3,7 +3,7 @@
 @section('header', 'Update Teacher')
 
 @section('container')
-    <form method="post" action="{{ url('/admin/teacher/update' . $teacher->id) }}" class="max-w-[400px] w-full">
+    <form method="post" action="{{ url('/admin/teacher/update/' . $teacher->user_id) }}" class="max-w-[400px] w-full">
         @csrf
 
         @include('components.message')
