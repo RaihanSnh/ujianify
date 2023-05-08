@@ -43,7 +43,7 @@
                                     <h1 class="mb-4 text-center">Are you sure?</h1>
                                     <hr>
                                     <div class="flex mt-5">
-                                        <form action="{{ url('admin/student' . $student->id) }}">
+                                        <form action="{{ url('admin/student/' . $student->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-5 w-60 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
