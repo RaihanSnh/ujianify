@@ -7,7 +7,9 @@ namespace App\Http\Controllers\Teacher;
 use App\Models\Question;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use function back;
+use function public_path;
 
 class QuestionController{
 
@@ -15,6 +17,7 @@ class QuestionController{
 		$request->validate([
 			'question' => 'required|string',
 			'answer' => 'required|in:A,B,C,D,E',
+			'image' => 'nullable|mimes:png,jpg',
 			'score' => 'required|integer',
 		]);
 
@@ -23,6 +26,13 @@ class QuestionController{
 		$question->answer = $request->post('answer');
 		$question->score = $request->post('score');
 		$question->subject_id = $subject->id;
+
+		$image = $request->file('image');
+		if($image !== null){
+			$image->move(public_path('images/question'), $fileName = Str::random(16) . '.' . $image->extension());
+			$question->image_path = $fileName;
+		}
+
 		$question->save();
 
 		$request->session()->flash('message', 'Question created.');

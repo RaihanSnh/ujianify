@@ -80,8 +80,17 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::get('/', fn() => view('pages.teacher.subject'));
 		Route::post('/create', [\App\Http\Controllers\Teacher\SubjectController::class, 'create']);
 		Route::get('/create', fn() => view('pages.teacher.create_subject'));
-		Route::get('/question/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.create_question', ['subject' => $subject]));
-		Route::delete('/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'delete']);
+
+		Route::get('/createQuestion/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.create_question', ['subject' => $subject]));
+		Route::post('/createQuestion/{subject}', [\App\Http\Controllers\Teacher\QuestionController::class, 'create']);
+
+		Route::get('/editQuestion/{question}', fn(\App\Models\Question $question) => view('pages.teacher.edit_question', ['question' => $question]));
+		Route::post('/editQuestion/{question}', [\App\Http\Controllers\Teacher\QuestionController::class, 'edit']);
+
+		Route::get('/questions/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.question', ['subject' => $subject]));
+
+		Route::delete('/deleteSubject/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'delete']);
+		Route::delete('/deleteQuestion/{question}', [\App\Http\Controllers\Teacher\QuestionController::class, 'delete']);
 	});
 
 	Route::prefix('/score')->group(function(){

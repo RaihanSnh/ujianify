@@ -16,7 +16,7 @@
         </nav>
     </div>
 
-        <div>
-            @yield('container')
-        </div>
+    <div>
+        @yield('container')
+    </div>
     @endsection

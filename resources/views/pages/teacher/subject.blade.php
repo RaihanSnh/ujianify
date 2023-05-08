@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Subject::query()->get() as $subject)
-                    <tr>
+                    <tr class="cursor-pointer hover:bg-blue-100" onclick="window.location.href = '{{ url('teacher/subject/questions/' . $subject->id) }}';">
                         <td>{{ $subject->name }}</td>
                         <td>{{ $subject->starts_at->format('j F Y, H.i') }}</td>
                         <td>{{ $subject->ends_at->format('j F Y, H.i') }}</td>
@@ -44,13 +44,6 @@
                                     <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
                                         <span class="material-symbols-outlined">
                                             edit
-                                        </span>
-                                    </button>
-                                </form>
-                                <form action="{{ url('teacher/subject/question/' . $subject->id) }}">
-                                    <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-gray-50">
-                                        <span class="material-symbols-outlined">
-                                            quiz
                                         </span>
                                     </button>
                                 </form>
