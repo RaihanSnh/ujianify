@@ -90,15 +90,4 @@ class UserCreationService
 		]);
 		return $user;
 	}
-<<<<<<< HEAD
-	private function update(User|int $user, string $username, string $password, string $role) : User{
-		User::query()->find($user instanceof User ? $user->user_id : $user)->update([
-			'name' => $username, 
-			'password' => $user->setPassword($password), 
-			'role' => $role
-		]);
-		return $user;
-	}
-=======
->>>>>>> e29a7951ed4ffddf02036af4a0b72221a1e94f5a
 }
