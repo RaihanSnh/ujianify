@@ -39,13 +39,13 @@
                                             <form method="POST" action="{{ url('admin/admin/delete/' . $admin->id) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button
-                                                    type="submit"
-                                                    class="items-center gap-x-1 px-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-gray-50 mr-5 w-60">Yes</button>
+                                                <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-5 w-60 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                                                    <span>Yes</span>
+                                                </button>
                                             </form>
-                                            <button
-                                                class="items-center gap-x-1 px-2 py-2 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50 w-60">Cancel</button>
-                                        </div>
+                                            <button class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-red-900 rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 w-60 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                                                <span>Cancel</span>
+                                            </button>
                                     </x-modal>
                                 </div>
                             </td>
