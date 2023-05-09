@@ -39,6 +39,9 @@
         <div class="mb-4">
             <x-checkbox name="shuffle_questions">Shuffle Question</x-checkbox>
             <x-form-error field="shuffle_questions"/>
+            
+
+  
         </div>
 
         <div class="mb-1 font-semibold">
