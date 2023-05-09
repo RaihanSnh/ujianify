@@ -31,7 +31,7 @@ class UserCreationController extends Controller{
 			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'password' => 'required',
 			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
-			'external_id' => 'required|regex:/^[a-zA-Z\s]*$/'
+			'external_id' => 'required'
 		]);
 
 		UserCreationService::getInstance()->createTeacher(
@@ -49,7 +49,7 @@ class UserCreationController extends Controller{
 		$request->validate([
 			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'password' => 'required',
-			'external_id' => 'required|regex:/^[a-zA-Z\s]*$/',
+			'external_id' => 'required',
 			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'classroom_id' => 'required|exists:classroom,id',
 			'major_id' => 'required|exists:majors,id'

@@ -14,7 +14,7 @@ class SubjectController{
 
 	public function create(Request $request) {
 		$request->validate([
-			'name' => 'required|regex:/^[a-zA-Z\s]*$/',
+			'name' => 'required',
 			'starts_at' => 'required|date_format:m/d/Y H:i',
 			'ends_at' => 'required|date_format:m/d/Y H:i',
 			'shuffle_questions' => 'boolean',
@@ -28,7 +28,7 @@ class SubjectController{
 
 	public function update(Subject $subject, Request $request) {
 		$request->validate([
-			'name' => 'required|regex:/^[a-zA-Z\s]*$/',
+			'name' => 'required',
 			'starts_at' => 'required|date_format:m/d/Y H:i',
 			'ends_at' => 'required|date_format:m/d/Y H:i',
 			'shuffle_questions' => 'boolean',
