@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Teacher::query()->get() as $teacher)
-                    <tr>
+                    <tr class="cursor-pointer hover:bg-blue-100">
                         <td>{{ $teacher->user()->first()->name }}</td>
                         <td>{{ $teacher->external_id }}</td>
                         <td>{{ $teacher->full_name }}</td>

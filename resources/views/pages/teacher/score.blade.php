@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Score::query()->get() as $score)
-                    <tr>
+                    <tr class="cursor-pointer hover:bg-blue-100">
                         <td>{{ $score->subject()->first()->name }}</td>
                         <td>{{ \App\Models\Student::query()->find($score->student_id)->full_name }}</td>
                         <td>{{ $score->score }}</td>

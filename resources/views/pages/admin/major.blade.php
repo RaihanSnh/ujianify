@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Major::query()->get() as $major)
-                    <tr>
+                    <tr class="cursor-pointer hover:bg-blue-100">
                         <td>{{ $major->name }}</td>
                         <td>{{ count($major->classrooms()->get()) }}</td>
                         <td>

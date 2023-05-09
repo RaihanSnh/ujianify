@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Student::query()->get() as $student)
-                    <tr>
+                    <tr class="cursor-pointer hover:bg-blue-100">
                         <td>{{ $student->user()->first()->name }}</td>
                         <td>{{ $student->external_id }}</td>
                         <td>{{ $student->full_name }}</td>

@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     @foreach (\App\Models\User::query()->where('role', '=', \App\Models\User::ROLE_ADMIN)->get() as $admin)
-                        <tr>
+                        <tr class="cursor-pointer hover:bg-blue-100">
                             <td>{{ $admin->name }}</td>
                             <td>
                                 <div class="flex flex-row items-center gap-x-2 text-xs">
@@ -31,7 +31,6 @@
                                             </span>
                                         </button>
                                     </x-modal-open>
-
                                     <x-modal id="delete">
                                         <h1 class="mb-4 text-center">Are you sure?</h1>
                                         <hr>

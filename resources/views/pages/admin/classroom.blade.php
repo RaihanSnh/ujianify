@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     @foreach (\App\Models\Classroom::query()->get() as $classroom)
-                        <tr>
+                        <tr class="cursor-pointer hover:bg-blue-100">
                             <td>{{ $classroom->name }}</td>
                             <td>{{ $classroom->major()->first()->name }}</td>
                             <td>
