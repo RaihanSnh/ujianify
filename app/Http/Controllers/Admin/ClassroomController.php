@@ -16,7 +16,7 @@ class ClassroomController extends Controller{
 
 	public function create(Request $request) {
 		$request->validate([
-			'name' => 'required|string',
+			'name' => 'required|string|regex:/^[a-zA-Z\s]*$/',
 			'major_id' => 'required|exists:majors,id'
 		]);
 
@@ -28,7 +28,7 @@ class ClassroomController extends Controller{
 
 	public function update(Classroom $classroom, Request $request) {
 		$request->validate([
-			'name' => 'required|string',
+			'name' => 'required|string|regex:/^[a-zA-Z\s]*$/',
 			'major_id' => 'required|exists:majors,id',
 		]);
 

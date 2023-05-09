@@ -13,7 +13,7 @@ class UserCreationController extends Controller{
 
 	public function createAdmin(Request $request) {
 		$request->validate([
-			'username' => 'required',
+			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'password' => 'required'
 		]);
 
@@ -28,10 +28,10 @@ class UserCreationController extends Controller{
 
 	public function createTeacher(Request $request) {
 		$request->validate([
-			'username' => 'required',
+			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'password' => 'required',
-			'full_name' => 'required',
-			'external_id' => 'required'
+			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
+			'external_id' => 'required|regex:/^[a-zA-Z\s]*$/'
 		]);
 
 		UserCreationService::getInstance()->createTeacher(
@@ -47,10 +47,10 @@ class UserCreationController extends Controller{
 
 	public function createStudent(Request $request) {
 		$request->validate([
-			'username' => 'required',
+			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'password' => 'required',
-			'external_id' => 'required',
-			'full_name' => 'required',
+			'external_id' => 'required|regex:/^[a-zA-Z\s]*$/',
+			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'classroom_id' => 'required|exists:classroom,id',
 			'major_id' => 'required|exists:majors,id'
 		]);

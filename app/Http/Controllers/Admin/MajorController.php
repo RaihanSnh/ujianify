@@ -15,7 +15,7 @@ class MajorController extends Controller{
 
 	public function create(Request $request) {
 		$request->validate([
-			'name' => 'required|string'
+			'name' => 'required|string|regex:/^[a-zA-Z\s]*$/'
 		]);
 
 		MajorService::getInstance()->create($request->post('name'));
@@ -25,7 +25,7 @@ class MajorController extends Controller{
 
 	public function update(Major $major, Request $request) {
 		$request->validate([
-			'name' => 'required|string'
+			'name' => 'required|string|regex:/^[a-zA-Z\s]*$/'
 		]);
 
 		MajorService::getInstance()->update($major, $request->post('name'));
