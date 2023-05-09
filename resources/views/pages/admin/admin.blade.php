@@ -33,7 +33,7 @@
                                     </x-modal-open>
 
                                     <x-modal id="delete">
-                                        <h1 class="mb-4">Are you sure?</h1>
+                                        <h1 class="mb-4 text-center">Are you sure?</h1>
                                         <hr>
                                         <div class="flex mt-5">
                                             <form method="POST" action="{{ url('admin/admin/delete/' . $admin->id) }}">
