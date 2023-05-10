@@ -8,8 +8,8 @@
             <table id="scoreTable" class="row-border w-full max-w-[1200px]">
                 <thead>
                 <tr>
-                    <th>Student Name</th>
                     <th>Subject Name</th>
+                    <th>Student Name</th>
                     <th>Score</th>
                     <th>Action</th>
                 </tr>

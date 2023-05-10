@@ -3,7 +3,7 @@
 @section('body')
 
     {{-- SIDEBAR --}}
-    <div class="fixed top-0 hidden h-[100vh] w-[250px] bg-blue-400 lg:block py-8 px-4 text-gray-100">
+    <div class="fixed top-0 hidden h-[100vh] w-[250px] bg-blue-400 lg:block py-8 px-4 text-gray-100 md:top-0 ">
         <div class="flex flex-col h-full w-full gap-2">
             <div class="font-bold w-full text-center text-3xl">
                 Ujianify
