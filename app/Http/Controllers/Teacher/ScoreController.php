@@ -11,6 +11,8 @@ use function response;
 class ScoreController{
 
 	public function exportToCsv(Subject $subject) {
-		return response(ScoreService::getInstance()->exportToCsv($subject), 201)->header('Content-Type', 'text/csv');
+		return response(ScoreService::getInstance()->exportToCsv($subject), 201)
+			->header('Content-Type', 'text/csv')
+			->header('Content-Disposition', 'attachment; filename="score_' . $subject->id . '.csv"');
 	}
 }
