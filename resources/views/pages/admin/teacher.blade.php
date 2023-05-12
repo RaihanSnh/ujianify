@@ -36,7 +36,7 @@
                                     </button>
                                 </x-modal-open>
                                 <x-modal id="delete_teacher_{{ $teacher->user_id  }}">
-                                    <h1 class="mb-4 text-center">Are you sure? {{ $teacher->full_name }}</h1>
+                                    <h1 class="mb-4 text-center">Are you sure?</h1>
                                     <hr>
                                     <div class="flex mt-5">
                                         <form action="{{ url('admin/teacher/delete/' . $teacher->user_id) }}" method="POST">
