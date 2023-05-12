@@ -119,6 +119,11 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 	Route::prefix('/score')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.score'));
 	});
+
+	Route::prefix('/presence')->group(function() {
+		Route::get('/', fn() => view('pages.teacher.presence'));
+	});
+
 	Route::prefix('/settings')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.settings'));
 	});
