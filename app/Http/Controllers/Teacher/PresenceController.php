@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\Presence;
 use App\Services\Teacher\PresenceService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
