@@ -81,11 +81,14 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 	Route::prefix('/classroom')->group(function() {
 		Route::get('/', fn() => view('pages.admin.classroom'));
 		Route::get('/create', fn() => view('pages.admin.create_classroom'));
-		Route::get('/listByMajor/{major}', [\App\Http\Controllers\Admin\ClassroomController::class, 'allByMajorID']);
 		Route::get('/edit/{classroom}', fn(\App\Models\Classroom $classroom) => view('pages.admin.edit_classroom', ['classroom' => $classroom]));
 		Route::post('/create', [\App\Http\Controllers\Admin\ClassroomController::class, 'create']);
 		Route::post('/update/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'update']);
 		Route::delete('/delete/{classroom}', [\App\Http\Controllers\Admin\ClassroomController::class, 'delete']);
+
+		Route::get('/listByMajor/{major}', [\App\Http\Controllers\Admin\ClassroomController::class, 'allByMajorID'])
+			->withoutMiddleware(\App\Http\Middleware\OnlyAdmin::class)
+			->middleware(\App\Http\Middleware\OnlyAdminTeacher::class);
 	});
 	Route::prefix('/settings')->group(function(){
 		Route::get('/', fn() => view('pages.admin.settings'));
