@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Created by Reliese Model.
  */
@@ -9,6 +7,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -27,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Classroom|null $classroom
  * @property Major|null $major
  * @property Teacher $teacher
+ * @property Collection|PresenceSubmission[] $presence_submissions
  *
  * @package App\Models
  */
@@ -63,6 +63,11 @@ class Presence extends Model
 
 	public function teacher()
 	{
-		return $this->belongsTo(Teacher::class);
+		return $this->belongsTo(Teacher::class, 'teacher_id', 'user_id');
+	}
+
+	public function presence_submissions()
+	{
+		return $this->hasMany(PresenceSubmission::class);
 	}
 }

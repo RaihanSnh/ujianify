@@ -14,10 +14,10 @@ return new class extends Migration
 	public function up() : void
 	{
 		Schema::create('presence_submissions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('presence_id')->references('id')->on('presences');
+			$table->id();
+			$table->foreignId('presence_id')->references('id')->on('presences');
 			$table->foreignId('student_id')->references('user_id')->on('students');
-            $table->unique(['presence_id', 'student_id']);
+			$table->unique(['presence_id', 'student_id']);
 			$table->enum('status', ['present', 'excused', 'sick']);
 			$table->string('ip_address');
 			$table->string('user_agent');

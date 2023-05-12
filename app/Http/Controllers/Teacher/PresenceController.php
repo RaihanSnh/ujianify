@@ -16,7 +16,6 @@ class PresenceController extends Controller
 	public function create(Request $request) {
 		$request->validate([
 			'name' => 'required|string|regex:/^[a-zA-Z\s]*$/',
-			'teacher_id' => 'required|exists:teacher,id',
 			'classroom_id' => 'required|exists:classroom,id',
 			'major_id' => 'required|exists:majors,id',
 			'starts_at' => 'required|date_format:m/d/Y H:i',
@@ -25,7 +24,7 @@ class PresenceController extends Controller
 
 		PresenceService::getInstance()->create(
 			$request->post('name'),
-			(int) $request->get('teacher_id'),
+			$request->user()->getUserId(),
 			(int) $request->get('classroom_id'),
 			(int) $request->get('major_id'),
 			Carbon::createFromFormat('m/d/Y H:i', $request->post('starts_at')),

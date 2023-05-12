@@ -23,12 +23,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach(\App\Models\Presence::query()->get() as $presence)
+                @foreach(\App\Models\Presence::query()->with(['teacher', 'classroom', 'major'])->get() as $presence)
                     <tr class="cursor-pointer hover:bg-blue-100">
-                        <td {{ $presence->id }}';">{{ $presence->name }}</td>
-                        <td>{{ $presence->teacher()->first()->name }}</td>
-                        <td>{{ $presence->classroom()->first()->name }}</td>
-                        <td>{{ $presence->major()->first()->name }}</td>
+                        <td>{{ $presence->name }}</td>
+                        <td>{{ $presence->teacher->full_name }}</td>
+                        <td>{{ $presence->classroom->name }}</td>
+                        <td>{{ $presence->major->name }}</td>
                         <td>{{ $presence->starts_at->format('j F Y, H.i') }}</td>
                         <td>{{ $presence->ends_at->format('j F Y, H.i') }}</td>
                         <td>

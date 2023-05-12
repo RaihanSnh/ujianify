@@ -51,7 +51,7 @@ class StudentAnswer extends Model
 
 	public function student()
 	{
-		return $this->belongsTo(Student::class);
+		return $this->belongsTo(Student::class, 'student_id', 'user_id');
 	}
 
 	public function subject()

@@ -47,7 +47,7 @@
             Starts At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="starts_at" with-error value="{{ old('name') }}"/>
+            <x-date-time-picker name="starts_at" with-error value="{{ old('starts_at') }}"/>
             <x-form-error field="starts_at"/>
         </div>
 
@@ -55,7 +55,7 @@
             Ends At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="ends_at" with-error value="{{ old('name') }}"/>
+            <x-date-time-picker name="ends_at" with-error value="{{ old('ends_at') }}"/>
             <x-form-error field="starts_at"/>
         </div>
 
