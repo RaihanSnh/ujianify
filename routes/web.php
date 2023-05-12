@@ -107,7 +107,7 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 
 		Route::get('/questions/{subject}', fn(\App\Models\Subject $subject) => view('pages.teacher.question', ['subject' => $subject]));
 
-		Route::delete('/deleteSubject/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'delete']);
+		Route::delete('/delete/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'delete']);
 		Route::delete('/deleteQuestion/{question}', [\App\Http\Controllers\Teacher\QuestionController::class, 'delete']);
 	});
 
