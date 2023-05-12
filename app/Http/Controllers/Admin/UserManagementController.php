@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Services\User\UserCreationService;
 use Illuminate\Http\Request;
 use function back;
+use function dd;
 
 class UserManagementController extends Controller{
 
@@ -24,6 +25,7 @@ class UserManagementController extends Controller{
 	}
 
 	public function deleteTeacher(Teacher $teacher, Request $request) {
+        dd($teacher);
 		$teacher->delete();
 		return back();
 	}

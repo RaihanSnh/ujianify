@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\Auth\AuthSession;
 use Closure;
 use Illuminate\Http\Request;
+use function response;
 use function view;
 
 class OnlyStudent
@@ -23,7 +24,7 @@ class OnlyStudent
 		/** @var AuthSession $user */
 		$user = $request->user();
 		if($user->getRole() !== User::ROLE_STUDENT) {
-			return view('pages.error.forbidden');
+            return response()->view('pages.error.forbidden');
 		}
 		return $next($request);
 	}

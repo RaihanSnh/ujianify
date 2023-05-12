@@ -27,7 +27,7 @@
                         <td>{{ $teacher->full_name }}</td>
                         <td>
                             <div class="flex flex-row items-center gap-x-2 text-xs">
-                                <x-modal-open id="delete">
+                                <x-modal-open id="delete_teacher_{{ $teacher->user_id  }}">
                                     <button
                                         class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
                                         <span class="material-symbols-outlined">
@@ -35,8 +35,8 @@
                                         </span>
                                     </button>
                                 </x-modal-open>
-                                <x-modal id="delete">
-                                    <h1 class="mb-4 text-center">Are you sure?</h1>
+                                <x-modal id="delete_teacher_{{ $teacher->user_id  }}">
+                                    <h1 class="mb-4 text-center">Are you sure? {{ $teacher->full_name }}</h1>
                                     <hr>
                                     <div class="flex mt-5">
                                         <form action="{{ url('admin/teacher/delete/' . $teacher->user_id) }}" method="POST">
