@@ -9,7 +9,6 @@ use App\Models\Presence;
 use App\Models\Teacher;
 use App\Traits\SingletonTrait;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class PresenceService{
 
