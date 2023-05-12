@@ -26,6 +26,7 @@ Route::prefix('/')->middleware([\App\Http\Middleware\Authenticate::class, \App\H
 	})->withoutMiddleware(\App\Http\Middleware\OnlyStudent::class);
 	Route::get('/rules/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.rules', ['subject' => $subject]));
 	Route::get('/subject/{subject}', [\App\Http\Controllers\Student\SubjectController::class, 'view']);
+	Route::get('/presence', fn() => view('pages.student.presence'));
 	Route::post('/subject/{subject}/submit', [\App\Http\Controllers\Student\SubjectController::class, 'submit']);
 
 	Route::post('/answerQuestion/{question}', [\App\Http\Controllers\Student\QuestionController::class, 'answer'])->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);

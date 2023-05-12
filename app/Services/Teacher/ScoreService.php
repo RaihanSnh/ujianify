@@ -12,7 +12,7 @@ use function round;
 
 class ScoreService{
 
-    use SingletonTrait;
+	use SingletonTrait;
 
 	public function exportToCsv(Subject $subject) : string{
 		$scores = Score::query()->where(['subject_id' => $subject->id])->with('students')->get();
