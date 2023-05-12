@@ -16,6 +16,7 @@ use function back;
 use function count;
 use function intval;
 use function nl2br;
+use function redirect;
 use function response;
 use function url;
 use function view;
@@ -100,7 +101,8 @@ class SubjectController extends Controller
 		$score->submitted_at = Carbon::now();
 		$score->save();
 
-		return response('submitted');
+		$request->session()->flash('message', 'Subject answers submitted!');
+		return redirect('/');
 	}
 
 	public function loadQuestions(Subject $subject, Request $request)
