@@ -39,7 +39,7 @@
                     <div><b>Score:</b> {{ $question->score }}</div>
                     <div><b>Answer:</b> {{ $question->answer }}</div>
                     <div class="flex gap-2 items-center mt-2">
-                        <x-modal-open id="delete">
+                        <x-modal-open id="delete_question_{{ $question->id  }}">
                             <button
                                 class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
                                 <span class="material-symbols-outlined">
@@ -48,7 +48,7 @@
                             </button>
                         </x-modal-open>
 
-                        <x-modal id="delete">
+                        <x-modal id="delete_question_{{ $question->id  }}">
                             <h1 class="mb-4">Are you sure?</h1>
                             <hr>
                             <div class="flex mt-5">
