@@ -120,6 +120,11 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::get('/', fn() => view('pages.teacher.score'));
 		Route::get('/exportToCsv/{subject}', [\App\Http\Controllers\Teacher\ScoreController::class, 'exportToCsv']);
 	});
+
+	Route::prefix('/presence')->group(function() {
+		Route::get('/', fn() => view('pages.teacher.presence'));
+	});
+
 	Route::prefix('/settings')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.settings'));
 	});

@@ -32,6 +32,14 @@
                     Grade
                 </button>
             </form>
+            <form class="w-full" action="{{ url('teacher/presence') }}">
+                <button type="submit" class="{{ request()->is('admin/') ? "bg-blue-300 " : "bg-blue-400 hover:bg-blue-300 " }}flex gap-x-2 items-center rounded-lg px-4 py-2 font-semibold w-full">
+                    <span class="material-symbols-outlined">
+                        presence
+                    </span>
+                    Presence
+                </button>
+            </form>
             <form class="w-full" action="{{ url('teacher/settings/') }}">
                 <button type="submit" class="{{ request()->is('admin/settings*') ? "bg-blue-300 " : "bg-blue-400 hover:bg-blue-300 " }}flex gap-x-2 items-center rounded-lg px-4 py-2 font-semibold w-full">
                     <span class="material-symbols-outlined">
