@@ -8,7 +8,6 @@ use App\Services\Auth\AuthService;
 use Closure;
 use Illuminate\Http\Request;
 use function redirect;
-use function urlencode;
 
 class Authenticate
 {

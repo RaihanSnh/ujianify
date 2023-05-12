@@ -9,7 +9,6 @@ use App\Services\Auth\AuthSession;
 use Closure;
 use Illuminate\Http\Request;
 use function response;
-use function view;
 
 class OnlyTeacher
 {
