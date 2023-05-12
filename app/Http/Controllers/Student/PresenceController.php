@@ -9,6 +9,7 @@ use App\Models\Presence;
 use App\Services\Student\PresenceService;
 use Illuminate\Http\Request;
 use function base64_decode;
+use function redirect;
 use function response;
 use function str_starts_with;
 use function strlen;
@@ -31,6 +32,7 @@ class PresenceController extends Controller{
 		$signature = base64_decode($signature, true);
 
 		PresenceService::getInstance()->submit($presence, $request->user()->getUserId(), $request->post('status'), $signature, $request->ip(), $request->userAgent());
-		return null;
+		$request->session()->flash('message', 'Presence submitted!');
+		return redirect('/');
 	}
 }

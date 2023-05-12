@@ -3,7 +3,7 @@
 @section('body')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            startCountdown({{ $presence->ends_at->unix() * 1000 }}, 'presence_countdown');
+            startCountdown(new Date({{ $presence->ends_at->unix() * 1000 }}), 'presence_countdown');
         });
     </script>
     <div class="flex flex-col justify-center w-full h-[100vh]">
@@ -16,7 +16,7 @@
                     {{ $presence->name }} - {{ $presence->starts_at->format('Y/m/d H:i') }} - <span id="presence_countdown">........</span>
                 </div>
                 <div class="rounded-lg border border-gray-200 mx-2 p-6 shadow">
-                    <form id="presence_form">
+                    <form id="presence_form" action="{{ url('presence/' . $presence->id . '/submit') }}" method="POST">
                         @csrf
                         <div class="mb-1 font-semibold">
                             Status

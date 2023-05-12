@@ -6,6 +6,7 @@ namespace App\Helpers;
 
 use function array_map;
 use function implode;
+use function is_string;
 use function str_contains;
 use function str_replace;
 
@@ -16,6 +17,9 @@ class CSV{
 		foreach ($data as $row) {
 			$shouldEscape = false;
 			foreach ($row as $value) {
+				if(!is_string($value)) {
+					$value = (string) $value;
+				}
 				if (str_contains($value, ',') || str_contains($value, '"')) {
 					$shouldEscape = true;
 					break;

@@ -21,7 +21,7 @@ class PresenceService{
 			'presence_id' => $presence->id,
 			'status' => $status,
 			'student_id' => $studentID,
-			'signature_src' => $signature,
+			'signature_src' => $fileName,
 			'user_agent' => $userAgent,
 			'ip_address' => $ip,
 		]);
