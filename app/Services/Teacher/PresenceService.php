@@ -9,18 +9,19 @@ use App\Models\Presence;
 use App\Models\Teacher;
 use App\Traits\SingletonTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PresenceService{
 
 	use SingletonTrait;
 
-	public function create(string $name,Teacher|int $teacher, Classroom|int $classroom,Major|int $major, Carbon $startsAt, Carbon $endsAt) : Presence{
+	public function create(string $name, Classroom|int $classroom, Major|int $major, Carbon $startsAt, Carbon $endsAt) : Presence{
 		if($startsAt->greaterThan($endsAt)) {
 			throw new \InvalidArgumentException("starts_at must after ends_at");
 		}
 		$presence = new Presence();
 		$presence->name = $name;
-		$presence->teacher_id = $teacher instanceof Teacher ? $teacher->id : $teacher;
+		$presence->teacher_id = Auth::id();
 		$presence->classroom_id = $classroom instanceof Classroom ? $classroom->id : $classroom;
 		$presence->major_id = $major instanceof Major ? $major->id : $major;
 		$presence->starts_at = $startsAt;

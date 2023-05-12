@@ -18,16 +18,6 @@
         </div>
 
         <div class="mb-4">
-            <select id="selectTeacher" name="teacher_id" class="shadow-md border border-gray-300 text-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
-                <option value="">Select Teacher</option>
-                @foreach(\App\Models\Teacher::all() as $teacher)
-                    <option value="{{ $teacher->user_id }}">{{ $teacher->name }}</option>
-                @endforeach
-            </select>
-            <x-form-error field="teacher_id"/>
-        </div>
-
-        <div class="mb-4">
             <select id="selectClassroom" name="classroom_id" class="shadow-md border border-gray-300 text-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
                 <option value="">Select Classroom</option>
                 @foreach(\App\Models\Classroom::all() as $classroom)
