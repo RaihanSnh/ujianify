@@ -1,49 +1,61 @@
 @extends('pages.teacher.base')
 
-@section('header', 'Submission')
+@section('header', 'Submissions')
 
 @section('container')
-    <div class="rounded-lg border shadow-lg py-3 px-5 w-full max-w-[1200px]">
-        <div style="max-width: 1200px; overflow-x: auto;">
-            <table id="scoreTable" class="row-border w-full max-w-[1200px]">
-                <thead>
-                <tr>
-                    <th>Presence</th>
-                    <th>Student Name</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach(\App\Models\PresenceSubmission::query()->get() as $presencesubmission)
-                    <tr class="cursor-pointer hover:bg-blue-100">
-                        <td>{{ $presencesubmission->presence()->first()->name }}</td>
-                        <td>{{ \App\Models\Student::query()->find($presencesubmission->student_id)->full_name }}</td>
-                        <td>{{ $presencesubmission->score }}</td>
-                        <td>
-                            <div class="flex flex-row items-center gap-x-2 text-xs">
-                                <form action="{{ url('admin/teacher/edit/' . $presencesubmission->subject_id) }}">
-                                    <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-gray-50">
-                                        <span class="material-symbols-outlined">
-                                            edit
-                                        </span>
-                                    </button>
-                                </form>
+    <div class="flex flex-col w-full gap-4">
+        <div class="mb-8">
+            Presence: <b>{{ $presence->name }}</b>
+        </div>
+        <div class="flex flex-col gap-4">
+            @php
+                $noSubmission = 0;
+            @endphp
+            @foreach(\App\Models\PresenceSubmission::query()->where('$presence_id', '=', $presence->id)->get() as $presencesubmission)
+                @php
+                    $noSubmission++;
+                @endphp
+                <div class="flex flex-col gap-0.5 rounded-lg px-4 py-3 shadow border">
+                    <div class="flex gap-4 text-lg mb-2 w-full">
+                        <div class="font-bold">
+                            {{ $noSubmission }}.
+                        </div>
+                        <div class="flex flex-col w-full py-1 px-3 rounded border">
+                                <div class="mb-2 p-1 border mt-2">
+                                    <img class="max-w-[600px] max-h-[400px]" src="{{ url('images/signature/' . $presencesubmission->signature_src ) }}" alt="signature_image_{{ $presencesubmission->id }}"/>
+                                </div>
+                            <div>
+                                {!! nl2br($presencesubmission->presencesubmission) !!}
                             </div>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 items-center mt-2">
+                        <x-modal-open id="delete_submission_{{ $presencesubmission->id  }}">
+                            <button
+                                class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+                        </x-modal-open>
+
+                        <x-modal id="delete_submission_{{ $presencesubmission->id  }}">
+                            <h1 class="mb-4">Are you sure?</h1>
+                            <hr>
+                            <div class="flex mt-5">
+                                <form action="{{ url('teacher/presence/deleteSubmission/' . $presencesubmission->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="items-center gap-x-1 px-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-gray-50 mr-5 w-60">Yes</button>
+                                </form>
+                                <button
+                                    class="items-center gap-x-1 px-2 py-2 rounded-lg bg-red-900 hover:bg-red-800 text-gray-50 w-60">Cancel</button>
+                            </div>
+                        </x-modal>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    @parent
-    <script>
-        $(document).ready(function () {
-            new DataTable('#scoreTable');
-        });
-    </script>
 @endsection

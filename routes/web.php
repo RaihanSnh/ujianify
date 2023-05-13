@@ -132,10 +132,8 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::get('/', fn() => view('pages.teacher.presence'));
 		Route::get('/create', fn() => view('pages.teacher.create_presence'));
 		Route::post('/create', [\App\Http\Controllers\Teacher\PresenceController::class, 'create']);
-	});
 
-	Route::prefix('/submission')->group(function() {
-		Route::get('/', fn() => view('pages.teacher.submission'));
+		Route::get('/submissions/{presence}', fn(\App\Models\Presence $presence) => view('pages.teacher.submission', ['presence' => $presence]));
 	});
 
 	Route::prefix('/settings')->group(function(){

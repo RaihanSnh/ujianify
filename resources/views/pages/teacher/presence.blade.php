@@ -25,7 +25,7 @@
                 <tbody>
                 @foreach(\App\Models\Presence::query()->with(['teacher', 'classroom', 'major'])->get() as $presence)
                     <tr class="cursor-pointer hover:bg-blue-100">
-                        <td>{{ $presence->name }}</td>
+                        <td onclick="window.location.href = '{{ url('teacher/presence/submission/' . $presence->id) }}';">{{ $presence->name }}</td>
                         <td>{{ $presence->teacher->full_name }}</td>
                         <td>{{ $presence->classroom->name }}</td>
                         <td>{{ $presence->major->name }}</td>
