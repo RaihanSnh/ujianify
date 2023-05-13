@@ -134,6 +134,10 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::post('/create', [\App\Http\Controllers\Teacher\PresenceController::class, 'create']);
 	});
 
+	Route::prefix('/submission')->group(function() {
+		Route::get('/', fn() => view('pages.teacher.submission'));
+	});
+
 	Route::prefix('/settings')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.settings'));
 	});
