@@ -21,7 +21,7 @@
                     <div class="p-6 bg-blue-100 rounded-lg flex items-center justify-between hover:bg-blue-200 transition-colors duration-300 cursor-pointer shadow-md hover:shadow-lg" role="button" aria-label="Admins count">
                         <div class="text-blue-500">
                             <span class="material-symbols-outlined text-2xl">
-                                hield_person
+                                shield_person
                             </span>
                         </div>
                         <div class="text-right">
