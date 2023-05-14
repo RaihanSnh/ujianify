@@ -3,15 +3,6 @@
 @section('header', 'Dashboard')
 
 @section('container')
-    <x-modal-open id="cuy">
-        <x-button>
-            Open cuy
-        </x-button>
-    </x-modal-open>
-
-    <x-modal id="cuy">
-        hello cuy
-    </x-modal>
     <div class="grid grid-cols-2 gap-4">
         <div class="col-span-1">
             <!-- Card untuk user -->
