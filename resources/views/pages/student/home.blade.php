@@ -6,28 +6,77 @@
         <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to Ujianify</h1>
         <p class="text-lg text-gray-600 mb-8">A website created for online school exams</p>
         <div class="flex flex-wrap gap-6 justify-center">
-            @foreach (\App\Models\Presence::query()->get() as $presence)
-                    <div class="bg-white rounded-lg shadow border px-6 py-4 w-full max-w-[500px] mb-6">
-                        <h2 class="text-xl font-bold text-gray-800">Presence</h2>
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">{{ $presence->name }}</h2>
-                        <p class="text-gray-600"><b>Starts At:</b> {{ $presence->starts_at->format('j F Y') }}</p>
-                        <p class="text-gray-600 mb-5"><b>Ends At:</b> {{ $presence->ends_at->format('j F Y') }}</p>
-                        <form action="{{ url('presence/' . $presence->id) }}">
-                            <x-button type="submit">Open</x-button>
-                        </form>
+            @foreach (\App\Models\Presence::query()->with('teacher', 'classroom')->get() as $presence)
+                <form action="{{ url('presence/' . $presence->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
+                    <div class="rounded-t-lg bg-green-700 text-white px-4 py-2 font-bold">
+                        Presence #{{ $presence->id }}
                     </div>
+                    <div class="flex flex-col border border-y-0 border-green-700 pt-1">
+                        <div class="flex justify-between w-full border-b px-4 py-1">
+                            <div>Name</div>
+                            <div class="font-bold">{{ $presence->name }}</div>
+                        </div>
+                        <div class="flex justify-between w-full border-b px-4 py-1">
+                            <div>Teacher</div>
+                            <div class="font-bold">{{ $presence->teacher->full_name }}</div>
+                        </div>
+                        @if($presence->major !== null)
+                            <div class="flex justify-between w-full border-b px-4 py-1">
+                                <div>Major</div>
+                                <div class="font-bold">{{ $presence->major->name }}</div>
+                            </div>
+                        @endif
+                        @if($presence->classroom !== null)
+                            <div class="flex justify-between w-full border-b px-4 py-1">
+                                <div>Classroom</div>
+                                <div class="font-bold">{{ $presence->classroom->name }}</div>
+                            </div>
+                        @endif
+                        <div class="flex justify-between w-full px-4 py-1">
+                            <div>Ends in</div>
+                            <div class="font-bold" id="presence_{{ $presence->id }}_countdown"></div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    startCountdown(new Date({{ $presence->ends_at->unix() * 1000 }}), "presence_{{ $presence->id }}_countdown");
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-green-700 rounded-b-lg px-3 py-1 text-white text-center font-bold">
+                        Start
+                    </button>
+                </form>
             @endforeach
         </div>
         <div class="flex flex-wrap gap-6 justify-center">
-            @foreach (\App\Models\Subject::query()->get() as $subject)
-                    <div class="bg-white rounded-lg shadow border px-6 py-4 w-full max-w-[500px] mb-6">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">{{ $subject->name }}</h2>
-                        <p class="text-gray-600"><b>Starts At:</b> {{ $subject->starts_at->format('j F Y') }}</p>
-                        <p class="text-gray-600 mb-5"><b>Ends At:</b> {{ $subject->ends_at->format('j F Y') }}</p>
-                        <form action="{{ url('rules/' . $subject->id) }}">
-                            <x-button type="submit">Start</x-button>
-                        </form>
+            @foreach (\App\Models\Subject::query()->with('questions')->get() as $subject)
+                <form action="{{ url('subject/' . $subject->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
+                    <div class="rounded-t-lg bg-orange-900 text-white px-4 py-2 font-bold">
+                        Subject #{{ $subject->id }}
                     </div>
+                    <div class="flex flex-col border border-y-0 border-orange-900 pt-1">
+                        <div class="flex justify-between w-full border-b px-4 py-1">
+                            <div>Name</div>
+                            <div class="font-bold">{{ $subject->name }}</div>
+                        </div>
+                        <div class="flex justify-between w-full border-b px-4 py-1">
+                            <div>Questions</div>
+                            <div class="font-bold">{{ count($subject->questions) }}</div>
+                        </div>
+                        <div class="flex justify-between w-full px-4 py-1">
+                            <div>Ends in</div>
+                            <div class="font-bold" id="subject_{{ $presence->id }}_countdown"></div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    startCountdown(new Date({{ $presence->ends_at->unix() * 1000 }}), "subject_{{ $presence->id }}_countdown");
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-orange-900 rounded-b-lg px-3 py-1 text-white text-center font-bold">
+                        Start
+                    </button>
+                </form>
             @endforeach
         </div>
     </div>

@@ -40,8 +40,7 @@ class SubjectController extends Controller
 		}
 		/** @var StudentAnswer[] $answered */
 		$answered = StudentAnswer::query()
-			->where('student_id', '=', $student->user_id)
-			->where('subject_id', '=', $subject->id)
+			->where(['student_id' => $student->user_id, 'subject_id' => $subject->id])
 			->get();
 		$answeredNo = [];
 		$curNo = 0;
@@ -82,7 +81,7 @@ class SubjectController extends Controller
 		}
 
 		/** @var StudentAnswer[] $answers */
-		$answers = StudentAnswer::query()->where('subject_id', '=', $subject->id)->get();
+		$answers = StudentAnswer::query()->where(['subject_id' => $subject->id, 'student_id' => $request->user()->getUserId()])->get();
 		/** @var Question[] $questions */
 		$questions = $subject->questions()->get();
 		$s = 0;

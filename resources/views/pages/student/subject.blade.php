@@ -10,6 +10,8 @@
                 @if($currentAnswer !== null)
                 MarkAnswered('{{ $currentAnswer }}');
                 @endif
+
+                LoadAntiCheat();
             });
         </script>
         <div class="flex h-24 w-full items-center border-b border-b-gray-200 px-8 shadow">

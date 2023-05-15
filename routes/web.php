@@ -21,7 +21,7 @@ Route::prefix('/')->middleware([\App\Http\Middleware\Authenticate::class, \App\H
 		return match ($role) {
 			\App\Models\User::ROLE_TEACHER => redirect('/teacher'),
 			\App\Models\User::ROLE_ADMIN => redirect('/admin'),
-			\App\Models\User::ROLE_STUDENT => view('pages.student.home'),
+			\App\Models\User::ROLE_STUDENT => view('pages.student.home', ['userId' => $request->user()->getUserId()]),
 		};
 	})->withoutMiddleware(\App\Http\Middleware\OnlyStudent::class);
 	Route::get('/rules/{subject}', fn(\App\Models\Subject $subject) => view('pages.student.rules', ['subject' => $subject]));
