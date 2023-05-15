@@ -86,10 +86,12 @@ class SubjectController extends Controller
 		/** @var Question[] $questions */
 		$questions = $subject->questions()->get();
 		$s = 0;
+		$qzIds = [];
 		foreach ($answers as $answer) {
 			foreach ($questions as $q) {
-				if ($q->id === $answer->question_id && $q->answer === $answer->answer) {
+				if ($q->id === $answer->question_id && $q->answer === $answer->answer && ($qzIds[$q->id] ?? null) === true) {
 					$s += $q->score;
+					$qzIds[$q->id] = true;
 				}
 			}
 		}
