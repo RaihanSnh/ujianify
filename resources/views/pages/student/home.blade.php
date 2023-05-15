@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to Ujianify</h1>
         <p class="text-lg text-gray-600 mb-8">A website created for online school exams</p>
         <div class="flex flex-wrap gap-6 justify-center">
-            @foreach (\App\Models\Presence::query()->with('teacher', 'classroom')->get() as $presence)
+            @foreach ($presences as $presence)
                 <form action="{{ url('presence/' . $presence->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
                     <div class="rounded-t-lg bg-green-700 text-white px-4 py-2 font-bold">
                         Presence #{{ $presence->id }}
@@ -49,7 +49,7 @@
             @endforeach
         </div>
         <div class="flex flex-wrap gap-6 justify-center">
-            @foreach (\App\Models\Subject::query()->with('questions')->get() as $subject)
+            @foreach ($subjects as $subject)
                 <form action="{{ url('subject/' . $subject->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
                     <div class="rounded-t-lg bg-orange-900 text-white px-4 py-2 font-bold">
                         Subject #{{ $subject->id }}
@@ -65,10 +65,10 @@
                         </div>
                         <div class="flex justify-between w-full px-4 py-1">
                             <div>Ends in</div>
-                            <div class="font-bold" id="subject_{{ $presence->id }}_countdown"></div>
+                            <div class="font-bold" id="subject_{{ $subject->id }}_countdown"></div>
                             <script>
                                 document.addEventListener('DOMContentLoaded', function () {
-                                    startCountdown(new Date({{ $presence->ends_at->unix() * 1000 }}), "subject_{{ $presence->id }}_countdown");
+                                    startCountdown(new Date({{ $subject->ends_at->unix() * 1000 }}), "subject_{{ $subject->id }}_countdown");
                                 });
                             </script>
                         </div>
