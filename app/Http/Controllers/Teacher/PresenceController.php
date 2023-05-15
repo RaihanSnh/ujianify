@@ -10,6 +10,7 @@ use App\Services\Teacher\PresenceService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use function back;
+use function dd;
 
 class PresenceController extends Controller
 {
@@ -21,6 +22,7 @@ class PresenceController extends Controller
 			'starts_at' => 'required|date_format:m/d/Y H:i',
 			'ends_at' => 'required|date_format:m/d/Y H:i',
 		]);
+		dd($request->user()->getUserId());
 
 		PresenceService::getInstance()->create(
 			$request->post('name'),
@@ -28,7 +30,7 @@ class PresenceController extends Controller
 			(int) $request->get('classroom_id'),
 			(int) $request->get('major_id'),
 			Carbon::createFromFormat('m/d/Y H:i', $request->post('starts_at')),
-			Carbon::createFromFormat('m/d/Y H:i', $request->post('ends_at'))
+			Carbon::createFromFormat('m/d/Y H:i', $request->post('ends_at')),
 		);
 		$request->session()->flash('message', 'Presence created');
 		return back();

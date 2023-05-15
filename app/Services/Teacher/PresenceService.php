@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Teacher;
 
 use App\Models\Classroom;
+use app\Models\Major;
 use App\Models\Presence;
 use App\Models\Teacher;
 use App\Traits\SingletonTrait;
