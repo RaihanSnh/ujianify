@@ -19,17 +19,17 @@ class UserManagementController extends Controller{
 	}
 
 	public function deleteStudent(Student $student, Request $request) {
-		$student->delete();
+		$student->user()->delete();
 		return back();
 	}
 
 	public function deleteTeacher(Teacher $teacher, Request $request) {
-		$teacher->delete();
+		$teacher->user()->delete();
 		return back();
 	}
 
 	public function deleteAdmin(User $user, Request $request) {
-		$user->delete();
+		$user->user()->delete();
 		return back();
 	}
 

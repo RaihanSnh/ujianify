@@ -16,7 +16,7 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('teachers', function (Blueprint $table) {
-			$table->foreignID('user_id')->primary()->references('id')->on('users');
+			$table->foreignID('user_id')->primary()->references('id')->on('users')->cascadeOnDelete();
 
 			$table->string('external_id')->index();
 			$table->string('full_name');
