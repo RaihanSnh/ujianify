@@ -101,7 +101,7 @@ class SubjectController extends Controller
 		$score->submitted_at = Carbon::now();
 		$score->save();
 
-		$request->session()->flash('message', 'Subject answers submitted!');
+		$request->session()->flash('message', 'Answers submitted!');
 		return redirect('/');
 	}
 

@@ -22,7 +22,6 @@ class ScoreService{
 		}
 		$data = [];
 		$data[] = [
-			'User ID',
 			'External ID',
 			'Full Name',
 			'Score',
@@ -31,7 +30,6 @@ class ScoreService{
 		];
 		foreach($scores as $score) {
 			$data[] = [
-				$score->student_id,
 				$score->student->external_id,
 				$score->student->full_name,
 				$score->score,
