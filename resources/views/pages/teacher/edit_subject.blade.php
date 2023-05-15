@@ -21,7 +21,7 @@
             Starts At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="starts_at" with-error value="{{ old('starts_at', $subject->starts_at->format('d/m/Y H:i')) }}"/>
+            <x-date-time-picker name="starts_at" with-error value="{{ old('starts_at', $subject->starts_at->format('m/d/Y H:i')) }}"/>
             <x-form-error field="starts_at"/>
         </div>
 
@@ -29,7 +29,7 @@
             Ends At
         </div>
         <div class="mb-4">
-            <x-date-time-picker name="ends_at" with-error value="{{ old('ends_at', $subject->ends_at->format('d/m/Y H:i')) }}"/>
+            <x-date-time-picker name="ends_at" with-error value="{{ old('ends_at', $subject->ends_at->format('m/d/Y H:i')) }}"/>
             <x-form-error field="ends_at"/>
         </div>
 
