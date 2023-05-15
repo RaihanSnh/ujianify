@@ -16,7 +16,6 @@ function LoadAntiCheat() {
 function _LoadAntiCheat() {
     AntiCheatData.lastCheck = Date.now();
     setInterval(function () {
-        console.log(AntiCheatData);
         if(Date.now() - AntiCheatData.lastCheck >= AntiCheatData.intervalCheck + AntiCheatData.compensation) {
             AntiCheatData.warning++;
             if(AntiCheatData.warning >= AntiCheatData.maxWarn) {
