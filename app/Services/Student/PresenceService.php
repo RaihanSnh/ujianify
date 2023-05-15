@@ -15,6 +15,10 @@ class PresenceService{
 
 	use SingletonTrait;
 
+	public function hasSubmitted(Presence $presence, int $studentID) : bool {
+		return PresenceSubmission::query()->where('presence_id', '=', $presence->id)->where('student_id', '=', $studentID)->exists();
+	}
+
 	public function submit(Presence $presence, int $studentID, string $status, string $signature, string $ip, string $userAgent) : void{
 		$fileName = Str::random() . '.png';
 		PresenceSubmission::query()->create([

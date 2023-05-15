@@ -14,10 +14,14 @@ use function response;
 use function str_starts_with;
 use function strlen;
 use function substr;
+use function view;
 
 class PresenceController extends Controller{
 
 	public function submit(Presence $presence, Request $request) {
+		if(PresenceService::getInstance()->hasSubmitted($presence, $request->user()->getUserId())) {
+			return view('pages.error.simple', ['err' => 'Presence already submitted']);
+		}
 		$request->validate([
 			'status' => 'required|in:present,sick,excused',
 			'signature' => 'required'
