@@ -30,7 +30,7 @@ class SubjectController extends Controller
 			return view('pages.error.simple', ['err' => 'This subject is already submitted!']);
 		}
 		/** @var Student $student */
-		$student = Student::query()->find($request->user()->getUserId())->first();
+		$student = Student::query()->find($request->user()->getUserId());
 		/** @var Question[] $question */
 		$question = $subject->questions()->get();
 		$totalQuestion = count($question);
