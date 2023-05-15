@@ -48,9 +48,7 @@ Route::prefix('/auth')->group(function() {
 });
 
 Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyAdmin::class])->group(function() {
-	Route::get('/', function() {
-		return view('pages.admin.dashboard');
-	});
+	Route::get('/', fn(\App\Models\User $user, \App\Models\Classroom $class, \App\Models\Major $major) => view('pages.admin.dashboard', ['user' => $user, 'class' => $class, 'major' => $major]));
 	Route::prefix('/admin')->group(function() {
 		Route::get('/', fn() => view('pages.admin.admin'));
 		Route::get('/create', fn() => view('pages.admin.create_admin'));

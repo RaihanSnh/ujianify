@@ -17,7 +17,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-sm font-medium text-gray-700">Admins</p>
-                            <p id="majors-count" class="text-lg font-semibold text-gray-900">1</p>
+                            <p id="majors-count" class="text-lg font-semibold text-gray-900">{{ $user->where('role', '=', \App\Models\User::ROLE_ADMIN)->count() }}</p>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-sm font-medium text-gray-700">Teachers</p>
-                            <p id="classroom-count" class="text-lg font-semibold text-gray-900">12</p>
+                            <p id="classroom-count" class="text-lg font-semibold text-gray-900">{{ $user->where('role', '=', \App\Models\User::ROLE_TEACHER)->count() }}</p>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-sm font-medium text-gray-700">Students</p>
-                            <p id="classroom-count" class="text-lg font-semibold text-gray-900">120</p>
+                            <p id="classroom-count" class="text-lg font-semibold text-gray-900">{{ $user->where('role', '=', \App\Models\User::ROLE_STUDENT)->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-sm font-medium text-gray-700">Majors</p>
-                            <p id="teachers-count" class="text-lg font-semibold text-gray-900">9</p>
+                            <p id="teachers-count" class="text-lg font-semibold text-gray-900">{{ $major->count() }}</p>
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-sm font-medium text-gray-700">Classroom</p>
-                            <p id="admins-count" class="text-lg font-semibold text-gray-900">30</p>
+                            <p id="admins-count" class="text-lg font-semibold text-gray-900">{{ $class->count() }}</p>
                         </div>
                     </div>
                 </div>
