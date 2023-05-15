@@ -80,7 +80,7 @@ class SubjectController extends Controller
 
 	public function submit(Subject $subject, Request $request)
 	{
-		if($subject->starts_at->greatherThan(Carbon::now())) {
+		if($subject->starts_at->greaterThan(Carbon::now())) {
 			return view('pages.error.simple', ['err' => 'Subject not started yet']);
 		}
 		if (Score::query()->where('student_id', '=', $request->user()->getUserId())->where('subject_id', '=', $subject->id)->whereNotNull('submitted_at')->first() !== null) {
