@@ -26,7 +26,7 @@ class SubjectController extends Controller
 
 	public function view(Subject $subject, Request $request)
 	{
-		if (Score::query()->where(['student_id' => $request->user()->getUserId(), 'subject_id' => $subject->id])->exists()) {
+		if (Score::query()->where('student_id', '=', $request->user()->getUserId())->where('subject_id', '=', $subject->id)->exists()) {
 			return view('pages.error.simple', ['err' => 'This subject is already submitted!']);
 		}
 		/** @var Student $student */
@@ -40,7 +40,8 @@ class SubjectController extends Controller
 		}
 		/** @var StudentAnswer[] $answered */
 		$answered = StudentAnswer::query()
-			->where(['student_id' => $student->user_id, 'subject_id' => $subject->id])
+			->where('student_id', '=', $student->user_id)
+			->where('subject_id', '=', $subject->id)
 			->get();
 		$answeredNo = [];
 		$curNo = 0;
@@ -81,7 +82,7 @@ class SubjectController extends Controller
 		}
 
 		/** @var StudentAnswer[] $answers */
-		$answers = StudentAnswer::query()->where(['subject_id' => $subject->id, 'student_id' => $request->user()->getUserId()])->get();
+		$answers = StudentAnswer::query()->where('subject_id', '=', $subject->id)->where('student_id', '=', $request->user()->getUserId())->get();
 		/** @var Question[] $questions */
 		$questions = $subject->questions()->get();
 		$s = 0;

@@ -15,7 +15,7 @@ class ScoreService{
 	use SingletonTrait;
 
 	public function exportToCsv(Subject $subject) : string{
-		$scores = Score::query()->where(['subject_id' => $subject->id])->with('student')->get();
+		$scores = Score::query()->where('subject_id', '=', $subject->id)->with('student')->get();
 		$maxScore = (int) $subject->questions()->sum('score');
 		if(empty($scores)){
 			return '';

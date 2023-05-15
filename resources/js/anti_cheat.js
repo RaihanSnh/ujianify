@@ -8,6 +8,12 @@ const AntiCheatData = {
 
 
 function LoadAntiCheat() {
+    setTimeout(function () {
+        _LoadAntiCheat();
+    }, 5000);
+}
+
+function _LoadAntiCheat() {
     AntiCheatData.lastCheck = Date.now();
     setInterval(function () {
         console.log(AntiCheatData);
