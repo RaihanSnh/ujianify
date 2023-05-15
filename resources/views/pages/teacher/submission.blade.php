@@ -11,7 +11,7 @@
             @php
                 $noSubmission = 0;
             @endphp
-            @foreach(\App\Models\PresenceSubmission::query()->where('$presence_id', '=', $presence->id)->get() as $presencesubmission)
+            @foreach(\App\Models\PresenceSubmission::query()->where('presence_id', '=', $presence->id)->get() as $presencesubmission)
                 @php
                     $noSubmission++;
                 @endphp
