@@ -17,7 +17,7 @@ function LoadAntiCheat() {
     }
     setTimeout(function () {
         _LoadAntiCheat();
-    }, 5000);
+    }, 2000);
 }
 
 function IsFullScreen() {
@@ -30,15 +30,8 @@ function IsFullScreen() {
 
 function _LoadAntiCheat() {
     AntiCheatData.lastCheck = Date.now();
-    document.addEventListener('resize', function () {
-        setTimeout(function () {
-            if(!IsFullScreen()) {
-                OnCheatDetected();
-            }
-        }, 10);
-    });
     setInterval(function () {
-        if(Date.now() - AntiCheatData.lastCheck >= AntiCheatData.intervalCheck + AntiCheatData.compensation) {
+        if(!IsFullScreen() || (Date.now() - AntiCheatData.lastCheck >= AntiCheatData.intervalCheck + AntiCheatData.compensation)) {
             AntiCheatData.warning++;
             if(AntiCheatData.warning >= AntiCheatData.maxWarn) {
                 OnCheatDetected();
