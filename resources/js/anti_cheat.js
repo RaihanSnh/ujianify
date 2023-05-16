@@ -4,10 +4,58 @@ const AntiCheatData = {
     warning: 0,
     maxWarn: 2,
     compensation: 500,
+    delay: 500
 };
+
+function sendLoadingAnimation() {
+    const elem = document.createElement('div');
+    elem.id = 'anti_cheat_loader';
+    elem.style.position = 'fixed';
+    elem.style.top = '0';
+    elem.style.left = '0';
+    elem.style.zIndex = '9999';
+    elem.style.width = '100vw';
+    elem.style.height = '100vh';
+    elem.style.backgroundColor = 'rgba(0,0,0,0.85)';
+    elem.style.display = 'flex';
+    elem.style.flexDirection = 'column';
+    elem.style.justifyContent = 'center';
+    elem.style.alignItems = 'center';
+    const elem2 = document.createElement('div');
+    elem2.style.width = '100%';
+    elem2.style.display = 'flex';
+    elem2.style.justifyContent = 'center';
+    const loader = document.createElement('div');
+    loader.style.border = '16px solid #f3f3f3'
+    loader.style.borderRadius = '50%';
+    loader.style.borderTop = '16px solid #3498db';
+    loader.style.width = '150px';
+    loader.style.height = '150px';
+    loader.style.animation = 'spin 0.5s linear infinite';
+    elem2.appendChild(loader);
+    const loadingText = document.createElement('div');
+    loadingText.style.marginTop = '20px';
+    loadingText.style.color = 'white';
+    loadingText.innerText = 'Injecting Ujianify Anti Cheat (UAC)...';
+    elem.appendChild(elem2);
+    elem.appendChild(loadingText);
+    document.getElementById('root').appendChild(elem);
+
+    let opacity = 0.85;
+    const task = setInterval(function () {
+        opacity -= 0.01;
+        elem.style.backgroundColor = 'rgba(0,0,0,' + opacity + ')';
+    }, 25);
+
+    setTimeout(function () {
+        clearInterval(task);
+        elem.remove();
+    }, AntiCheatData.delay - 1);
+}
 
 
 function LoadAntiCheat() {
+    sendLoadingAnimation();
     document.addEventListener('contextmenu', event => event.preventDefault());
     if(!IsFullScreen()) {
         const elemId = 'anti_cheat_detection';
@@ -18,7 +66,7 @@ function LoadAntiCheat() {
     }
     setTimeout(function () {
         _LoadAntiCheat();
-    }, 2000);
+    }, AntiCheatData.delay);
 }
 
 function IsFullScreen() {
