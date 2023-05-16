@@ -37,6 +37,14 @@
         </div>
 
         <div class="mb-1 font-semibold">
+            Photo
+        </div>
+        <div class="mb-4">
+            <input name="image" class="block w-full shadow py-2 px-3 text-sm border border-gray-300 text-gray-600 rounded-lg cursor-pointer" type="file">
+            <x-form-error field="image"/>
+        </div>
+
+        <div class="mb-1 font-semibold">
             Major
         </div>
         <div class="mb-4">

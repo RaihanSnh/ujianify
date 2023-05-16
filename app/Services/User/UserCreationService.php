@@ -10,13 +10,14 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Traits\SingletonTrait;
+use function basename;
 
 class UserCreationService
 {
 
 	use SingletonTrait;
 
-	public function createStudent(string $username, string $password, string $externalID, string $fullName, Classroom|int $classroom, Major|int $major) : void
+	public function createStudent(string $username, string $password, string $externalID, string $fullName, $image, Classroom|int $classroom, Major|int $major) : void
 	{
 		$user = $this->create($username, $password, User::ROLE_STUDENT);
 
@@ -24,8 +25,11 @@ class UserCreationService
 		$student->user_id = $user->id;
 		$student->external_id = $externalID;
 		$student->full_name = $fullName;
+		$path = $image->store('public/images/student');
+		$student->image = basename($path);
 		$student->classroom_id = $classroom instanceof Classroom ? $classroom->id : $classroom;
 		$student->major_id = $major instanceof Major ? $major->id : $major;
+
 		$student->save();
 	}
 
