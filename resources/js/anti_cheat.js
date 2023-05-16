@@ -8,6 +8,7 @@ const AntiCheatData = {
 
 
 function LoadAntiCheat() {
+    document.addEventListener('contextmenu', event => event.preventDefault());
     if(!IsFullScreen()) {
         const elemId = 'anti_cheat_detection';
         document.getElementById('root').innerHTML = '<div  id="' + elemId + '" class="flex flex-col justify-center fixed z-[9999] bg-red-800 w-[100vw] h-[100vh]">' +
