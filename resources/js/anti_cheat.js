@@ -4,10 +4,19 @@ const AntiCheatData = {
     warning: 0,
     maxWarn: 2,
     compensation: 500,
-    delay: 500
+    delay: 5000
 };
 
+
+// gimmick
 function sendLoadingAnimation() {
+    const lastLoad = localStorage.getItem('last_anti_cheat_loaded');
+    if(lastLoad !== null) {
+        const lastLoadInt = parseInt(lastLoad);
+        if(lastLoad + (1000 * 360) >= Date.now()) {
+            return;
+        }
+    }
     const elem = document.createElement('div');
     elem.id = 'anti_cheat_loader';
     elem.style.position = 'fixed';
@@ -31,26 +40,32 @@ function sendLoadingAnimation() {
     loader.style.borderTop = '16px solid #3498db';
     loader.style.width = '150px';
     loader.style.height = '150px';
-    loader.style.animation = 'spin 0.5s linear infinite';
+    loader.style.animation = 'spin 1s linear infinite';
     elem2.appendChild(loader);
     const loadingText = document.createElement('div');
     loadingText.style.marginTop = '20px';
     loadingText.style.color = 'white';
-    loadingText.innerText = 'Injecting Ujianify Anti Cheat (UAC)...';
+    loadingText.innerText = 'Injecting Ujianify Anti Cheat (0%)...';
     elem.appendChild(elem2);
     elem.appendChild(loadingText);
     document.getElementById('root').appendChild(elem);
 
     let opacity = 0.85;
+    let progress = 0;
+    let progressLerp = Math.floor(AntiCheatData.delay / 1000);
     const task = setInterval(function () {
-        opacity -= 0.01;
+        opacity -= 0.0005;
+        progress += progressLerp;
         elem.style.backgroundColor = 'rgba(0,0,0,' + opacity + ')';
+        loadingText.innerText = 'Injecting Ujianify Anti Cheat (' + Math.floor(progress / 10) + '%)...'
     }, 25);
 
     setTimeout(function () {
         clearInterval(task);
         elem.remove();
     }, AntiCheatData.delay - 1);
+
+    localStorage.setItem('last_anti_cheat_loaded', '' + Date.now());
 }
 
 
