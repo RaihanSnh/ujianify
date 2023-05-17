@@ -27,8 +27,8 @@ class HomeController{
 		/** @var Student $student */
 		$student = Student::query()->find($request->user()->getUserId());
 		$presences = Presence::query()->with('teacher', 'classroom')
-			->whereDate('starts_at', '<=', Carbon::now())
-			->whereDate('ends_at', '>=', Carbon::now())
+			->where('starts_at', '<=', Carbon::now())
+			->where('ends_at', '>=', Carbon::now())
 			->where(function($query) use ($student) {
 				$query->where('classroom_id', '=', $student->classroom_id)
 					->orWhereNull('classroom_id');
@@ -40,8 +40,8 @@ class HomeController{
 			->get();
 
 		$subjects = Subject::query()
-			->whereDate('starts_at', '<=', Carbon::now())
-			->whereDate('ends_at', '>=', Carbon::now())
+			->where('starts_at', '<=', Carbon::now())
+			->where('ends_at', '>=', Carbon::now())
 			->get();
 
 		return view('pages.student.home', ['presences' => $presences, 'subjects' => $subjects, 'student' => $student]);
