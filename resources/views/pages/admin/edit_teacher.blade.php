@@ -12,7 +12,7 @@
             Username
         </div>
         <div class="mb-4">
-            <x-text-input name="username" with-error/>
+            <x-text-input name="username" with-error value="{{ $teacher->user->name }}"/>
         </div>
 
         <div class="mb-1 font-semibold">

@@ -44,6 +44,6 @@ class HomeController{
 			->whereDate('ends_at', '>=', Carbon::now())
 			->get();
 
-		return view('pages.student.home', ['presences' => $presences, 'subjects' => $subjects]);
+		return view('pages.student.home', ['presences' => $presences, 'subjects' => $subjects, 'student' => $student]);
 	}
 }

@@ -4,8 +4,9 @@
     <div class="container mx-auto px-4 py-8">
         @include('components.message')
         <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to Ujianify</h1>
-        <p class="text-lg text-gray-600 mb-8">A website created for online school exams</p>
-        <div class="flex flex-wrap gap-6 justify-center">
+        <p class="text-xl mb-7">Hello {{ $student->full_name }}</p>
+        <p class="text-xl font-bold mb-3">Presences</p>
+        <div class="flex flex-wrap gap-6 justify-start">
             @foreach ($presences as $presence)
                 <form action="{{ url('presence/' . $presence->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
                     <div class="rounded-t-lg bg-green-700 text-white px-4 py-2 font-bold">
@@ -48,7 +49,8 @@
                 </form>
             @endforeach
         </div>
-        <div class="flex flex-wrap gap-6 justify-center">
+        <p class="text-xl font-bold mb-3">Subject</p>
+        <div class="flex flex-wrap gap-6 justify-start">
             @foreach ($subjects as $subject)
                 <form action="{{ url('subject/' . $subject->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
                     <div class="rounded-t-lg bg-orange-900 text-white px-4 py-2 font-bold">
