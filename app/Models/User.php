@@ -97,7 +97,7 @@ class User extends Model
 		return $this->role === self::ROLE_ADMIN;
 	}
 
-	public function setPassword(string $password){
-		$this->password = Hash::make($password);
+	public function setPassword(string $password) : string{
+		return $this->password = Hash::make($password);
 	}
 }

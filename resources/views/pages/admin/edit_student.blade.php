@@ -12,11 +12,11 @@
             Username
         </div>
         <div class="mb-4">
-            <x-text-input name="username" with-error value="{{ old('username') }}"/>
+            <x-text-input name="username" with-error value="{{ $student->user->name }}"/>
         </div>
 
         <div class="mb-1 font-semibold">
-            Password
+            Password (if empty, the password won't be updated)
         </div>
         <div class="mb-4">
             <x-text-input name="password" with-error/>

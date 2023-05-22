@@ -10,7 +10,6 @@ use App\Models\Subject;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use function dd;
 use function redirect;
 use function view;
 

@@ -39,14 +39,14 @@ class UserManagementController extends Controller{
 	{
 		$request->validate([
 			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
-			'password' => 'required',
+			'password' => 'nullable',
 			'external_id' => 'required',
 			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'classroom_id' => 'required|exists:classroom,id',
 			'major_id' => 'required|exists:majors,id'
 		]);
 
-		UserCreationService::getInstance()->updateStudent($student,
+		UserCreationService::getInstance()->updateStudent($student->user_id,
 			$request->post('username'),
 			$request->post('password'),
 			$request->post('external_id'),
@@ -63,12 +63,12 @@ class UserManagementController extends Controller{
 	{
 		$request->validate([
 			'username' => 'required|regex:/^[a-zA-Z\s]*$/',
-			'password' => 'required',
+			'password' => 'nullable',
 			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
 			'external_id' => 'required'
 		]);
 
-		UserCreationService::getInstance()->updateTeacher($teacher,
+		UserCreationService::getInstance()->updateTeacher($teacher->user_id,
 			$request->post('username'),
 			$request->post('password'),
 			$request->post('external_id'),
