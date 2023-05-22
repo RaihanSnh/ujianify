@@ -20,7 +20,7 @@ return new class extends Migration
 
 			$table->string('external_id')->index();
 			$table->string('full_name');
-			$table->string('image');
+			$table->string('image')->nullable();
 
 			$table->foreignID('major_id')->references('id')->on('majors');
 			$table->foreignID('classroom_id')->references('id')->on('classroom');
