@@ -90,9 +90,7 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 });
 
 Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class, \App\Http\Middleware\OnlyTeacher::class])->group(function() {
-	Route::get('/', function() {
-		return view('pages.teacher.dashboard');
-	});
+	Route::get('/', fn(\App\Models\User $user, \App\Models\Subject $subject, \App\Models\Presence $presence, \App\Models\Question $question, \App\Models\PresenceSubmission $submission) => view('pages.teacher.dashboard', ['user' => $user, 'subject' => $subject, 'presence' => $presence, 'question' => $question, 'submission' => $submission]));
 
 	Route::prefix('/subject')->group(function(){
 		Route::get('/', fn() => view('pages.teacher.subject'));
