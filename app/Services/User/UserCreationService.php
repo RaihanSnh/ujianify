@@ -11,6 +11,7 @@ use App\Models\Teacher;
 use App\Models\User;
 use App\Traits\SingletonTrait;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use function public_path;
 
@@ -98,9 +99,9 @@ class UserCreationService
 			'role' => $role
 		];
 		if($password !== "") {
-			$update['password'] = $user->setPassword($password);
+			$update['password'] = Hash::make($password);
 		}
-		User::query()->find($user instanceof User ? $user->user_id : $user)->update($update);
+		User::query()->find($user instanceof User ? $user->id : $user)->update($update);
 		return $user;
 	}
 }
