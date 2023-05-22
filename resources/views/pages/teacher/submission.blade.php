@@ -16,9 +16,11 @@
                     $noSubmission++;
                 @endphp
                 <div class="flex flex-col gap-0.5 rounded-lg px-4 py-3 shadow border">
-                    <div class="flex gap-4 text-lg mb-2 w-full">
+                    <div class="flex flex-col gap-4 text-lg mb-2 w-full">
                         <div class="font-bold">
                             {{ $noSubmission }}.
+                            {{ $presencesubmission->student->full_name }}
+                            <p class="capitalize">status : {{ $presencesubmission->status }}</p>   
                         </div>
                         <div class="flex flex-col w-full py-1 px-3 rounded border">
                                 <div class="mb-2 p-1 border mt-2">
