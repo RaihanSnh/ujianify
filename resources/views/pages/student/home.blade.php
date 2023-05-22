@@ -52,7 +52,7 @@
         <p class="text-xl font-bold mb-3">Subject</p>
         <div class="flex flex-wrap gap-6 justify-start">
             @foreach ($subjects as $subject)
-                <form action="{{ url('subject/' . $subject->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
+                <form action="{{ url('rules/' . $subject->id) }}" class="flex flex-col max-w-[350px] w-full mb-4">
                     <div class="rounded-t-lg bg-orange-900 text-white px-4 py-2 font-bold">
                         Subject #{{ $subject->id }}
                     </div>
