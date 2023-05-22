@@ -19,7 +19,7 @@
 
 4. Generate encryption key (it used to hash user passwords)
     ```sh
-    php artisan generate:key
+    php artisan key:generate
     ```
 
 5. Run database migrations to create all required tables.
