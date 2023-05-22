@@ -10,14 +10,16 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Traits\SingletonTrait;
-use function basename;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
+use function public_path;
 
 class UserCreationService
 {
 
 	use SingletonTrait;
 
-	public function createStudent(string $username, string $password, string $externalID, string $fullName, $image, Classroom|int $classroom, Major|int $major) : void
+	public function createStudent(string $username, string $password, string $externalID, string $fullName, ?UploadedFile $image, Classroom|int $classroom, Major|int $major) : void
 	{
 		$user = $this->create($username, $password, User::ROLE_STUDENT);
 
@@ -25,8 +27,12 @@ class UserCreationService
 		$student->user_id = $user->id;
 		$student->external_id = $externalID;
 		$student->full_name = $fullName;
-		$path = $image->store('public/images/student');
-		$student->image = basename($path);
+
+		if($image !== null){
+			$image->move(public_path('images/student'), $fileName = Str::random(16) . '.' . $image->extension());
+			$student->image = $fileName;
+		}
+
 		$student->classroom_id = $classroom instanceof Classroom ? $classroom->id : $classroom;
 		$student->major_id = $major instanceof Major ? $major->id : $major;
 

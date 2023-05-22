@@ -51,7 +51,7 @@ class UserCreationController extends Controller{
 			'password' => 'required',
 			'external_id' => 'required',
 			'full_name' => 'required|regex:/^[a-zA-Z\s]*$/',
-			'image' => 'required',
+			'image' => 'nullable|mimes:png,jpg',
 			'classroom_id' => 'required|exists:classroom,id',
 			'major_id' => 'required|exists:majors,id'
 		]);

@@ -33,7 +33,7 @@
             <div class="flex w-[350px] flex-col gap-4 bg-blue-500 px-3 py-6 text-white">
                 @if ($student->image !== null)
                     <div class="flex w-full justify-center">
-                        <img alt="pp" class="object-contain w-[200px] border-4"
+                        <img alt="pp" class="object-contain w-[200px] h-[200px] border-4"
                             src="{{ url('images/student/' . $student->image) }}" />
                     </div>
                 @endif

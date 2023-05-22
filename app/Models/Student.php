@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $external_id
  * @property string $full_name
  * @property int $major_id
+ * @property string $image
  * @property int $classroom_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -44,7 +45,8 @@ class Student extends Model
 		'external_id',
 		'full_name',
 		'major_id',
-		'classroom_id'
+		'classroom_id',
+		'image',
 	];
 
 	public function classroom()
