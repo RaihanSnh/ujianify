@@ -27,7 +27,7 @@ Route::prefix('/')->middleware([\App\Http\Middleware\Authenticate::class, \App\H
 
 	Route::post('/answerQuestion/{question}', [\App\Http\Controllers\Student\QuestionController::class, 'answer'])->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-	Route::get('/loadQuestions/{subject}', [\App\Http\Controllers\Student\SubjectController::class, 'loadQuestions']);
+	//Route::get('/loadQuestions/{subject}', [\App\Http\Controllers\Student\SubjectController::class, 'loadQuestions']);
 });
 
 Route::prefix('/auth')->group(function() {

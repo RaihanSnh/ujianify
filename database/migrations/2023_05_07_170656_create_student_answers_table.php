@@ -16,8 +16,8 @@ return new class extends Migration
 		Schema::create('student_answers', function (Blueprint $table) {
 			$table->id();
 
-			$table->foreignId('student_id')->references('user_id')->on('students');
-			$table->foreignId('question_id')->references('id')->on('questions');
+			$table->foreignId('student_id')->references('user_id')->on('students')->cascadeOnDelete();
+			$table->foreignId('question_id')->references('id')->on('questions')->cascadeOnDelete();
 			$table->foreignId('subject_id')->references('id')->on('subjects');
 			$table->enum('answer', ['A', 'B', 'C', 'D', 'E']);
 

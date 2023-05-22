@@ -16,9 +16,9 @@ return new class extends Migration
 		Schema::create('presences', function (Blueprint $table) {
 			$table->id();
 			$table->string('name');
-			$table->foreignId('teacher_id')->references('user_id')->on('teachers');
-			$table->foreignId('classroom_id')->nullable()->references('id')->on('classroom');
-			$table->foreignId('major_id')->nullable()->references('id')->on('majors');
+			$table->foreignId('teacher_id')->references('user_id')->on('teachers')->cascadeOnDelete();
+			$table->foreignId('classroom_id')->nullable()->references('id')->on('classroom')->cascadeOnDelete();
+			$table->foreignId('major_id')->nullable()->references('id')->on('majors')->cascadeOnDelete();
 			$table->dateTime('starts_at');
 			$table->dateTime('ends_at');
 			$table->timestamps();
