@@ -102,6 +102,11 @@ class UserCreationService
 			$update['password'] = Hash::make($password);
 		}
 		User::query()->find($user instanceof User ? $user->id : $user)->update($update);
+		if(!$user instanceof User) {
+			/** @var User $ret */
+			$ret = User::query()->find($user);
+			return $ret;
+		}
 		return $user;
 	}
 }
