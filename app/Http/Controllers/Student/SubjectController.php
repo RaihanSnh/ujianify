@@ -95,7 +95,7 @@ class SubjectController extends Controller
 		$qzIds = [];
 		foreach ($answers as $answer) {
 			foreach ($questions as $q) {
-				if ($q->id === $answer->question_id && $q->answer === $answer->answer && ($qzIds[$q->id] ?? null) === true) {
+				if ($q->id === $answer->question_id && $q->answer === $answer->answer && ($qzIds[$q->id] ?? null) !== true) {
 					$s += $q->score;
 					$qzIds[$q->id] = true;
 				}
