@@ -17,6 +17,9 @@
                     <li class="mb-2">Make sure the internet connection and devices are working properly before the exam starts.</li>
                     <li class="mb-2">The exam supervisor will monitor your activity during the exam.</li>
                     <li class="mb-2">When finished, don't forget to press the Submit button.</li>
+                    <li class="mb-2">At the time of the exam students are required to enlarge the application screen by pressing, F11.</li>
+                    <li class="mb-2">Students are prohibited from opening other tabs or applications during the exam.</li>
+                    <li class="mb-2">Finally, good luck and keep fighting.</li>
                   </ul>
             </div>
             <div class="px-4 py-2 bg-gray-100">
