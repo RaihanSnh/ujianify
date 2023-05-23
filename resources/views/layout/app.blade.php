@@ -13,6 +13,16 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #052033;
+        }
+        ::selection{
+            color: white;
+            background-color: #052033;
+        }
     </style>
     <link rel="icon" href="{{ asset('images/logos.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
