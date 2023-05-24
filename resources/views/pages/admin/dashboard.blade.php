@@ -5,7 +5,7 @@
 @section('container')
     <div class="grid grid-cols-2 gap-4">
         <div class="col-span-1">
-            <!-- Card untuk user -->
+
             <div class="max-w-4xl w-full p-4 bg-white shadow-lg rounded-lg transform hover:scale-105 transition-transform duration-300 m-4" role="region" aria-label="User card">
                 <div class="mt-4 grid grid-cols-1 gap-2">
 
@@ -21,7 +21,7 @@
                         </div>
                     </div>
 
-                    <div class="p-6 bg-green-100 rounded-lg flex items-center justify-between hover:bg-green-200 transition-colors duration-300 cursor-pointer shadow-md hover:shadow-lg" role="button" aria-label="Teacher count">
+                    <div class="p-6 bg-green-100 rounded-lg flex items-center justify-between hover:bg-green-200 transition-colors duration-300 cursor-pointer shadow-md hover:shadow-lg" role="button" aria-label="Teachers count">
                         <div class="text-green-500">
                             <span class="material-symbols-outlined text-2xl">
                                 person
@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="p-6 bg-yellow-100 rounded-lg flex items-center justify-between hover:bg-yellow-200 transition-colors duration-300 cursor-pointer shadow-md hover:shadow-lg" role="button" aria-label="Student count">
+                    <div class="p-6 bg-yellow-100 rounded-lg flex items-center justify-between hover:bg-yellow-200 transition-colors duration-300 cursor-pointer shadow-md hover:shadow-lg" role="button" aria-label="Students count">
                         <div class="text-yellow-500">
                             <span class="material-symbols-outlined text-2xl">
                                 assignment_ind
@@ -48,7 +48,6 @@
             </div>
         </div>
 
-            <!-- Card untuk class -->
         <div class="col-span-1">
             <div class="max-w-4xl w-full p-4 bg-white shadow-lg rounded-lg transform hover:scale-105 transition-transform duration-300 m-4" role="region" aria-label="Class card">
                 <div class="mt-4 grid grid-cols-1 gap-2">
