@@ -60,8 +60,19 @@
             return "{{ url('/') }}/" + path;
         }
     </script>
+
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+            }
+            if (e.keyCode === 123) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </head>
-<body>
+<body oncontextmenu="return false">
 <div id="root">
     @yield('body')
 </div>
