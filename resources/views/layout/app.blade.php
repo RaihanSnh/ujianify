@@ -17,11 +17,11 @@
             width: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #052033;
+            background: #61a5fa;
         }
         ::selection{
             color: white;
-            background-color: #052033;
+            background-color: #61a5fa;
         }
     </style>
     <link rel="icon" href="{{ asset('images/logos.svg') }}" type="image/svg+xml">
