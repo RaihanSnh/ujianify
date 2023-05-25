@@ -63,6 +63,8 @@ Route::prefix('/admin')->middleware([\App\Http\Middleware\Authenticate::class, \
 		Route::post('/create', [\App\Http\Controllers\Admin\UserCreationController::class, 'createStudent']);
 		Route::post('/update/{student}', [\App\Http\Controllers\Admin\UserManagementController::class, 'updateStudent']);
 		Route::delete('/delete/{student}', [\App\Http\Controllers\Admin\UserManagementController::class, 'deleteStudent']);
+
+		Route::get('/exportToCsv/{student}', [\App\Http\Controllers\Admin\StudentController::class, 'exportToCsv']);
 	});
 	Route::prefix('/major')->group(function() {
 		Route::get('/', fn() => view('pages.admin.major'));

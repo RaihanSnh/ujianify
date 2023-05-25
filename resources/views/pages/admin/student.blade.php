@@ -62,6 +62,12 @@
                                         </span>
                                     </button>
                                 </form>
+                                <form action="{{ url('admin/student/exportToCsv/' . $student->user_id) }}">
+                                    @csrf
+                                    <button class="flex items-center gap-x-1 px-2 py-0.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-gray-50">
+                                        <span class="material-symbols-outlined">download</span>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>
