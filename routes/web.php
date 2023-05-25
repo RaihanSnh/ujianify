@@ -121,6 +121,9 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 		Route::get('/', fn() => view('pages.teacher.presence'));
 		Route::get('/create', fn() => view('pages.teacher.create_presence'));
 		Route::post('/create', [\App\Http\Controllers\Teacher\PresenceController::class, 'create']);
+
+		Route::get('/edit/{presence}', fn(\App\Models\Presence $presence) => view('pages.teacher.edit_presence', ['presence' => $presence]));
+		Route::post('/edit/{presence}', [\App\Http\Controllers\Teacher\PresenceController::class, 'update']);
 		Route::delete('/delete/{presence}', [\App\Http\Controllers\Teacher\PresenceController::class, 'delete']);
 
 		Route::get('/submission/{presence}', fn(\App\Models\Presence $presence) => view('pages.teacher.submission', ['presence' => $presence]));
