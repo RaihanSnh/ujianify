@@ -41,10 +41,10 @@
             <x-form-error field="shuffle_questions"/>
         </div>
 
-        <div class="mb-1 font-semibold">
+        <div class="mb-1 font-semibold hidden">
             Shuffle Answers
         </div>
-        <div class="mb-4">
+        <div class="mb-4 hidden">
             <x-checkbox name="shuffle_answers" value="{{ old('shuffle_answers', $subject->shuffle_answers ? 'true' : 'false') }}">Shuffle Answers</x-checkbox>
             <x-form-error field="shuffle_answers"/>
         </div>

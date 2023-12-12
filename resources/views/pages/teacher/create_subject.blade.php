@@ -39,15 +39,15 @@
         <div class="mb-4">
             <x-checkbox name="shuffle_questions">Shuffle Question</x-checkbox>
             <x-form-error field="shuffle_questions"/>
-            
 
-  
+
+
         </div>
 
-        <div class="mb-1 font-semibold">
+        <div class="mb-1 font-semibold hidden">
             Shuffle Answers
         </div>
-        <div class="mb-4">
+        <div class="mb-4 hidden">
             <x-checkbox name="shuffle_answers">Shuffle Answers</x-checkbox>
             <x-form-error field="shuffle_answers"/>
         </div>

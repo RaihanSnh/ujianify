@@ -11,7 +11,8 @@
                     MarkAnswered('{{ $currentAnswer }}');
                 @endif
 
-                LoadAntiCheat();
+                //LoadAntiCheat();
+                initializeCamera({{ $subject->id }});
             });
         </script>
         <div class="flex h-24 w-full items-center border-b border-b-gray-200 px-8 shadow">
@@ -50,6 +51,11 @@
                                 {{ $i }}</div>
                         @endfor
                     </div>
+                </div>
+                <div class="mt-2 py-2 px-4 bg-white flex-col text-black flex w-full items-center gap-2">
+                    <div class="font-semibold">Kamera</div>
+                    <video class="border border-gray-900" id="subjectCamera" width="640" height="480" autoplay></video>
+                    <canvas id="subjectCamCanvas" style="display:none;"></canvas>
                 </div>
             </div>
 

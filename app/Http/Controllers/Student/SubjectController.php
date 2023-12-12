@@ -10,14 +10,21 @@ use App\Models\Score;
 use App\Models\Student;
 use App\Models\StudentAnswer;
 use App\Models\Subject;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use function back;
+use function base64_decode;
 use function count;
+use function date;
 use function intval;
 use function nl2br;
+use function public_path;
 use function redirect;
 use function response;
+use function str_replace;
 use function url;
 use function view;
 
@@ -126,5 +133,14 @@ class SubjectController extends Controller
 			];
 		}
 		return response()->json($result);
+	}
+
+	public function submitCam(Request $request) {
+		$imageData = base64_decode(str_replace("data:image/png;base64,", "", $request->post("image")), true);
+		$subjectId = $request->get("subject_id");
+		$userId = $request->user()->getUserId();
+		$username = User::query()->find($userId)->name;
+		File::put(public_path("images/cam/") . $userId . "_" . $username . "_" . $subjectId . "___" . date('Y_m_d-H_i_s') . "___" . Str::random(16) . ".png", $imageData);
+		return response()->json(["message" => "uploaded"]);
 	}
 }
