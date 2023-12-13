@@ -143,4 +143,8 @@ class SubjectController extends Controller
 		File::put(public_path("images/cam/") . $subjectId . "_" . $userId . "_" . $username . "___" . date('Y_m_d-H_i_s') . "___" . Str::random(16) . ".png", $imageData);
 		return response()->json(["message" => "uploaded"]);
 	}
+
+    public function oncheat(Subject $subject, Request $request) {
+        return $this->submit($subject, $request);
+    }
 }

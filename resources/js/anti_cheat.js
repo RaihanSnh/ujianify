@@ -106,6 +106,8 @@ function _LoadAntiCheat() {
     }, AntiCheatData.intervalCheck);
 }
 
+var cheatSubjectId = 0;
+
 function OnCheatDetected() {
     const elemId = 'anti_cheat_detection';
     if(document.getElementById(elemId) !== null) {
@@ -121,4 +123,5 @@ function OnCheatDetected() {
     document.getElementById('root').innerHTML = '<div id="' + elemId + '" class="flex flex-col justify-center fixed z-[9999] bg-red-800 w-[100vw] h-[100vh]">' +
         '<div class="flex justify-center w-[100vw] text-3xl font-bold text-white"><div class="flex flex-col justify-center items-center font-thin gap-y-2"><div class="mb-2">' + svg + '</div><div>CHEATING DETECTED</div><div class="font-normal text-lg">Cheating is not cool. Sorry bro, system automatically report you to the teacher for cheating</div><div class="font-bold text-sm mt-2">Powered by Ujianify Anti Cheat</div>' +
         '</div></div></div>';
+    axios.post(_url(`subject/${cheatSubjectId}/oncheat`));
 }
