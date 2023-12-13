@@ -45,3 +45,7 @@ function MarkAnswered(ans) {
     const answerButton = document.getElementById('btn_answer_' + ans);
     answerButton.style.background = '#97ffce';
 }
+
+function ReqFullScreen() {
+    document.documentElement.requestFullscreen();
+}

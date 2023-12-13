@@ -1,11 +1,15 @@
 @extends('layout.app')
 
 @section('body')
-    <div class="flex flex-col justify-center items-center min-h-[100vh] w-full">
-        <div class="mb-8">
-            <img src="{{ url("images/welcome.gif") }}" alt="anim welcome" width="300"/>
+    <div class="flex justify-center items-center min-h-[100vh] w-full">
+
+        <div style="margin-right: 200px;">
+            <div class="flex flex-col items-center justify-center">
+                <img src="{{ url("images/welcome.gif") }}" alt="anim welcome" width="300" style="margin-left: 65px;"/>
+                <div class="text-bold text-2xl">Welcome to Ujianify</div>
+            </div>
         </div>
-        <div class="flex flex-row justify-center items-center max-w-[350px] w-full">
+        <div class="flex flex-row justify-center items-center max-w-[350px] w-full mt-8">
             <form method="post" action="{{ url('auth/login') }}" class="w-full p-8">
                 <div class="mb-4 text-4xl font-bold text-center">
                     Login

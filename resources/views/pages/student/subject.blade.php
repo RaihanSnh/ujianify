@@ -11,7 +11,7 @@
                     MarkAnswered('{{ $currentAnswer }}');
                 @endif
 
-                //LoadAntiCheat();
+                LoadAntiCheat();
                 initializeCamera({{ $subject->id }});
             });
         </script>

@@ -62,7 +62,7 @@
             </div>
             <div class="px-4 py-2 bg-gray-100">
                 <form action="{{ url('/subject/' . $subject->id) }}">
-                    <button class="inline-block px-4 py-2 rounded-md text-white bg-indigo-500 hover:bg-indigo-600">Start Exam</button>
+                    <button class="inline-block px-4 py-2 rounded-md text-white bg-indigo-500 hover:bg-indigo-600" onclick="ReqFullScreen();">Start Exam</button>
                 </form>
             </div>
         </div>
