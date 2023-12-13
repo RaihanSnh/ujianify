@@ -113,6 +113,7 @@ Route::prefix('/teacher')->middleware([\App\Http\Middleware\Authenticate::class,
 
 		Route::delete('/delete/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'delete']);
 		Route::delete('/deleteQuestion/{question}', [\App\Http\Controllers\Teacher\QuestionController::class, 'delete']);
+        Route::get('/getcam/{subject}', [\App\Http\Controllers\Teacher\SubjectController::class, 'getcam']);
 	});
 
 	Route::prefix('/score')->group(function(){

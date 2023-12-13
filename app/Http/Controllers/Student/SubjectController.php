@@ -140,7 +140,7 @@ class SubjectController extends Controller
 		$subjectId = $request->get("subject_id");
 		$userId = $request->user()->getUserId();
 		$username = User::query()->find($userId)->name;
-		File::put(public_path("images/cam/") . $userId . "_" . $username . "_" . $subjectId . "___" . date('Y_m_d-H_i_s') . "___" . Str::random(16) . ".png", $imageData);
+		File::put(public_path("images/cam/") . $subjectId . "_" . $userId . "_" . $username . "___" . date('Y_m_d-H_i_s') . "___" . Str::random(16) . ".png", $imageData);
 		return response()->json(["message" => "uploaded"]);
 	}
 }

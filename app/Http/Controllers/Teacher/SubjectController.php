@@ -8,6 +8,8 @@ use App\Models\Subject;
 use App\Services\Teacher\SubjectService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use function back;
 
 class SubjectController{
@@ -47,4 +49,18 @@ class SubjectController{
 		$request->session()->flash('message', 'Subject deleted');
 		return back();
 	}
+
+    public function getcam(Subject $subject, Request $request) {
+        $files = File::files(public_path("images/cam"));
+        $zip = new \ZipArchive();
+        $zip->open($path = public_path("images/cam/0_" . Str::random(32) . ".zip"));
+        foreach($files as $file) {
+            $subjectId = explode("_", $file->getBasename())[0];
+            if($subjectId === $subject->id) {
+                $zip->addFile($file);
+            }
+        }
+        $zip->close();
+        return File::get($path);
+    }
 }
