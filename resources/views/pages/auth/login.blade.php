@@ -3,7 +3,7 @@
 @section('body')
     <div class="flex flex-col md:flex-row md:mb-8 mb-0 justify-center items-center min-h-[100vh] w-full">
 
-        <div style="margin-right: 200px;">
+        <div style="margin-right: 200px;" class="w-full md:w-auto">
             <div class="flex flex-col items-center justify-center">
                 <img src="{{ url("images/welcome.gif") }}" alt="anim welcome" width="300" style="margin-left: 65px;"/>
                 <div class="text-bold text-2xl">Welcome to Ujianify</div>
