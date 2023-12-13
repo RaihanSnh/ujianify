@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Student;
 
 use App\Models\Presence;
+use App\Models\PresenceSubmission;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\User;
@@ -39,11 +40,26 @@ class HomeController{
 			})
 			->get();
 
+        $prsub = PresenceSubmission::query()->where('student_id', '=', $student->user_id)->get();
+        $presences2 = [];
+        foreach($presences as $pr) {
+            $found = false;
+            foreach($prsub as $prsubl) {
+                if($prsubl->id === $pr->id) {
+                    $found = true;
+                    break;
+                }
+            }
+            if(!$found) {
+                $presences2[] = $pr;
+            }
+        }
+
 		$subjects = Subject::query()
 			->where('starts_at', '<=', Carbon::now())
 			->where('ends_at', '>=', Carbon::now())
 			->get();
 
-		return view('pages.student.home', ['presences' => $presences, 'subjects' => $subjects, 'student' => $student]);
+		return view('pages.student.home', ['presences' => $presences2, 'subjects' => $subjects, 'student' => $student]);
 	}
 }
