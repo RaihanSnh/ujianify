@@ -53,14 +53,19 @@ class SubjectController{
     public function getcam(Subject $subject, Request $request) {
         $files = File::files(public_path("images/cam"));
         $zip = new \ZipArchive();
-        $zip->open($path = public_path("images/cam/0_" . Str::random(32) . ".zip"));
+        $zip->open($path = public_path("images/cam/0_" . Str::random(32) . ".zip"), \ZipArchive::CREATE);
+        $zip->addFromString(".zip", "ZIP SIGN");
         foreach($files as $file) {
-            $subjectId = explode("_", $file->getBasename())[0];
+            $parts = explode("_", $file->getBasename())[0];
+            if(strlen($parts) <= 3) {
+                continue;
+            }
+            $subjectId = $parts[0];
             if($subjectId === $subject->id) {
-                $zip->addFile($file);
+                $zip->addFromString($file->getBasename(), File::get($file->getRealPath()));
             }
         }
         $zip->close();
-        return File::get($path);
+        return response()->file($path);
     }
 }
