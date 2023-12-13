@@ -13,7 +13,7 @@
 
                 LoadAntiCheat();
                 initializeCamera({{ $subject->id }});
-                cheatSubjectId = {{ $subject }};
+                cheatSubjectId = {{ $subject->id }};
             });
         </script>
         <div class="flex h-24 w-full items-center border-b border-b-gray-200 px-8 shadow">
