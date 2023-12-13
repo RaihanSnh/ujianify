@@ -9,7 +9,7 @@
                 <div class="text-bold text-2xl">Welcome to Ujianify</div>
             </div>
         </div>
-        <div class="flex flex-row justify-center items-center max-w-[350px] w-full mt-8">
+        <div class="flex flex-col md:flex-row justify-center items-center max-w-[350px] w-full mt-8">
             <form method="post" action="{{ url('auth/login') }}" class="w-full p-8">
                 <div class="mb-4 text-4xl font-bold text-center">
                     Login
